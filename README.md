@@ -1,70 +1,57 @@
 # PFB Studio
 
-PFB Studio is a native generative-art application with five renderers: noise
-flowfield, fractal flame, organic growth, Fujii attractor, and galaxies.
+A native generative art application that explores procedural creation through multiple algorithmic approaches. PFB Studio lets you interactively generate and export unique artwork using five distinct mathematical renderers.
 
-This standalone repository was imported from
-`MagnusPetursson/perlinfieldbot` commit `22bf197` as a fresh source snapshot.
-The browser studio and historical standalone executables are intentionally not
-part of this repository.
+## Generators
 
-## Supported releases
+- **Noise Flowfield** – Organic motion guided by Perlin noise patterns
+- **Fractal Flame** – Iterated function systems creating intricate fractals
+- **Organic Growth** – Simulated biological and natural growth patterns
+- **Fujii Attractor** – Strange attractor-based visualizations
+- **Galaxies** – Particle systems simulating stellar structures
 
-- Windows 10/11 x64: one portable `PFBStudio.exe`.
-- Linux Mint 22.x amd64: installable `.deb`.
-- Linux x86_64: portable AppImage.
+## History
 
-The v0.1 tester builds are unsigned. Windows may display a SmartScreen warning.
+PFB Studio is a fork of [PerlinFieldBot](https://github.com/MagnusPetursson/perlinfieldbot), which was originally a Discord bot for generative art creation. This project replaces the bot interface with a native C++ desktop application, making the generators accessible as a standalone studio with reproducible builds for direct distribution.
 
-## Build on Linux
+## Getting started
 
-Install CMake 3.22+, Ninja, a C++17 compiler, and the X11/OpenGL development
-packages required by SFML. Dependencies are downloaded at configure time and
-pinned to immutable commits corresponding to the documented releases.
+### macOS/Linux/Windows (pre-built)
+
+Download a release from the [releases page](../../releases).
+
+### Build from source
+
+**Requirements:** CMake 3.22+, Ninja, C++17 compiler
+
+**Linux:** X11 and OpenGL development packages (handled automatically)
 
 ```sh
 cmake --preset release-linux
 cmake --build --preset release-linux
-ctest --preset release-linux
-```
-
-Run the app:
-
-```sh
 ./build/release-linux/pfb-studio
 ```
 
-Create the Mint package:
+All dependencies are pinned to specific versions and fetched at build time.
 
-```sh
-cd build/release-linux
-cpack -G DEB
-```
+## Usage
 
-## Verification commands
+Launch the app, adjust parameters, and use **Save Image** to export artwork as PNG or JPEG at full resolution.
 
+For automated testing:
 ```sh
 ./build/release-linux/pfb-studio --version
-xvfb-run -a ./build/release-linux/pfb-studio --smoke-test build/smoke
+./build/release-linux/pfb-studio --smoke-test build/smoke
 ```
 
-Smoke mode renders each generator with bounded settings and writes a report.
-It is intended for release verification rather than normal batch rendering.
+## Supported platforms
 
-## Export behavior
+- **Windows 10+ (x64)** – Portable executable
+- **Linux Mint 22+ (x64)** – Debian package
+- **Linux x86_64** – AppImage
 
-`Save Image` writes the completed generator texture at its full output
-resolution. PNG is the default; `.jpg` and `.jpeg` select JPEG encoding. Linux
-uses Zenity when available and otherwise writes to the suggested Pictures path.
-Windows uses the native save dialog.
+*v0.1 is x64 only. Builds are unsigned; Windows may display a SmartScreen warning.*
 
-## Current limits
+## License
 
-- x64 only for the first tester release.
-- No code signing, installer, automatic updates, presets, or saved settings.
-- Replay reuses the seed, but wall-clock rendering does not guarantee
-  pixel-identical output across machines.
-- The legacy generator wrappers remain for v0.1 and will be replaced before the
-  SFML 3 migration.
-
-See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for dependency attribution.
+See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
