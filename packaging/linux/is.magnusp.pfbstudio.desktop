@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=PFB Studio
+GenericName=Generative Art Studio
+Comment=Create generative artwork with five native renderers
+Exec=pfb-studio
+Icon=is.magnusp.pfbstudio
+Terminal=false
+Categories=Graphics;2DGraphics;
+StartupNotify=true
+Keywords=generative;art;perlin;fractal;

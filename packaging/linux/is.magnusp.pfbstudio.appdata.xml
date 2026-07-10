@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>is.magnusp.pfbstudio</id>
+  <name>PFB Studio</name>
+  <summary>Create generative artwork with five native renderers</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="is.magnusp">
+    <name>Magnus Petursson</name>
+  </developer>
+  <url type="homepage">https://github.com/MagnusPetursson/pfb-studio</url>
+  <description>
+    <p>PFB Studio creates full-resolution generative artwork using noise flowfields, fractal flames, organic growth, Fujii attractors, and galaxy simulations.</p>
+  </description>
+  <launchable type="desktop-id">is.magnusp.pfbstudio.desktop</launchable>
+  <provides>
+    <binary>pfb-studio</binary>
+  </provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2026-07-10" type="development"/>
+  </releases>
+</component>

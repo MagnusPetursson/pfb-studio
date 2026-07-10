@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="22" fill="#08090d"/>
+  <path d="M16 82C35 42 62 42 112 23" fill="none" stroke="#e25c4e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M18 98C42 68 70 74 110 55" fill="none" stroke="#efb84c" stroke-width="6" stroke-linecap="round" opacity=".88"/>
+  <path d="M19 64C45 18 77 24 107 15" fill="none" stroke="#77d6c9" stroke-width="4" stroke-linecap="round" opacity=".72"/>
+  <circle cx="34" cy="83" r="7" fill="#f2f4f7"/>
+  <circle cx="76" cy="61" r="5" fill="#f2f4f7" opacity=".84"/>
+  <circle cx="100" cy="30" r="4" fill="#f2f4f7" opacity=".72"/>
+  <text x="64" y="111" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" font-weight="700" fill="#f2f4f7">PFB</text>
+</svg>

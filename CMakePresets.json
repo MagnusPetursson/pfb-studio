@@ -1,0 +1,53 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "dev-linux",
+      "displayName": "Linux development",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/dev-linux",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BUILD_TESTING": "ON"
+      }
+    },
+    {
+      "name": "release-linux",
+      "displayName": "Linux release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release-linux",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "BUILD_TESTING": "ON"
+      }
+    },
+    {
+      "name": "release-windows-mingw",
+      "displayName": "Windows x64 cross-build",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release-windows-mingw",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/mingw-x86_64.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "BUILD_TESTING": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "dev-linux", "configurePreset": "dev-linux" },
+    { "name": "release-linux", "configurePreset": "release-linux" },
+    { "name": "release-windows-mingw", "configurePreset": "release-windows-mingw" }
+  ],
+  "testPresets": [
+    {
+      "name": "dev-linux",
+      "configurePreset": "dev-linux",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "release-linux",
+      "configurePreset": "release-linux",
+      "output": { "outputOnFailure": true }
+    }
+  ]
+}
