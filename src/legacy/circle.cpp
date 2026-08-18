@@ -53,7 +53,7 @@ class baseApp : public App {
                 vec v = pos*coord_scale;
                 mood = sin(noise(v.x, v.y, t)*2*M_PI);
             }
-            double moodSimilarity(particle p) {
+            double moodSimilarity(const particle& p) const {
                 return 1-abs(p.mood-mood);
             }
         };
@@ -69,19 +69,20 @@ class baseApp : public App {
                 radius(r), proximity(p), prox1(p1), prox2(p2), coord_scale(c), noise_scale(n), time_step(ts), centerx(cx), centery(cy), N(NN), id(i), power(pow), multiplier(mult) {}
 
             void addParticles() {
+                particles.reserve(static_cast<std::size_t>(N));
                 for(int i = 1; i <= N; i++) {
                     particles.push_back(particle(i, colors[random(0, 5)], t, radius, coord_scale, centerx, centery));
                     particles.back().color.a = 200;
                 }
             }
 
-            void update(std::vector<colony> colonies) {
+            void update(const std::vector<colony>& colonies) {
                 for(auto &p : particles) {
                     int close = 0;
                     double lovex = 0, lovey = 0;
-                    for(auto &c : colonies) {
+                    for(const auto &c : colonies) {
                         if(c.id != id) continue;
-                        for(auto &o : c.particles) {
+                        for(const auto &o : c.particles) {
                             if(p.id == o.id) continue;
                             vec v = p.pos-o.pos;
                             double dis = v.mag();
@@ -117,8 +118,9 @@ class baseApp : public App {
                     close = std::min(close, 30);
                     p.color.a = map(close, 0, 30, 220, 30);
                     p.color.a *= map(p.age, 0, p.maxage, 1, 0.1);
-                    p.color.a *= constrain(map(f.mag(), 0, radius*2, 1, 0), 0, 1);
-                    if(f.mag() > radius) p.color.a *= 0.9;
+                    const double distanceFromCenter = f.mag();
+                    p.color.a *= constrain(map(distanceFromCenter, 0, radius*2, 1, 0), 0, 1);
+                    if(distanceFromCenter > radius) p.color.a *= 0.9;
                     p.update(t);
                 }
 
@@ -126,9 +128,18 @@ class baseApp : public App {
             }
 
             void draw() {
-                for(auto &p : particles) {
-                    rect(p.pos.x, p.pos.y, 2, 2, p.color, sf::BlendAdd);
+                sf::VertexArray batch(sf::Quads);
+                batch.resize(particles.size() * 4);
+                std::size_t vertexIndex = 0;
+                for(const auto &p : particles) {
+                    const float left = static_cast<float>(p.pos.x);
+                    const float top = static_cast<float>(p.pos.y);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), p.color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top), p.color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top + 2.f), p.color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 2.f), p.color);
                 }
+                if(vertexIndex != 0) texture.draw(batch, sf::BlendAdd);
             }
         };
 
@@ -167,6 +178,7 @@ class baseApp : public App {
             int hue = random(0, 360);
 
             int colony_number = random(1, 5);
+            colonies.reserve(static_cast<std::size_t>(colony_number));
 
             double sum_angle = 0;
 
