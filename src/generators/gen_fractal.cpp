@@ -64,6 +64,13 @@ bool fractal_start(const GenParams& p, std::string& error) {
     if (p.fractalBlurSet) testApp.blur_pass = p.fractalBlur ? 1 : 0;
     if (p.duration > 0) testApp.timeLimit = p.duration;
 
+    // Fixed-work benchmarks must not cross wall-clock-driven phase boundaries:
+    // keep the flame in its preprocess path and disable the 20-second bloom pass.
+    if (s_benchmark) {
+        testApp.preprocess_time = std::numeric_limits<double>::max();
+        testApp.blur_pass = 0;
+    }
+
     testApp.clock.restart();
     s_lastSeed    = testApp.seed;
     s_initialized = true;
