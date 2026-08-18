@@ -83,6 +83,9 @@ static void applyPerlinParams(const GenParams& p) {
     if (!std::isnan(p.density)) {
         step = 0.035 / p.density;
         points.clear();
+        const auto estimatedPointCount = static_cast<size_t>(
+            (2.0 * xlimit / step + 2.0) * (2.0 * ylimit / step + 2.0));
+        points.reserve(estimatedPointCount);
         for (double i = -xlimit; i <= xlimit; i += step)
             for (double j = -ylimit; j <= ylimit; j += step)
                 points.push_back(particle(i + 0.003*rdnormal(0,1),
@@ -149,8 +152,11 @@ bool perlin_start(const GenParams& p, std::string& error) {
             randomPalette(1, (int)rd(30,80), 0.98, rd(0.2,0.4), rdnormal(invert_hue,10))[0])
     };
     renderTexture.draw(rectangle, 4, sf::Quads);
+    renderTexture.display();
 
-    // Noise grain on background
+    // Noise grain on background. Generate the final pixel colors on the CPU,
+    // upload once, then draw the completed image in a single submission rather
+    // than issuing one draw call for every pixel.
     auto image = renderTexture.getTexture().copyToImage();
     for (int i = 1; i < HEIGHT; i++) {
         for (int j = 1; j < WIDTH; j++) {
@@ -159,12 +165,15 @@ bool perlin_start(const GenParams& p, std::string& error) {
                 (sf::Uint8)constrain(rdnormal(pc.r,2), pc.r/2.0, std::min(255, pc.r*2)),
                 (sf::Uint8)constrain(rdnormal(pc.g,2), pc.g/2.0, std::min(255, pc.g*2)),
                 (sf::Uint8)constrain(rdnormal(pc.b,2), pc.b/2.0, std::min(255, pc.b*2)));
-            sf::Vertex pv;
-            pv.position = sf::Vector2f((float)j, (float)i);
-            pv.color    = pc;
-            renderTexture.draw(&pv, 1, sf::Points);
+            image.setPixel(j, i, pc);
         }
     }
+    sf::Texture grainTexture;
+    if (!grainTexture.loadFromImage(image)) {
+        error = "Could not upload the Perlin background grain texture.";
+        return false;
+    }
+    renderTexture.draw(sf::Sprite(grainTexture));
     renderTexture.display();
 
     timerClock.restart(); // restart after setup so timeLimit is measured from first step
