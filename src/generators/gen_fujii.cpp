@@ -12,10 +12,17 @@ namespace {
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
+static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
+static uint64_t s_workUnits   = 0;
+static constexpr uint64_t FUJII_ITERATIONS_PER_STEP = 20000ull;
+static constexpr uint64_t FUJII_BENCHMARK_TARGET = 2000000ull;
+static constexpr int FUJII_BENCHMARK_STEPS_PER_TICK = 8;
 
 bool fujii_start(const GenParams& p, std::string& error) {
     s_done = false;
+    s_benchmark = p.benchmarkMode;
+    s_workUnits = 0;
     error.clear();
 
     // Reset attractor state for clean restart.
@@ -24,6 +31,7 @@ bool fujii_start(const GenParams& p, std::string& error) {
     testApp.x = testApp.y = testApp.t = 0;
     testApp.minx = testApp.miny = 10;
     testApp.maxx = testApp.maxy = -10;
+    testApp.benchmark_force_draw = s_benchmark;
 
     testApp.init();
     testApp.window.setVisible(false);
@@ -41,6 +49,8 @@ bool fujii_start(const GenParams& p, std::string& error) {
 
     testApp.setup();
     testApp.window.setVisible(false);
+    testApp.window.setVerticalSyncEnabled(!s_benchmark);
+    testApp.window.setFramerateLimit(s_benchmark ? 0u : 60u);
 
     // Apply param overrides after setup() (skip if NaN → use generator's random)
     if (!std::isnan(p.velocity) && p.velocity > 0)     testApp.v           = p.velocity;
@@ -65,12 +75,21 @@ bool fujii_start(const GenParams& p, std::string& error) {
 
 bool fujii_step() {
     if (!s_initialized || s_done) return false;
-    if (testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
+    if (!s_benchmark && testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
         s_done = true;
         return false;
     }
-    testApp.loop();
-    testApp.texture.display(); // fujii.cpp does NOT call display() — we must. ✓
+
+    const int stepCount = s_benchmark ? FUJII_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        testApp.loop();
+        testApp.texture.display(); // fujii.cpp does NOT call display() — we must. ✓
+        s_workUnits += FUJII_ITERATIONS_PER_STEP;
+        if (s_benchmark && s_workUnits >= FUJII_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
+    }
     return true;
 }
 
@@ -78,3 +97,6 @@ const sf::Texture& fujii_texture()    { return testApp.texture.getTexture(); }
 int  fujii_native_width()             { return testApp.screen_width;  }
 int  fujii_native_height()            { return testApp.screen_height; }
 uint64_t fujii_last_seed()            { return s_lastSeed; }
+GenPerformance fujii_performance() {
+    return {s_workUnits, FUJII_BENCHMARK_TARGET, "attractor iterations"};
+}
