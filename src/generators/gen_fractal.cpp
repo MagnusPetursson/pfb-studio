@@ -14,7 +14,8 @@ static bool     s_done        = false;
 static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
 static uint64_t s_workUnits   = 0;
-static constexpr uint64_t FRACTAL_BENCHMARK_TARGET = 10000000ull;
+static constexpr uint64_t FRACTAL_BENCHMARK_TARGET = 2000000ull;
+static constexpr int FRACTAL_BENCHMARK_STEPS_PER_TICK = 8;
 
 bool fractal_start(const GenParams& p, std::string& error) {
     s_done = false;
@@ -55,6 +56,8 @@ bool fractal_start(const GenParams& p, std::string& error) {
 
     testApp.setup();
     testApp.window.setVisible(false);
+    testApp.window.setVerticalSyncEnabled(!s_benchmark);
+    testApp.window.setFramerateLimit(s_benchmark ? 0u : 60u);
     if (!testApp.blur_loaded) {
         error = "The fractal blur shader could not be compiled.";
         return false;
@@ -64,10 +67,10 @@ bool fractal_start(const GenParams& p, std::string& error) {
     if (p.fractalBlurSet) testApp.blur_pass = p.fractalBlur ? 1 : 0;
     if (p.duration > 0) testApp.timeLimit = p.duration;
 
-    // Fixed-work benchmarks must not cross wall-clock-driven phase boundaries:
-    // keep the flame in its preprocess path and disable the 20-second bloom pass.
+    // Benchmark the steady-state flame render path without wall-clock phase
+    // changes. Normal rendering keeps the original preprocess/bloom behavior.
     if (s_benchmark) {
-        testApp.preprocess_time = std::numeric_limits<double>::max();
+        testApp.preprocess = 0;
         testApp.blur_pass = 0;
     }
 
@@ -83,14 +86,18 @@ bool fractal_step() {
         s_done = true;
         return false;
     }
-    const uint64_t iterationsThisStep = static_cast<uint64_t>(testApp.fractals.size()) * 3000ull;
-    testApp.loop();
-    s_workUnits += iterationsThisStep;
-    // fractal.cpp calls texture.display() unconditionally on line 363. ✓
-    if (s_benchmark && s_workUnits >= FRACTAL_BENCHMARK_TARGET) {
-        s_done = true;
-        return false;
+
+    const int stepCount = s_benchmark ? FRACTAL_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        const uint64_t iterationsThisStep = static_cast<uint64_t>(testApp.fractals.size()) * 3000ull;
+        testApp.loop();
+        s_workUnits += iterationsThisStep;
+        if (s_benchmark && s_workUnits >= FRACTAL_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
     }
+    // fractal.cpp calls texture.display() unconditionally on line 363. ✓
     return true;
 }
 
