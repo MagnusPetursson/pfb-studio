@@ -68,11 +68,15 @@ class baseApp : public App {
             double t = 0;
             int N, id;
             std::vector<particle> particles;
+            std::vector<particle_snapshot> snapshot;
+            sf::VertexArray drawBatch{sf::Quads};
             colony(double r, double p, double p1, double p2, double c, double n, double ts, double cx, double cy, int NN, int i, double pow, double mult) :
                 radius(r), proximity(p), prox1(p1), prox2(p2), coord_scale(c), noise_scale(n), time_step(ts), centerx(cx), centery(cy), N(NN), id(i), power(pow), multiplier(mult) {}
 
             void addParticles() {
                 particles.reserve(static_cast<std::size_t>(N));
+                snapshot.reserve(static_cast<std::size_t>(N));
+                drawBatch.resize(static_cast<std::size_t>(N) * 4);
                 for(int i = 1; i <= N; i++) {
                     particles.push_back(particle(i, colors[random(0, 5)], t, radius, coord_scale, centerx, centery));
                     particles.back().color.a = 200;
@@ -80,24 +84,26 @@ class baseApp : public App {
             }
 
             void update() {
-                std::vector<particle_snapshot> snapshot;
-                snapshot.reserve(particles.size());
+                snapshot.clear();
                 for(const auto &o : particles)
                     snapshot.push_back({o.id, o.pos, o.mood});
 
+                const vec center(centerx, centery);
                 for(auto &p : particles) {
                     int close = 0;
                     double lovex = 0, lovey = 0;
+                    const vec centerOffset = p.pos-center;
+                    const double centerDistance = centerOffset.mag();
+
                     for(const auto &o : snapshot) {
                         if(p.id == o.id) continue;
                         vec v = p.pos-o.pos;
                         double dis = v.mag();
                         double angle = v.arctan();
                         double love = pow(1.0/std::max(1.0, dis), power)*multiplier;
-                        vec f = p.pos-vec(centerx, centery);
-                        if(dis < proximity) love *= map(f.mag(), 0, radius, prox1, prox2);
+                        if(dis < proximity) love *= map(centerDistance, 0, radius, prox1, prox2);
                         //std::cout << dis << '\n';
-                        //love *= map(f.mag(), 0, radius, 0.5, 2);
+                        //love *= map(centerDistance, 0, radius, 0.5, 2);
                         if(dis < 50) {
                             close++;
                             //p.color.a = map(dis, 0, 100, 0, 6);
@@ -111,39 +117,29 @@ class baseApp : public App {
                     //std::cout << lovex << ' ' << lovey << '\n';
                     p.vel = vec(lovex, lovey);
 
-                    vec pp = p.pos*coord_scale;
-                    double n = noise(pp.x, pp.y)*noise_scale;
-                    vec nv(cos(n), sin(n));
-                    //std::cout << nv.x << ' ' << nv.y << '\n';
-                    vec f = p.pos-vec(centerx, centery);
-                    double mod = map(noise(p.pos.x, p.pos.y, t), -1, 1, 0, 1);
-                    //p.vel = p.vel * nv * 5;
-
                     close = std::min(close, 30);
                     p.color.a = map(close, 0, 30, 220, 30);
                     p.color.a *= map(p.age, 0, p.maxage, 1, 0.1);
-                    const double distanceFromCenter = f.mag();
-                    p.color.a *= constrain(map(distanceFromCenter, 0, radius*2, 1, 0), 0, 1);
-                    if(distanceFromCenter > radius) p.color.a *= 0.9;
+                    p.color.a *= constrain(map(centerDistance, 0, radius*2, 1, 0), 0, 1);
+                    if(centerDistance > radius) p.color.a *= 0.9;
                     p.update(t);
                 }
 
-            t += time_step;
+                t += time_step;
             }
 
             void draw() {
-                sf::VertexArray batch(sf::Quads);
-                batch.resize(particles.size() * 4);
+                drawBatch.resize(particles.size() * 4);
                 std::size_t vertexIndex = 0;
                 for(const auto &p : particles) {
                     const float left = static_cast<float>(p.pos.x);
                     const float top = static_cast<float>(p.pos.y);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), p.color);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top), p.color);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top + 2.f), p.color);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 2.f), p.color);
+                    drawBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), p.color);
+                    drawBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top), p.color);
+                    drawBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top + 2.f), p.color);
+                    drawBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 2.f), p.color);
                 }
-                if(vertexIndex != 0) renderer->draw(batch, sf::BlendAdd);
+                if(vertexIndex != 0) renderer->draw(drawBatch, sf::BlendAdd);
             }
         };
 
@@ -215,7 +211,7 @@ class baseApp : public App {
                 time_step = random(0.0001, 0.5);
                 double power = random(1.0, 2.0);
                 double mult = pow(map(power, 1, 2, 1, 10), 2)/2;
-                colonies.push_back(colony(radius, proximity, prox1, prox2, coord_scale, noise_scale, time_step, centerx, centery, random(400, 600), j, power, mult));
+                colonies.emplace_back(radius, proximity, prox1, prox2, coord_scale, noise_scale, time_step, centerx, centery, random(400, 600), j, power, mult);
 
                 for(int k = 0; k <= color_number; k++) colonies.back().colors[k] = colors[k];
                 colonies.back().addParticles();
