@@ -32,7 +32,8 @@ static bool     s_done        = false;
 static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
 static uint64_t s_workUnits   = 0;
-static constexpr uint64_t PERLIN_BENCHMARK_TARGET = 20000000ull;
+static constexpr uint64_t PERLIN_BENCHMARK_TARGET = 2000000ull;
+static constexpr int PERLIN_BENCHMARK_STEPS_PER_TICK = 8;
 
 static void applyPerlinParams(const GenParams& p) {
     if (p.aspect == 1) {          // square
@@ -202,16 +203,20 @@ bool perlin_step() {
         s_done = true;
         return false;
     }
-    sf::Vertex point;
-    point.color    = sf::Color(0, 0, 0, 0);
-    point.position = sf::Vector2f((float)rd(0, WIDTH), (float)rd(0, HEIGHT));
-    renderTexture.draw(&point, 1, sf::Points);
-    draw();
-    renderTexture.display();
-    s_workUnits += static_cast<uint64_t>(points.size());
-    if (s_benchmark && s_workUnits >= PERLIN_BENCHMARK_TARGET) {
-        s_done = true;
-        return false;
+
+    const int stepCount = s_benchmark ? PERLIN_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        sf::Vertex point;
+        point.color    = sf::Color(0, 0, 0, 0);
+        point.position = sf::Vector2f((float)rd(0, WIDTH), (float)rd(0, HEIGHT));
+        renderTexture.draw(&point, 1, sf::Points);
+        draw();
+        renderTexture.display();
+        s_workUnits += static_cast<uint64_t>(points.size());
+        if (s_benchmark && s_workUnits >= PERLIN_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
     }
     return true;
 }
