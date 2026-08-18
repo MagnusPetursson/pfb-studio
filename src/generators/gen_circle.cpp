@@ -18,7 +18,8 @@ static bool     s_done        = false;
 static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
 static uint64_t s_workUnits   = 0;
-static constexpr uint64_t CIRCLE_BENCHMARK_TARGET = 100000000ull;
+static constexpr uint64_t CIRCLE_BENCHMARK_TARGET = 20000000ull;
+static constexpr int CIRCLE_BENCHMARK_STEPS_PER_TICK = 2;
 
 static uint64_t pairEvaluationsPerStep() {
     uint64_t total = 0;
@@ -59,6 +60,8 @@ bool circle_start(const GenParams& p, std::string& error) {
 
     testApp.setup();
     testApp.window.setVisible(false);
+    testApp.window.setVerticalSyncEnabled(!s_benchmark);
+    testApp.window.setFramerateLimit(s_benchmark ? 0u : 60u);
 
     if (p.duration > 0) testApp.timeLimit = p.duration;
 
@@ -83,15 +86,19 @@ bool circle_step() {
         s_done = true;
         return false;
     }
-    const uint64_t evaluationsThisStep = pairEvaluationsPerStep();
-    testApp.loop();
-    s_workUnits += evaluationsThisStep;
+
+    const int stepCount = s_benchmark ? CIRCLE_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        const uint64_t evaluationsThisStep = pairEvaluationsPerStep();
+        testApp.loop();
+        s_workUnits += evaluationsThisStep;
+        if (s_benchmark && s_workUnits >= CIRCLE_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
+    }
     // texture.display() is inside #ifdef WINDOW in circle.cpp, which is defined,
     // so the loop() call already finalises the texture. ✓
-    if (s_benchmark && s_workUnits >= CIRCLE_BENCHMARK_TARGET) {
-        s_done = true;
-        return false;
-    }
     return true;
 }
 
