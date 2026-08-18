@@ -64,6 +64,9 @@ void setup() {
     contrast = 0;//rd(0, 1);
     octaves = 3;
     smoothing = constrain(rd(0, 0.99), 0, 1);
+    const auto estimatedPointCount = static_cast<size_t>(
+        (2.0 * xlimit / step + 2.0) * (2.0 * ylimit / step + 2.0));
+    points.reserve(estimatedPointCount);
     for(double i = -xlimit; i <= xlimit; i += step)
         for(double j = -ylimit; j <= ylimit; j += step) {
             particle p(i+0.003*rdnormal(0, 1), j+0.003*rdnormal(0, 1), sf::Color(0, 0, 0, 30));
@@ -87,7 +90,8 @@ void setup() {
 sf::Clock timerClock;
 
 void draw() {
-    int index = 0;
+    sf::VertexArray batch(sf::Points, points.size());
+    size_t index = 0;
     for(auto &i : points) {
         /*if(is_colored) {
             int cn = (int)(100*pal.size()*mathmap(pn.GetNoise(index, 0), -1, 1, 0, 1))%pal.size();
@@ -96,15 +100,18 @@ void draw() {
 
         sf::Vector2f v(i.x, i.y);
         v = mulF(resolveFieldTree2(1, v, weight, tree1, nodes1), sf::Vector2f(2, 2));
-        double col = mathmap(sin(sqrtf(v.x*v.x+v.y*v.y)), -1, 1, 0, 1);
         i.vertex.color = interpolate(interpolate(pal[2], pal[3], mathmap(sin(atan2(v.y, v.x)), -1, 1, 0, 1)), interpolate(pal[0], pal[1], mathmap(sin(atan2(v.x, v.y)), -1, 1, 0, 1)), mathmap(i.x, -xlimit, xlimit, 0, 1));
-        i.vertex.color.a = constrain(pow(sqrtf(v.x*v.x+v.y*v.y), 3)*4, 0, 80);
+        const float magnitude = sqrtf(v.x*v.x+v.y*v.y);
+        i.vertex.color.a = constrain(pow(magnitude, 3)*4, 0, 80);
         //cout << v.x << ' ' << v.y << endl;
         i.update(v, vector_scale);
-        i.draw();
+        double xx = mathmap(i.x, -xlimit, xlimit, 10, WIDTH-10);
+        double yy = mathmap(i.y, -ylimit, ylimit, 10, HEIGHT-10);
+        i.vertex.position = sf::Vector2f(xx, yy);
+        batch[index++] = i.vertex;
         //i.edgecheck();
-        index++;
     }
+    renderTexture.draw(batch, sf::BlendAdd);
 }
 
 int main() {

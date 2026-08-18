@@ -17,6 +17,7 @@ class baseApp : public App {
         sf::Color colors[3];
         double minx = 10, miny = 10, maxx = -10, maxy = -10, color_limit = 1;
         bool colored = 0;
+        bool benchmark_force_draw = false;
 
         double ssin(double x, double p) {
             if(p == 0) return asin(sin(x));
@@ -94,6 +95,10 @@ class baseApp : public App {
             checkForEvents();
             #endif
 
+            sf::VertexArray batch(sf::Quads);
+            batch.resize(20000 * 4);
+            std::size_t vertexIndex = 0;
+
             for(int i = 1; i <= 20000; i++) {
                 double xx = x, yy = y;
                 xx = a[1]*ssin(f[1]*x, p) + a[2]*ccos(f[2]*y, q) + a[3]*ssin(f[3]*t, p);
@@ -117,11 +122,19 @@ class baseApp : public App {
                 xx = map(x, minx, maxx, 50, screen_width-50);
                 yy = map(y, miny, maxy, 50, screen_height-50);
 
-                if(clock.getElapsedTime().asSeconds() > 1.5) {
-                    if(colored) rect(xx, yy, 1, 1, color, sf::BlendAdd);
-                    else rect(xx, yy, 1, 1, color);
+                if(benchmark_force_draw || clock.getElapsedTime().asSeconds() > 1.5) {
+                    const float left = static_cast<float>(xx);
+                    const float top = static_cast<float>(yy);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
                 }
             }
+
+            batch.resize(vertexIndex);
+            if(vertexIndex != 0)
+                texture.draw(batch, colored ? sf::BlendAdd : sf::BlendAlpha);
 
             //std::cout << x << ' ' << y << '\n';
 
