@@ -30,6 +30,11 @@ jobs:
       - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - run: cmake --build build/windows
       - run: ctest --test-dir build/windows --output-on-failure
+      - name: Launch executable smoke check
+        shell: pwsh
+        run: |
+          & ./build/windows/PFBStudio.exe --version
+          if ($LASTEXITCODE -ne 0) { throw "PFBStudio.exe --version exited with $LASTEXITCODE" }
       - name: Verify single executable output
         shell: pwsh
         run: |
