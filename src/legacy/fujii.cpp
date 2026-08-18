@@ -17,6 +17,7 @@ class baseApp : public App {
         sf::Color colors[3];
         double minx = 10, miny = 10, maxx = -10, maxy = -10, color_limit = 1;
         bool colored = 0;
+        bool benchmark_force_draw = false;
 
         double ssin(double x, double p) {
             if(p == 0) return asin(sin(x));
@@ -121,7 +122,7 @@ class baseApp : public App {
                 xx = map(x, minx, maxx, 50, screen_width-50);
                 yy = map(y, miny, maxy, 50, screen_height-50);
 
-                if(clock.getElapsedTime().asSeconds() > 1.5) {
+                if(benchmark_force_draw || clock.getElapsedTime().asSeconds() > 1.5) {
                     const float left = static_cast<float>(xx);
                     const float top = static_cast<float>(yy);
                     batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
