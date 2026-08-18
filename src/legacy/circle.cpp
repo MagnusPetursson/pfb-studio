@@ -45,7 +45,9 @@ class baseApp : public App {
             void update(double t) {
                 pos = pos + vel;
                 calcMood(t);
-                if(vec(pos.x-centerx, pos.y-centery).mag() < 100) age = maxage = 5;
+                const double dx = pos.x-centerx;
+                const double dy = pos.y-centery;
+                if(dx*dx + dy*dy < 10000.0) age = maxage = 5;
                 if(age-- < 0 /*|| pos.x < 0 || pos.x > 1800 || pos.y < 0 || pos.y > 1800*/) reset(t);
             }
             void calcMood(double t) {
@@ -97,24 +99,25 @@ class baseApp : public App {
 
                     for(const auto &o : snapshot) {
                         if(p.id == o.id) continue;
-                        vec v = p.pos-o.pos;
-                        double dis = v.mag();
-                        double angle = v.arctan();
+                        const vec delta = p.pos-o.pos;
+                        const double dis = delta.mag();
                         double love = pow(1.0/std::max(1.0, dis), power)*multiplier;
                         if(dis < proximity) love *= map(centerDistance, 0, radius, prox1, prox2);
-                        //std::cout << dis << '\n';
-                        //love *= map(centerDistance, 0, radius, 0.5, 2);
-                        if(dis < 50) {
-                            close++;
-                            //p.color.a = map(dis, 0, 100, 0, 6);
-                        } //else p.color.a = 130;
+                        if(dis < 50) close++;
                         love *= 1-abs(o.mood-p.mood);
                         love *= 20;
-                        //std::cout << love << '\n';
-                        lovex += -cos(angle)*love;
-                        lovey += -sin(angle)*love;
+
+                        // cos(atan2(y,x)) == x/r and sin(atan2(y,x)) == y/r.
+                        // Avoid three transcendental calls for every particle pair.
+                        if(dis > 0) {
+                            const double forceScale = -love/dis;
+                            lovex += delta.x*forceScale;
+                            lovey += delta.y*forceScale;
+                        } else {
+                            // atan2(0,0) evaluates to 0 in the legacy path.
+                            lovex -= love;
+                        }
                     }
-                    //std::cout << lovex << ' ' << lovey << '\n';
                     p.vel = vec(lovex, lovey);
 
                     close = std::min(close, 30);
@@ -142,8 +145,6 @@ class baseApp : public App {
                 if(vertexIndex != 0) renderer->draw(drawBatch, sf::BlendAdd);
             }
         };
-
-
 
         sf::Color colors[color_number+1];
         std::vector<particle> particles;
@@ -186,7 +187,6 @@ class baseApp : public App {
                 colors[0] = convert(Hsv((hue+random(0, 20))%360, random(0.1, 0.65), random(0.6, 0.95)));
                 for(int i = 1; i <= color_number; i++)
                     colors[i] = convert(Hsv((hue+random(150, 200))%360, random(0.1, 0.65), random(0.6, 0.95)));
-                //colony(double r, double p, double p1, double p2, double c, double n, double ts, double cx, double cy, int NN)
                 radius = random(300.0, 900.0) * map(colony_number, 1, 5, 2, 0.5);
 
                 double angle = fmod(sum_angle + random(M_PI*0.8, M_PI*1.2), 2*M_PI);
@@ -199,9 +199,6 @@ class baseApp : public App {
                 double center_radius = constrain(gaussian(900, 500), 0, 1000);
                 centerx = cos(angle)*center_radius+screen_width/2;
                 centery = sin(angle)*center_radius+screen_height/2;
-
-                //centerx = random(0.0, (double)screen_width);
-                //centery = random(0.0, (double)screen_height);
 
                 proximity = random(1.0, 100.0);
                 prox1 = random(0.1, 10.0) * (random(0, 100) < 50 ? -1 : 1);
@@ -225,15 +222,11 @@ class baseApp : public App {
             };
 
             texture.draw(background, 4, sf::Quads);
-
-            //texture.clear(sf::Color(220, 220, 220));
         }
         void loop() {
             #ifdef WINDOW
             checkForEvents();
             #endif
-
-            //std::cout << colonies.back().centerx << ' ' << colonies.back().centery << '\n';
 
             for(auto &c : colonies) {
                 c.update();
