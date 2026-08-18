@@ -27,7 +27,7 @@ class baseApp : public App {
                 age = maxage = random(500, 4000);
                 double angle = random(0.0, 2*M_PI);
                 //mood = abs(map(angle, 0, 2*M_PI, -1, 1));
-                //double rad = gaussian(radius, 0.01);// * (random(0, 100) < 80 ? map(gaussian(1, 0.2), 0, 2, 0, 1.2) : 1);
+                //double rad = gaussian(radius, 0.01);// * (random(0, 100) < 80 ? map(gaussian(1, 0.2), 0, 1.2) : 1);
                 double rad = 2*gaussian(0, 0.1) + (radius)*(1.0-pow(random(1.0),7.0));
                 pos = vec(cos(angle)*rad+centerx, sin(angle)*rad+centery);
                 vel = vec(0, 0);
@@ -90,17 +90,18 @@ class baseApp : public App {
                 for(const auto &o : particles)
                     snapshot.push_back({o.id, o.pos, o.mood});
 
-                const vec center(centerx, centery);
                 for(auto &p : particles) {
                     int close = 0;
                     double lovex = 0, lovey = 0;
-                    const vec centerOffset = p.pos-center;
-                    const double centerDistance = centerOffset.mag();
+                    const double centerDx = p.pos.x-centerx;
+                    const double centerDy = p.pos.y-centery;
+                    const double centerDistance = sqrt(centerDx*centerDx + centerDy*centerDy);
 
                     for(const auto &o : snapshot) {
                         if(p.id == o.id) continue;
-                        const vec delta = p.pos-o.pos;
-                        const double dis = delta.mag();
+                        const double dx = p.pos.x-o.pos.x;
+                        const double dy = p.pos.y-o.pos.y;
+                        const double dis = sqrt(dx*dx + dy*dy);
                         double love = pow(1.0/std::max(1.0, dis), power)*multiplier;
                         if(dis < proximity) love *= map(centerDistance, 0, radius, prox1, prox2);
                         if(dis < 50) close++;
@@ -111,8 +112,8 @@ class baseApp : public App {
                         // Avoid three transcendental calls for every particle pair.
                         if(dis > 0) {
                             const double forceScale = -love/dis;
-                            lovex += delta.x*forceScale;
-                            lovey += delta.y*forceScale;
+                            lovex += dx*forceScale;
+                            lovey += dy*forceScale;
                         } else {
                             // atan2(0,0) evaluates to 0 in the legacy path.
                             lovex -= love;
