@@ -15,7 +15,8 @@ static bool     s_done        = false;
 static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
 static uint64_t s_workUnits   = 0;
-static constexpr uint64_t GALAXIES_BENCHMARK_TARGET = 20000000ull;
+static constexpr uint64_t GALAXIES_BENCHMARK_TARGET = 5000000ull;
+static constexpr int GALAXIES_BENCHMARK_STEPS_PER_TICK = 4;
 
 static uint64_t iterationsForRadius(double radius) {
     const double mapped = 0.2 + (radius - 80.0) * (0.8 / 720.0);
@@ -60,6 +61,8 @@ bool galaxies_start(const GenParams& p, std::string& error) {
 
     testApp.setup();
     testApp.window.setVisible(false);
+    testApp.window.setVerticalSyncEnabled(!s_benchmark);
+    testApp.window.setFramerateLimit(s_benchmark ? 0u : 60u);
 
     // Apply post-setup overrides (skip if NaN → use generator's random)
     if (!std::isnan(p.colorLimitGal) && p.colorLimitGal > 0) testApp.color_limit = p.colorLimitGal;
@@ -82,13 +85,17 @@ bool galaxies_step() {
         s_done = true;
         return false;
     }
-    const uint64_t iterationsThisStep = galaxyIterationsPerStep();
-    testApp.loop();
-    testApp.texture.display(); // galaxies.cpp does NOT call display() — we must. ✓
-    s_workUnits += iterationsThisStep;
-    if (s_benchmark && s_workUnits >= GALAXIES_BENCHMARK_TARGET) {
-        s_done = true;
-        return false;
+
+    const int stepCount = s_benchmark ? GALAXIES_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        const uint64_t iterationsThisStep = galaxyIterationsPerStep();
+        testApp.loop();
+        testApp.texture.display(); // galaxies.cpp does NOT call display() — we must. ✓
+        s_workUnits += iterationsThisStep;
+        if (s_benchmark && s_workUnits >= GALAXIES_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
     }
     return true;
 }
