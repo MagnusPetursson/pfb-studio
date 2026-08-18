@@ -19,10 +19,6 @@ jobs:
       - run: cmake --build --preset release-linux
       - run: ctest --preset release-linux
       - run: xvfb-run -a ./build/release-linux/pfb-studio --smoke-test build/smoke
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: PFBStudio-optimized-linux
-          path: build/release-linux/pfb-studio
 
   windows:
     runs-on: windows-latest
@@ -39,7 +35,3 @@ jobs:
         run: |
           if (!(Test-Path build/windows/PFBStudio.exe)) { throw "PFBStudio.exe was not built" }
           Get-Item build/windows/PFBStudio.exe | Format-List Name,Length,VersionInfo
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: PFBStudio-optimized-windows
-          path: build/windows/PFBStudio.exe
