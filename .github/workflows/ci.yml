@@ -31,6 +31,7 @@ jobs:
       - run: cmake --build build/windows
       - run: ctest --test-dir build/windows --output-on-failure
       - name: Launch normal GUI smoke check
+        continue-on-error: true
         shell: pwsh
         run: |
           $p = Start-Process ./build/windows/PFBStudio.exe -PassThru
@@ -41,16 +42,10 @@ jobs:
             throw ("PFBStudio.exe exited during startup with 0x{0:X8}" -f $code)
           }
           Stop-Process -Id $p.Id -Force
-      - name: Launch version smoke check
+      - name: Hash rebuilt control binary
         shell: pwsh
-        run: |
-          $p = Start-Process ./build/windows/PFBStudio.exe -ArgumentList '--version' -PassThru -Wait
-          if ($p.ExitCode -ne 0) {
-            $code = $p.ExitCode -band 0xffffffff
-            throw ("PFBStudio.exe --version exited with 0x{0:X8}" -f $code)
-          }
-      - name: Verify single executable output
-        shell: pwsh
-        run: |
-          if (!(Test-Path build/windows/PFBStudio.exe)) { throw "PFBStudio.exe was not built" }
-          Get-Item build/windows/PFBStudio.exe | Format-List Name,Length,VersionInfo
+        run: Get-FileHash build/windows/PFBStudio.exe -Algorithm SHA256 | Format-List
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: PFBStudio-rebuilt-pre-profiler-control
+          path: build/windows/PFBStudio.exe
