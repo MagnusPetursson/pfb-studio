@@ -39,6 +39,7 @@ class baseApp : public App {
 
         sf::Shader blur;
         bool blur_loaded = false;
+        sf::VertexArray pointBatch{sf::Quads};
 
         struct fractal {
             vec v, initial_v;
@@ -62,18 +63,14 @@ class baseApp : public App {
             }
 
             void randomiseCoeffs(double t) {
-                //for(int i = 0; i < funcs.size(); i++)
-                //    funcs[i].c = backup_coeffs[i];
                 zoom = constrain(abs(noise(t)*10), 1, 10);
                 for(std::size_t i = 0; i < funcs.size(); i++)
                     for(int j = 0; j < 6; j++)
                         funcs[i].p[j] = constrain(backup_pcoeffs[i][j]*noise(t+j*100+i*100)*5, -1.0, 1.0),
                         funcs[i].c[j] = constrain(backup_coeffs[i][j]*noise(t+j*1000+i*1000)*10, -1.0, 1.0);
 
-                for(int i = 0; i < 6; i++) {
-                    //funcs[final_func].c[i] = constrain(backup_coeffs[final_func][i]*noise(t+i*100)*10, -1.5, 1.5);
+                for(int i = 0; i < 6; i++)
                     final_p[i] = constrain(backup_pcoeffs[funcs.size()][i]*noise(t+i*100), -1.0, 1.0);
-                }
             }
 
             vec rotatePoint(vec v, double angle, vec center) {
@@ -108,11 +105,6 @@ class baseApp : public App {
                     vec s = variations[f.id[i]](affineV, f.w[i]);
                     ret = ret + s;
                 }
-                //post
-                //for(int i = 0; i < 6; i++)
-                //    funcs[fi].c[i] *= funcs[fi].mult;
-                //for(auto i : f.p) std::cout << i << ' ';
-                //std::cout << '\n';
                 ret = affinePost(ret, f.p);
                 return ret;
             }
@@ -141,58 +133,44 @@ class baseApp : public App {
                     c.reserve(6);
                     p.reserve(6);
 
-                    //id
                     for(int i = 1; i <= vars; i++) {
                         auto temp = available_vars[random(0, available_vars.size()-1)];
-                        //check if it was already chosen
                         bool valid = 1;
                         for(const auto& test : id) if(test == temp) valid = 0;
                         if(valid)
                             id.push_back(temp),
                             w.push_back(0);
                     }
-                    //w
+
                     double w_sum = 0, w_inc = 0.05;
                     while(w_sum < 1) {
                         w[random(0, id.size()-1)] += w_inc;
                         w_sum += w_inc;
                     }
-                    /*for(int i = 0; i < id.size(); i++)
-                        w[i] = random(-1.0, 1.0)*1.25;*/
 
-                    //col
                     int temp_hue = (hue+random(0, 40))%360;
                     if(random(0, 100) < 30) temp_hue = (hue+random(160, 200))%360;
                     col = convert(Hsv(temp_hue, random(0.7, 0.9), random(0.7, 0.9)));
 
-                    //c & p
                     for(int j = 0; j < 6; j++)
                         c.push_back(random(-1.5, 1.5)),
                         p.push_back(constrain((t+j*100)*5, -1.0, 1.0));
                     backup_pcoeffs.push_back(p);
                     backup_coeffs.push_back(c);
-                    //p = backup_pcoeffs[0];
 
                     funcs.push_back(func(id, w, c, col, p, 1));
                 }
 
-                //weights
                 double f_sum = 0, f_inc = 0.5;
                 while(f_sum < 0.99) {
                     weights[random(0, func_number-1)] += f_inc;
                     f_sum += f_inc;
                     f_inc /= 2;
                 }
-                //for(int i = 0; i < func_number; i++)
-                //    weights[i] = random(-1.0, 1.0);
 
-                //final_func = funcs_size()-1;//random(0, funcs.size()-1);
-                //funcs.push_back(funcs[final_func]);
                 final_func = func_number;
                 for(int j = 0; j < 6; j++)
-                        final_p.push_back(constrain((t+j*100)*5, -1.0, 1.0));
-                //final_p = backup_pcoeffs[0];
-                //backup_pcoeffs.push_back(funcs[final_func].c);
+                    final_p.push_back(constrain((t+j*100)*5, -1.0, 1.0));
                 backup_pcoeffs.push_back(final_p);
             }
         };
@@ -222,19 +200,16 @@ class baseApp : public App {
 
             timeLimit = 40;
             save_path = "./";
-            //save_path = "./";
 
             clear(sf::Color(5, 5, 5));
 
             hue = (hue_override >= 0) ? hue_override : random(0, 360);
 
             int diffs = random(4, 12);
-            std::vector<std::string> vars;// = {"spherewaves", "spherecorn"};
+            std::vector<std::string> vars;
             vars.reserve(static_cast<std::size_t>(diffs));
-            while(diffs--) {
+            while(diffs--)
                 vars.push_back(randVariation());
-                //std::cout << vars.back() << '\n';
-            }
 
             fractal_number = random(3, 7);
             double temp_seed = random(1.0, 1000.0);
@@ -277,31 +252,37 @@ class baseApp : public App {
 
                 sf::RenderStates states;
                 states.blendMode = sf::BlendMultiply;
-                for(int i = 1; i <= 1; i++)
-                    texture.draw(sf::Sprite(orig), states);
+                texture.draw(sf::Sprite(orig), states);
 
                 sf::Texture mult(texture.getTexture());
-
                 texture.draw(sf::Sprite(orig));
 
                 states.shader = &blur;
                 states.blendMode = sf::BlendAdd;
 
-
-
-                //noise to remove banding
-
+                // Noise to remove banding. Preserve the legacy inclusive loops
+                // (and therefore every RNG call) but upload/draw the in-bounds
+                // pixels in one operation instead of millions of rectangles.
                 sf::Color c = convert(Hsv((hue+random(0, 40))%360, 0.85, 2.8*random(0.03, 0.045)));
+                sf::Image noiseImage;
+                noiseImage.create(static_cast<unsigned int>(screen_width),
+                                  static_cast<unsigned int>(screen_height),
+                                  sf::Color::Transparent);
 
                 for(int i = 0; i <= screen_width; i++) {
                     for(int j = 0; j <= screen_height; j++) {
                         c.a = constrain(gaussian(90, 40), 1, 255);
-                        rect(i, j, 1, 1, c);
+                        if(i < screen_width && j < screen_height)
+                            noiseImage.setPixel(static_cast<unsigned int>(i),
+                                                static_cast<unsigned int>(j), c);
                     }
                 }
 
-                //bloom
+                sf::Texture noiseTexture;
+                if(noiseTexture.loadFromImage(noiseImage))
+                    texture.draw(sf::Sprite(noiseTexture));
 
+                // bloom
                 blur.setUniform("blur_radius", sf::Vector2f(-0.001, 0.001));
                 texture.draw(sf::Sprite(mult), states);
                 blur.setUniform("blur_radius", sf::Vector2f(0.001, 0.001));
@@ -335,8 +316,7 @@ class baseApp : public App {
                 texture.draw(background, 4, sf::Quads);
             }
 
-            sf::VertexArray pointBatch(sf::Quads,
-                fractals.size() * static_cast<std::size_t>(2980 * 4));
+            pointBatch.resize(fractals.size() * static_cast<std::size_t>(2980 * 4));
             std::size_t vertexIndex = 0;
 
             for(auto &f : fractals) {
@@ -346,15 +326,12 @@ class baseApp : public App {
                     f.v = f.runFunc(f.v, i);
                     f.v = f.runFunc(f.v, f.final_func);
 
-                    //final post
                     f.v = affinePost(f.v, f.final_p);
                     f.c = interpolate(f.c, f.funcs[i].col, 0.5);
                     f.c = interpolate(f.c, f.funcs[f.final_func].col, 0.5);
-                    //zoom
                     vec vz = f.v*f.zoom;
 
                     if(it > 20) {
-
                         int fx = (vz.x+1)*600;
                         int fy = (vz.y+1)*600;
 
@@ -386,13 +363,10 @@ class baseApp : public App {
             pointBatch.resize(vertexIndex);
             if(vertexIndex != 0) texture.draw(pointBatch, sf::BlendAdd);
             texture.display();
-                //f.iterate(preprocess, hits, cur_it, temp_hits);
 
-            if(preprocess) {
-                if(temp_hits > max_hits) {
-                    max_hits = temp_hits;
-                    t_max = t;
-                }
+            if(preprocess && temp_hits > max_hits) {
+                max_hits = temp_hits;
+                t_max = t;
             }
 
             #ifdef WINDOW
