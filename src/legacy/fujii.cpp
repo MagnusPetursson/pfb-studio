@@ -94,6 +94,10 @@ class baseApp : public App {
             checkForEvents();
             #endif
 
+            sf::VertexArray batch(sf::Quads);
+            batch.resize(20000 * 4);
+            std::size_t vertexIndex = 0;
+
             for(int i = 1; i <= 20000; i++) {
                 double xx = x, yy = y;
                 xx = a[1]*ssin(f[1]*x, p) + a[2]*ccos(f[2]*y, q) + a[3]*ssin(f[3]*t, p);
@@ -118,10 +122,18 @@ class baseApp : public App {
                 yy = map(y, miny, maxy, 50, screen_height-50);
 
                 if(clock.getElapsedTime().asSeconds() > 1.5) {
-                    if(colored) rect(xx, yy, 1, 1, color, sf::BlendAdd);
-                    else rect(xx, yy, 1, 1, color);
+                    const float left = static_cast<float>(xx);
+                    const float top = static_cast<float>(yy);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
+                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
                 }
             }
+
+            batch.resize(vertexIndex);
+            if(vertexIndex != 0)
+                texture.draw(batch, colored ? sf::BlendAdd : sf::BlendAlpha);
 
             //std::cout << x << ' ' << y << '\n';
 
