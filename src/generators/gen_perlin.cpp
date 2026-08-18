@@ -1,17 +1,12 @@
-// gen_perlin.cpp — wraps perlin.cpp in an anonymous namespace so its file-scope
+// gen_perlin.cpp — wraps perlin.cpp in a dedicated namespace so its file-scope
 // globals don't clash with the other generators when all are linked together.
-// All of aural.hpp's definitions get internal linkage this way too.
+// A named namespace also keeps unused legacy extern declarations at external
+// linkage, avoiding the need to instantiate dummy SFML globals for MSVC.
 
 #include "preinclude.hpp"
 #include "generator.hpp"
 
-namespace {
-    // Compatibility definitions only; these do not alter the generator hot path.
-    #ifdef _MSC_VER
-    sf::RenderWindow window2;
-    #endif
-    sf::Font font;
-
+namespace pfb_perlin_legacy {
     // Rename perlin's main() so we can write our own init/step wrappers.
     #define main perlin_original_main
     // perlin.cpp defines WINDOW and NOISE at its top; WINDOW causes it to create
@@ -19,10 +14,11 @@ namespace {
     // the renamed main). We leave WINDOW defined so the #define doesn't conflict.
     #include "../legacy/perlin.cpp"
     #undef main
-} // anonymous namespace
+} // namespace pfb_perlin_legacy
+
+using namespace pfb_perlin_legacy;
 
 // ── helpers ─────────────────────────────────────────────────────────────────
-// These functions live in the same TU and can therefore name the anon-ns symbols.
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
