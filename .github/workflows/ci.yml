@@ -30,11 +30,25 @@ jobs:
       - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - run: cmake --build build/windows
       - run: ctest --test-dir build/windows --output-on-failure
-      - name: Launch executable smoke check
+      - name: Launch normal GUI smoke check
         shell: pwsh
         run: |
-          & ./build/windows/PFBStudio.exe --version
-          if ($LASTEXITCODE -ne 0) { throw "PFBStudio.exe --version exited with $LASTEXITCODE" }
+          $p = Start-Process ./build/windows/PFBStudio.exe -PassThru
+          Start-Sleep -Seconds 3
+          $p.Refresh()
+          if ($p.HasExited) {
+            $code = $p.ExitCode -band 0xffffffff
+            throw ("PFBStudio.exe exited during startup with 0x{0:X8}" -f $code)
+          }
+          Stop-Process -Id $p.Id -Force
+      - name: Launch version smoke check
+        shell: pwsh
+        run: |
+          $p = Start-Process ./build/windows/PFBStudio.exe -ArgumentList '--version' -PassThru -Wait
+          if ($p.ExitCode -ne 0) {
+            $code = $p.ExitCode -band 0xffffffff
+            throw ("PFBStudio.exe --version exited with 0x{0:X8}" -f $code)
+          }
       - name: Verify single executable output
         shell: pwsh
         run: |
