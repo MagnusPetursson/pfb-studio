@@ -6,10 +6,13 @@
 #include "generator.hpp"
 
 namespace {
-    // sfmlpp.h declares these as extern. Because the legacy source is included
-    // inside this anonymous namespace, MSVC requires matching definitions in
-    // the same translation unit even though these legacy helpers are unused.
+    // sfmlpp.h declares these as extern. Current MSVC requires matching
+    // definitions when the legacy source is included inside this anonymous
+    // namespace. GCC does not require window2, and constructing the unused
+    // RenderWindow there breaks the headless Linux smoke path.
+    #ifdef _MSC_VER
     sf::RenderWindow window2;
+    #endif
     sf::Font font;
 
     // Rename perlin's main() so we can write our own init/step wrappers.
