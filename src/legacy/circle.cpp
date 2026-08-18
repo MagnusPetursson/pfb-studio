@@ -139,7 +139,7 @@ class baseApp : public App {
                     batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top + 2.f), p.color);
                     batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 2.f), p.color);
                 }
-                if(vertexIndex != 0) texture.draw(batch, sf::BlendAdd);
+                if(vertexIndex != 0) renderer->draw(batch, sf::BlendAdd);
             }
         };
 
