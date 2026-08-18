@@ -17,6 +17,7 @@ class baseApp : public App {
         sf::Color colors[3];
         double minx = 10, miny = 10, maxx = -10, maxy = -10, color_limit = 1;
         bool colored = 0;
+        bool benchmark_force_draw = false;
 
         double ssin(double x, double p) {
             if(p == 0) return asin(sin(x));
@@ -58,13 +59,6 @@ class baseApp : public App {
             p = random(1, 5);
             q = random(1, 5);
 
-            /*for(int i = 1; i <= 6; i++)
-                std::cout << "a" << i << " = " << a[i] << '\n';
-            for(int i = 1; i <= 6; i++)
-                std::cout << "f" << i << " = " << f[i] << '\n';
-
-            std::cout << "v = " << v << "\np = " << p << "\nq = " << q << '\n';*/
-
             int hue = random(0, 360);
             color_limit = random(1.0, 7.0);
             if(random(0, 100) < 70) {
@@ -86,8 +80,6 @@ class baseApp : public App {
                 colors[0] = convert(Hsv(hue, 0.4, 0.2));
                 colors[1] = convert(Hsv((hue+random(100, 260))%360, 0.4, 0.2));
             }
-
-            //std::cout << seed << '\n';
         }
         void loop() {
             #ifdef WINDOW
@@ -105,7 +97,6 @@ class baseApp : public App {
                 double tt = constrain(map(step.mag2(), 0, M_PI*M_PI*2, 0, 1), -color_limit, color_limit);
                 sf::Color color = interpolate(colors[0], colors[1], tt);
                 color.a = (colored ? 10 : 15);
-                //std::cout << step.mag2()*pow(10, 5) << ' ' << tt << "\n\n";
                 x = xx;
                 y = yy;
 
@@ -117,13 +108,11 @@ class baseApp : public App {
                 xx = map(x, minx, maxx, 50, screen_width-50);
                 yy = map(y, miny, maxy, 50, screen_height-50);
 
-                if(clock.getElapsedTime().asSeconds() > 1.5) {
+                if(benchmark_force_draw || clock.getElapsedTime().asSeconds() > 1.5) {
                     if(colored) rect(xx, yy, 1, 1, color, sf::BlendAdd);
                     else rect(xx, yy, 1, 1, color);
                 }
             }
-
-            //std::cout << x << ' ' << y << '\n';
 
             #ifdef WINDOW
             drawTextureToWindow();
