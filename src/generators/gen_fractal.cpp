@@ -11,10 +11,15 @@ namespace {
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
+static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
+static uint64_t s_workUnits   = 0;
+static constexpr uint64_t FRACTAL_BENCHMARK_TARGET = 10000000ull;
 
 bool fractal_start(const GenParams& p, std::string& error) {
     s_done = false;
+    s_benchmark = p.benchmarkMode;
+    s_workUnits = 0;
     error.clear();
 
     // Clear mutable state for clean restart.
@@ -67,12 +72,18 @@ bool fractal_start(const GenParams& p, std::string& error) {
 
 bool fractal_step() {
     if (!s_initialized || s_done) return false;
-    if (testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
+    if (!s_benchmark && testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
         s_done = true;
         return false;
     }
+    const uint64_t iterationsThisStep = static_cast<uint64_t>(testApp.fractals.size()) * 3000ull;
     testApp.loop();
+    s_workUnits += iterationsThisStep;
     // fractal.cpp calls texture.display() unconditionally on line 363. ✓
+    if (s_benchmark && s_workUnits >= FRACTAL_BENCHMARK_TARGET) {
+        s_done = true;
+        return false;
+    }
     return true;
 }
 
@@ -80,3 +91,6 @@ const sf::Texture& fractal_texture()    { return testApp.texture.getTexture(); }
 int  fractal_native_width()             { return testApp.screen_width;  }
 int  fractal_native_height()            { return testApp.screen_height; }
 uint64_t fractal_last_seed()            { return s_lastSeed; }
+GenPerformance fractal_performance() {
+    return {s_workUnits, FRACTAL_BENCHMARK_TARGET, "flame iterations"};
+}
