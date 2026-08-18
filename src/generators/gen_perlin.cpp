@@ -6,9 +6,10 @@
 #include "generator.hpp"
 
 namespace {
-    // sfmlpp.h declares this as extern. Because the legacy source is included
-    // inside this anonymous namespace, MSVC requires a matching definition in
-    // the same translation unit even though the legacy font helper is unused.
+    // sfmlpp.h declares these as extern. Because the legacy source is included
+    // inside this anonymous namespace, MSVC requires matching definitions in
+    // the same translation unit even though these legacy helpers are unused.
+    sf::RenderWindow window2;
     sf::Font font;
 
     // Rename perlin's main() so we can write our own init/step wrappers.
