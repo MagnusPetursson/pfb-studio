@@ -13,12 +13,12 @@ using namespace au::flame;
 
 const std::string version = "1.0.0";
 
-vec affinePost(vec v, std::vector<double> c) {
+vec affinePost(vec v, const std::vector<double>& c) {
     //rotating, shear, scale disabled
     return vec(v.x+c[1], v.y+c[2]);
 }
 
-vec affine(vec v, std::vector<double> c) {
+vec affine(vec v, const std::vector<double>& c) {
     return vec(v.x*c[0]+v.y*c[1]+c[2], v.x*c[3]+v.y*c[4]+c[5]);
 }
 
@@ -52,7 +52,7 @@ class baseApp : public App {
             int hue;
             int rotations = 0;
 
-            fractal(int hue, std::vector<std::string> available_vars) : hue(hue), available_vars(available_vars) {}
+            fractal(int hue, const std::vector<std::string>& available_vars) : hue(hue), available_vars(available_vars) {}
             fractal() {
                 hue = random(0, 360);
                 int diffs = random(3, 7);
@@ -65,7 +65,7 @@ class baseApp : public App {
                 //for(int i = 0; i < funcs.size(); i++)
                 //    funcs[i].c = backup_coeffs[i];
                 zoom = constrain(abs(noise(t)*10), 1, 10);
-                for(int i = 0; i < funcs.size(); i++)
+                for(std::size_t i = 0; i < funcs.size(); i++)
                     for(int j = 0; j < 6; j++)
                         funcs[i].p[j] = constrain(backup_pcoeffs[i][j]*noise(t+j*100+i*100)*5, -1.0, 1.0),
                         funcs[i].c[j] = constrain(backup_coeffs[i][j]*noise(t+j*1000+i*1000)*10, -1.0, 1.0);
@@ -85,16 +85,16 @@ class baseApp : public App {
 
             int weightedRand() {
                 double r = random(1.0), w = 0;
-                for(int i = 0; i < weights.size(); i++) {
+                for(std::size_t i = 0; i < weights.size(); i++) {
                     w += weights[i];
-                    if(r <= w) return i;
+                    if(r <= w) return static_cast<int>(i);
                 }
                 return 0;
             }
 
             vec runFunc(vec v, int fi) {
                 vec ret(0, 0);
-                auto f = funcs[fi];
+                const auto& f = funcs[fi];
 
                 flame::A = f.c[0];
                 flame::B = f.c[1];
@@ -103,8 +103,9 @@ class baseApp : public App {
                 flame::B = f.c[4];
                 flame::B = f.c[5];
 
-                for(int i = 0; i < f.id.size(); i++) {
-                    vec s = variations[f.id[i]](affine(v, f.c), f.w[i]);
+                const vec affineV = affine(v, f.c);
+                for(std::size_t i = 0; i < f.id.size(); i++) {
+                    vec s = variations[f.id[i]](affineV, f.w[i]);
                     ret = ret + s;
                 }
                 //post
@@ -122,6 +123,11 @@ class baseApp : public App {
                 if(random(0, 100) < 10) rotations = random(1, 5);
 
                 int func_number = random(3, 8);
+                funcs.reserve(static_cast<std::size_t>(func_number + 1));
+                weights.reserve(static_cast<std::size_t>(func_number));
+                backup_pcoeffs.reserve(static_cast<std::size_t>(func_number + 2));
+                backup_coeffs.reserve(static_cast<std::size_t>(func_number + 1));
+                final_p.reserve(6);
 
                 for(int i = 1; i <= func_number+1; i++) {
                     if(i <= func_number) weights.push_back(0);
@@ -130,13 +136,17 @@ class baseApp : public App {
                     sf::Color col;
 
                     int vars = random(3, 10);
+                    id.reserve(static_cast<std::size_t>(vars));
+                    w.reserve(static_cast<std::size_t>(vars));
+                    c.reserve(6);
+                    p.reserve(6);
 
                     //id
                     for(int i = 1; i <= vars; i++) {
                         auto temp = available_vars[random(0, available_vars.size()-1)];
                         //check if it was already chosen
                         bool valid = 1;
-                        for(auto test : id) if(test == temp) valid = 0;
+                        for(const auto& test : id) if(test == temp) valid = 0;
                         if(valid)
                             id.push_back(temp),
                             w.push_back(0);
@@ -220,6 +230,7 @@ class baseApp : public App {
 
             int diffs = random(4, 12);
             std::vector<std::string> vars;// = {"spherewaves", "spherecorn"};
+            vars.reserve(static_cast<std::size_t>(diffs));
             while(diffs--) {
                 vars.push_back(randVariation());
                 //std::cout << vars.back() << '\n';
@@ -227,6 +238,7 @@ class baseApp : public App {
 
             fractal_number = random(3, 7);
             double temp_seed = random(1.0, 1000.0);
+            fractals.reserve(static_cast<std::size_t>(fractal_number));
 
             for(int i = 1; i <= fractal_number; i++) {
                 int temp_hue = (hue+random(0, 20))%360;
@@ -323,6 +335,10 @@ class baseApp : public App {
                 texture.draw(background, 4, sf::Quads);
             }
 
+            sf::VertexArray pointBatch(sf::Quads,
+                fractals.size() * static_cast<std::size_t>(2980 * 4));
+            std::size_t vertexIndex = 0;
+
             for(auto &f : fractals) {
                 double cur_rot = 0;
                 for(int it = 1; it <= 3000; it++) {
@@ -356,12 +372,19 @@ class baseApp : public App {
                                 hits[fx][fy] = cur_it;
                                 temp_hits++;
                             }
-                            rect(fx, fy, 1, 1, f.c, sf::BlendAdd);
+                            const float left = static_cast<float>(fx);
+                            const float top = static_cast<float>(fy);
+                            pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), f.c);
+                            pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), f.c);
+                            pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), f.c);
+                            pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), f.c);
                         }
                     }
                 }
             }
 
+            pointBatch.resize(vertexIndex);
+            if(vertexIndex != 0) texture.draw(pointBatch, sf::BlendAdd);
             texture.display();
                 //f.iterate(preprocess, hits, cur_it, temp_hits);
 
