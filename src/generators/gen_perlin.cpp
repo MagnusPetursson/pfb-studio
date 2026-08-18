@@ -6,6 +6,11 @@
 #include "generator.hpp"
 
 namespace {
+    // sfmlpp.h declares this as extern. Because the legacy source is included
+    // inside this anonymous namespace, MSVC requires a matching definition in
+    // the same translation unit even though the legacy font helper is unused.
+    sf::Font font;
+
     // Rename perlin's main() so we can write our own init/step wrappers.
     #define main perlin_original_main
     // perlin.cpp defines WINDOW and NOISE at its top; WINDOW causes it to create
