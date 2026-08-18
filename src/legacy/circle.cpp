@@ -53,12 +53,15 @@ class baseApp : public App {
                 vec v = pos*coord_scale;
                 mood = sin(noise(v.x, v.y, t)*2*M_PI);
             }
-            double moodSimilarity(const particle& p) const {
-                return 1-abs(p.mood-mood);
-            }
         };
 
         struct colony {
+            struct particle_snapshot {
+                int id;
+                vec pos;
+                double mood;
+            };
+
             double radius, proximity, prox1, prox2, coord_scale, time_step, noise_scale, centerx, centery;
             double power, multiplier;
             sf::Color colors[color_number+1];
@@ -76,33 +79,34 @@ class baseApp : public App {
                 }
             }
 
-            void update(const std::vector<colony>& colonies) {
+            void update() {
+                std::vector<particle_snapshot> snapshot;
+                snapshot.reserve(particles.size());
+                for(const auto &o : particles)
+                    snapshot.push_back({o.id, o.pos, o.mood});
+
                 for(auto &p : particles) {
                     int close = 0;
                     double lovex = 0, lovey = 0;
-                    for(const auto &c : colonies) {
-                        if(c.id != id) continue;
-                        for(const auto &o : c.particles) {
-                            if(p.id == o.id) continue;
-                            vec v = p.pos-o.pos;
-                            double dis = v.mag();
-                            double angle = v.arctan();
-                            double love = pow(1.0/std::max(1.0, dis), power)*multiplier;
-                            vec f = p.pos-vec(centerx, centery);
-                            if(dis < proximity) love *= map(f.mag(), 0, radius, prox1, prox2);
-                            //std::cout << dis << '\n';
-                            //love *= map(f.mag(), 0, radius, 0.5, 2);
-                            if(dis < 50) {
-                                close++;
-                                //p.color.a = map(dis, 0, 100, 0, 6);
-                            } //else p.color.a = 130;
-                            love *= p.moodSimilarity(o);
-                            love *= 20;
-                            if(c.id != id) love *= 0.1;
-                            //std::cout << love << '\n';
-                            lovex += -cos(angle)*love;
-                            lovey += -sin(angle)*love;
-                        }
+                    for(const auto &o : snapshot) {
+                        if(p.id == o.id) continue;
+                        vec v = p.pos-o.pos;
+                        double dis = v.mag();
+                        double angle = v.arctan();
+                        double love = pow(1.0/std::max(1.0, dis), power)*multiplier;
+                        vec f = p.pos-vec(centerx, centery);
+                        if(dis < proximity) love *= map(f.mag(), 0, radius, prox1, prox2);
+                        //std::cout << dis << '\n';
+                        //love *= map(f.mag(), 0, radius, 0.5, 2);
+                        if(dis < 50) {
+                            close++;
+                            //p.color.a = map(dis, 0, 100, 0, 6);
+                        } //else p.color.a = 130;
+                        love *= 1-abs(o.mood-p.mood);
+                        love *= 20;
+                        //std::cout << love << '\n';
+                        lovex += -cos(angle)*love;
+                        lovey += -sin(angle)*love;
                     }
                     //std::cout << lovex << ' ' << lovey << '\n';
                     p.vel = vec(lovex, lovey);
@@ -236,7 +240,7 @@ class baseApp : public App {
             //std::cout << colonies.back().centerx << ' ' << colonies.back().centery << '\n';
 
             for(auto &c : colonies) {
-                c.update(colonies);
+                c.update();
                 c.draw();
             }
 
