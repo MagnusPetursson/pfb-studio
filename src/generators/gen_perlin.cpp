@@ -29,7 +29,10 @@ namespace {
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
+static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
+static uint64_t s_workUnits   = 0;
+static constexpr uint64_t PERLIN_BENCHMARK_TARGET = 20000000ull;
 
 static void applyPerlinParams(const GenParams& p) {
     if (p.aspect == 1) {          // square
@@ -109,6 +112,8 @@ static void applyPerlinParams(const GenParams& p) {
 
 bool perlin_start(const GenParams& p, std::string& error) {
     s_done = false;
+    s_benchmark = p.benchmarkMode;
+    s_workUnits = 0;
     error.clear();
 
     timerClock.restart();
@@ -193,7 +198,7 @@ bool perlin_start(const GenParams& p, std::string& error) {
 
 bool perlin_step() {
     if (!s_initialized || s_done) return false;
-    if (timerClock.getElapsedTime().asSeconds() >= (float)timeLimit) {
+    if (!s_benchmark && timerClock.getElapsedTime().asSeconds() >= (float)timeLimit) {
         s_done = true;
         return false;
     }
@@ -203,6 +208,11 @@ bool perlin_step() {
     renderTexture.draw(&point, 1, sf::Points);
     draw();
     renderTexture.display();
+    s_workUnits += static_cast<uint64_t>(points.size());
+    if (s_benchmark && s_workUnits >= PERLIN_BENCHMARK_TARGET) {
+        s_done = true;
+        return false;
+    }
     return true;
 }
 
@@ -213,3 +223,6 @@ const sf::Texture& perlin_texture() {
 int perlin_native_width()  { return WIDTH;  }
 int perlin_native_height() { return HEIGHT; }
 uint64_t perlin_last_seed() { return s_lastSeed; }
+GenPerformance perlin_performance() {
+    return {s_workUnits, PERLIN_BENCHMARK_TARGET, "particle updates"};
+}
