@@ -48,6 +48,7 @@ struct particle {
 };
 
 vector<particle> points;
+sf::VertexArray particleBatch(sf::Points);
 double step = 0.035, vector_scale = 0.001, noise_scale = 10, coord_scale = 50, contrast;
 bool color_choice;
 vector<vector<int> > tree1;
@@ -90,7 +91,7 @@ void setup() {
 sf::Clock timerClock;
 
 void draw() {
-    sf::VertexArray batch(sf::Points, points.size());
+    particleBatch.resize(points.size());
     size_t index = 0;
     for(auto &i : points) {
         /*if(is_colored) {
@@ -103,15 +104,13 @@ void draw() {
         i.vertex.color = interpolate(interpolate(pal[2], pal[3], mathmap(sin(atan2(v.y, v.x)), -1, 1, 0, 1)), interpolate(pal[0], pal[1], mathmap(sin(atan2(v.x, v.y)), -1, 1, 0, 1)), mathmap(i.x, -xlimit, xlimit, 0, 1));
         const float magnitude = sqrtf(v.x*v.x+v.y*v.y);
         i.vertex.color.a = constrain(pow(magnitude, 3)*4, 0, 80);
-        //cout << v.x << ' ' << v.y << endl;
         i.update(v, vector_scale);
         double xx = mathmap(i.x, -xlimit, xlimit, 10, WIDTH-10);
         double yy = mathmap(i.y, -ylimit, ylimit, 10, HEIGHT-10);
         i.vertex.position = sf::Vector2f(xx, yy);
-        batch[index++] = i.vertex;
-        //i.edgecheck();
+        particleBatch[index++] = i.vertex;
     }
-    renderTexture.draw(batch, sf::BlendAdd);
+    renderTexture.draw(particleBatch, sf::BlendAdd);
 }
 
 int main() {
@@ -122,35 +121,19 @@ int main() {
     init(window, "flowfield", 0, 60, WIDTH, HEIGHT);
     #endif
     renderTexture.create(WIDTH, HEIGHT);
-    //init(renderTexture, "perlin2", false, 60, WIDTH, HEIGHT);
-    //if(!vis) renderTexture.setVisible(0);
     pn.SetNoiseType(FastNoise::PerlinFractal);
     pn.SetFractalOctaves(octaves);
     pn.SetSeed(seed);
 
     if(is_colored) {
-        pal = /*{sf::Color(230, 255, 220, 30), sf::Color(170, 180, 150, 30)};//*/randomPalette(4, 50, rd(0.5, 0.9), rd(0.2, 0.6), hue, 2);
-        //for(auto i : pal) cout << (int)i.r << ' ' << (int)i.g << ' ' << (int)i.b << ' ' << (int)i.a << endl;
+        pal = randomPalette(4, 50, rd(0.5, 0.9), rd(0.2, 0.6), hue, 2);
         int brightness = mathmap(contrast, 0, 1, 30, 220);
-        //cout << brightness << endl;
-        bg1 = /*sf::Color(30, 10, 20);//*/sf::Color(constrain(rdnormal(brightness, brightness/20), 0, 255), constrain(rdnormal(brightness, brightness/20), 0, 255), constrain(rdnormal(brightness, brightness/20), 0, 255));
-        bg2 = /*sf::Color(10, 7, 20);//*/sf::Color(rdnormal(brightness/1.2, brightness/50), rdnormal(brightness/1.2, brightness/50), rdnormal(brightness/1.2, brightness/50));
+        bg1 = sf::Color(constrain(rdnormal(brightness, brightness/20), 0, 255), constrain(rdnormal(brightness, brightness/20), 0, 255), constrain(rdnormal(brightness, brightness/20), 0, 255));
+        bg2 = sf::Color(rdnormal(brightness/1.2, brightness/50), rdnormal(brightness/1.2, brightness/50), rdnormal(brightness/1.2, brightness/50));
     } else {
         bg1 = sf::Color(rdnormal(220, 1), rdnormal(220, 1), rdnormal(220, 1));
         bg2 = sf::Color(rdnormal(180, 1), rdnormal(180, 1), rdnormal(180, 1));
     }
-
-    /*renderTexture.clear(bg1);
-    vector<sf::Color> pal1 = {randomPalette(1, 250, 0.98, 0.2)[0], randomPalette(1, 250, 0.98, 0.8)[0]};
-    for(int i = 0; i <= WIDTH; i++) {
-        for(int j = 0; j <= HEIGHT; j++) {
-            sf::Vertex point;
-            point.color = interpolate(pal1[0], pal1[1], mathmap(pn.GetNoise(i/20.0, j/20.0), -1, 1, 0, 1));
-            point.position = sf::Vector2f(i, j);
-            //point.position = sf::Vector2f(i+0.003*rdnormal(0, 1), j+0.003*rdnormal(0, 1));
-            renderTexture.draw(&point, 1, sf::Points);
-        }
-    }*/
 
     renderTexture.clear(bg1);
     double invert_hue = (hue + 180 > 360 ? hue - 180 : hue + 180);
@@ -176,13 +159,12 @@ int main() {
         }
     }
 
-    //if(!vis) renderTexture.setVisible(0);
-	while (timerClock.getElapsedTime().asSeconds() < timeLimit) {
-		#ifdef WINDOW
-		sf::Event event;
+    while (timerClock.getElapsedTime().asSeconds() < timeLimit) {
+        #ifdef WINDOW
+        sf::Event event;
         while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed)
-				window.close();
+            if (event.type == sf::Event::Closed)
+                window.close();
         }
         #endif
 
@@ -192,23 +174,14 @@ int main() {
         renderTexture.draw(&point, 1, sf::Points);
 
         draw();
-
-        /*for(int i = 0; i < pal.size(); i++) {
-            sf::RectangleShape rec;
-            rec.setSize(sf::Vector2f(200, 200));
-            rec.setFillColor(pal[i]);
-            rec.setPosition(WIDTH/2+i*250, HEIGHT/2);
-            renderTexture.draw(rec);
-        }*/
-
-		renderTexture.display();
+        renderTexture.display();
 
         #ifdef WINDOW
         window.clear();
         window.draw(sf::Sprite(renderTexture.getTexture()));
         window.display();
         #endif
-	}
+    }
 
     #ifdef WINDOW
     window.close();
@@ -219,6 +192,5 @@ int main() {
     screenshot.saveToFile(path);
     string info = path + "#method=noise flowfield#seed="+to_string(seed);
     cout << info;
-    //cout << endl << timerClock.getElapsedTime().asSeconds();
     return 0;
 }
