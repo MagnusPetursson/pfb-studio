@@ -19,10 +19,6 @@ jobs:
       - run: cmake --build --preset release-linux
       - run: ctest --preset release-linux
       - run: xvfb-run -a ./build/release-linux/pfb-studio --smoke-test build/smoke
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: PFBStudio-optimized-linux
-          path: build/release-linux/pfb-studio
 
   windows:
     runs-on: windows-latest
@@ -34,12 +30,13 @@ jobs:
       - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - run: cmake --build build/windows
       - run: ctest --test-dir build/windows --output-on-failure
+      - name: Launch executable smoke check
+        shell: pwsh
+        run: |
+          & ./build/windows/PFBStudio.exe --version
+          if ($LASTEXITCODE -ne 0) { throw "PFBStudio.exe --version exited with $LASTEXITCODE" }
       - name: Verify single executable output
         shell: pwsh
         run: |
           if (!(Test-Path build/windows/PFBStudio.exe)) { throw "PFBStudio.exe was not built" }
           Get-Item build/windows/PFBStudio.exe | Format-List Name,Length,VersionInfo
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: PFBStudio-optimized-windows
-          path: build/windows/PFBStudio.exe
