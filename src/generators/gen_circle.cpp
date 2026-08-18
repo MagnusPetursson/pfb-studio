@@ -15,10 +15,24 @@ namespace {
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
+static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
+static uint64_t s_workUnits   = 0;
+static constexpr uint64_t CIRCLE_BENCHMARK_TARGET = 100000000ull;
+
+static uint64_t pairEvaluationsPerStep() {
+    uint64_t total = 0;
+    for (const auto& colony : testApp.colonies) {
+        const uint64_t count = static_cast<uint64_t>(colony.particles.size());
+        total += count * count;
+    }
+    return total;
+}
 
 bool circle_start(const GenParams& p, std::string& error) {
     s_done = false;
+    s_benchmark = p.benchmarkMode;
+    s_workUnits = 0;
     error.clear();
 
     // Reset mutable state before re-setup so restarts are clean.
@@ -65,13 +79,19 @@ bool circle_start(const GenParams& p, std::string& error) {
 
 bool circle_step() {
     if (!s_initialized || s_done) return false;
-    if (testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
+    if (!s_benchmark && testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
         s_done = true;
         return false;
     }
+    const uint64_t evaluationsThisStep = pairEvaluationsPerStep();
     testApp.loop();
+    s_workUnits += evaluationsThisStep;
     // texture.display() is inside #ifdef WINDOW in circle.cpp, which is defined,
     // so the loop() call already finalises the texture. ✓
+    if (s_benchmark && s_workUnits >= CIRCLE_BENCHMARK_TARGET) {
+        s_done = true;
+        return false;
+    }
     return true;
 }
 
@@ -79,3 +99,6 @@ const sf::Texture& circle_texture()    { return testApp.texture.getTexture(); }
 int  circle_native_width()             { return testApp.screen_width;  }
 uint64_t circle_last_seed()            { return s_lastSeed; }
 int  circle_native_height()            { return testApp.screen_height; }
+GenPerformance circle_performance() {
+    return {s_workUnits, CIRCLE_BENCHMARK_TARGET, "pair evaluations"};
+}
