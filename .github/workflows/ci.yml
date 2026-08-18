@@ -35,3 +35,7 @@ jobs:
         run: |
           if (!(Test-Path build/windows/PFBStudio.exe)) { throw "PFBStudio.exe was not built" }
           Get-Item build/windows/PFBStudio.exe | Format-List Name,Length,VersionInfo
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: PFBStudio-baseline-profiler-windows
+          path: build/windows/PFBStudio.exe
