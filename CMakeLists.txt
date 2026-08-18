@@ -99,6 +99,10 @@ target_link_libraries(pfb-studio PRIVATE pfb-imgui-sfml sfml-graphics sfml-windo
 
 if(MSVC)
     target_compile_options(pfb-studio PRIVATE /W3 /permissive-)
+    # The Windows resource script already embeds packaging/windows/pfb-studio.manifest
+    # as RT_MANIFEST resource 1. Suppress the linker's default manifest to avoid a
+    # duplicate resource on current MSVC toolchains.
+    target_link_options(pfb-studio PRIVATE /MANIFEST:NO)
 elseif(MINGW)
     target_compile_options(pfb-studio PRIVATE -Wall -Wextra)
     target_link_options(pfb-studio PRIVATE -static -static-libgcc -static-libstdc++)
