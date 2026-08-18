@@ -30,17 +30,20 @@ jobs:
       - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - run: cmake --build build/windows
       - run: ctest --test-dir build/windows --output-on-failure
-      - name: Launch normal GUI smoke check
+      - name: Stress-test Windows GUI startup
         shell: pwsh
         run: |
-          $p = Start-Process ./build/windows/PFBStudio.exe -PassThru
-          Start-Sleep -Seconds 3
-          $p.Refresh()
-          if ($p.HasExited) {
-            $code = $p.ExitCode -band 0xffffffff
-            throw ("PFBStudio.exe exited during startup with 0x{0:X8}" -f $code)
+          for ($i = 1; $i -le 10; $i++) {
+            $p = Start-Process ./build/windows/PFBStudio.exe -PassThru
+            Start-Sleep -Seconds 1
+            $p.Refresh()
+            if ($p.HasExited) {
+              $code = $p.ExitCode -band 0xffffffff
+              throw ("PFBStudio.exe launch {0} exited with 0x{1:X8}" -f $i, $code)
+            }
+            Stop-Process -Id $p.Id -Force
+            $p.WaitForExit()
           }
-          Stop-Process -Id $p.Id -Force
       - name: Launch version smoke check
         shell: pwsh
         run: |
@@ -54,3 +57,7 @@ jobs:
         run: |
           if (!(Test-Path build/windows/PFBStudio.exe)) { throw "PFBStudio.exe was not built" }
           Get-Item build/windows/PFBStudio.exe | Format-List Name,Length,VersionInfo
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: PFBStudio-optimized-profiler-windows-fixed
+          path: build/windows/PFBStudio.exe
