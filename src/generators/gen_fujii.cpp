@@ -30,6 +30,7 @@ bool fujii_start(const GenParams& p, std::string& error) {
     testApp.x = testApp.y = testApp.t = 0;
     testApp.minx = testApp.miny = 10;
     testApp.maxx = testApp.maxy = -10;
+    testApp.benchmark_force_draw = s_benchmark;
 
     testApp.init();
     testApp.window.setVisible(false);
