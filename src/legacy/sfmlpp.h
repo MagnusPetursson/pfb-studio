@@ -223,7 +223,7 @@ vector<sf::Color> randomPalette(int len, int alpha, double sat, double vib, doub
 		res.push_back(c);
 	}
 	for(int i = 0; i < len; i++)
-		swap(res[i], res[rdint(0, len)]);
+		swap(res[i], res[rdint(0, len-1)]);
 	return res;
 }
 

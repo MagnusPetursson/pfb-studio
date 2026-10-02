@@ -151,6 +151,11 @@ if(BUILD_TESTING)
     endif()
     target_compile_definitions(pfb-support-tests PRIVATE PFB_TESTING=1)
     add_test(NAME pfb-support-tests COMMAND pfb-support-tests)
+
+    add_executable(pfb-palette-tests tests/palette_tests.cpp)
+    target_include_directories(pfb-palette-tests PRIVATE src/generators src/legacy)
+    target_link_libraries(pfb-palette-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    add_test(NAME pfb-palette-tests COMMAND pfb-palette-tests)
 endif()
 
 set(CPACK_PACKAGE_NAME "pfb-studio")
