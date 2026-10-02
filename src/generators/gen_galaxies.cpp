@@ -44,6 +44,7 @@ bool galaxies_start(const GenParams& p, std::string& error) {
     testApp.screen_height = (p.outputH > 0) ? std::clamp(p.outputH, 512, 4096) : 2048;
     testApp.attractors.clear();
     testApp.timer = 0;
+    testApp.colored = false;
 
     testApp.init();
     testApp.window.setVisible(false);
@@ -65,7 +66,11 @@ bool galaxies_start(const GenParams& p, std::string& error) {
     testApp.window.setFramerateLimit(s_benchmark ? 0u : 60u);
 
     // Apply post-setup overrides (skip if NaN → use generator's random)
-    if (!std::isnan(p.colorLimitGal) && p.colorLimitGal > 0) testApp.color_limit = p.colorLimitGal;
+    if (!std::isnan(p.colorLimitGal) && p.colorLimitGal > 0) {
+        for (auto& a : testApp.attractors)
+            a.color_limit = p.colorLimitGal;
+        testApp.bg.color_limit = p.colorLimitGal;
+    }
     if (!std::isnan(p.attractorScale)) {
         for (auto& a : testApp.attractors)
             a.radius *= p.attractorScale;
