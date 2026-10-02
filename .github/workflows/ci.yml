@@ -28,7 +28,6 @@ jobs:
           arch: amd64
       - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - run: cmake --build build/windows
-      - run: ctest --test-dir build/windows --output-on-failure
       - name: Launch normal GUI smoke check
         shell: pwsh
         run: |
@@ -49,6 +48,10 @@ jobs:
             $code = $p.ExitCode -band 0xffffffff
             throw ("PFBStudio.exe --version exited with 0x{0:X8}" -f $code)
           }
+      - name: Set up software OpenGL for rendering tests
+        shell: pwsh
+        run: ./.github/scripts/setup-test-opengl.ps1 -BinaryDirectory build/windows
+      - run: ctest --test-dir build/windows --output-on-failure
       - name: Verify single executable output
         shell: pwsh
         run: |
