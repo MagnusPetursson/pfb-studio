@@ -33,6 +33,7 @@ class baseApp : public App {
             double centerx, centery, radius;
             sf::Color colors[3];
             double minx = 10, miny = 10, maxx = -10, maxy = -10, color_limit = 1;
+            std::vector<sf::Vertex> pointBatch;
 
             void create() {
                 for(int i = 1; i <= 6; i++)
@@ -75,7 +76,7 @@ class baseApp : public App {
                 const std::size_t visibleCapacity = maxIterations > 2000
                     ? static_cast<std::size_t>(maxIterations - 2000) * 4
                     : 0;
-                sf::VertexArray batch(sf::Quads, visibleCapacity);
+                if(pointBatch.size() < visibleCapacity) pointBatch.resize(visibleCapacity);
                 std::size_t vertexIndex = 0;
 
                 for(int i = 1; i <= maxIterations; i++) {
@@ -119,16 +120,16 @@ class baseApp : public App {
                     if(i > 2000) {
                         const float left = static_cast<float>(xxx);
                         const float top = static_cast<float>(yyy);
-                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
-                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
-                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
-                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
+                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
+                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
+                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
+                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
                     }
                 }
 
-                batch.resize(vertexIndex);
                 if(vertexIndex != 0)
-                    renderer->draw(batch, colored ? sf::BlendAdd : sf::BlendAlpha);
+                    renderer->draw(pointBatch.data(), vertexIndex, sf::Quads,
+                        colored ? sf::BlendAdd : sf::BlendAlpha);
             }
 
             attractor(double cx, double cy, double r) : centerx(cx), centery(cy), radius(r) {}

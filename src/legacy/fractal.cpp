@@ -39,6 +39,33 @@ class baseApp : public App {
 
         sf::Shader blur;
         bool blur_loaded = false;
+        std::vector<sf::Vertex> pointBatch;
+
+        void drawNoise(sf::Color color) {
+            // Keep the original column order and off-canvas samples so the
+            // seeded random stream is unchanged. Bound memory independently
+            // of the output resolution while avoiding one draw per pixel.
+            constexpr std::size_t pixelsPerBatch = 4096;
+            std::vector<sf::Vertex> vertices(pixelsPerBatch * 4);
+            std::size_t vertexIndex = 0;
+            for(int x = 0; x <= screen_width; ++x) {
+                for(int y = 0; y <= screen_height; ++y) {
+                    color.a = constrain(gaussian(90, 40), 1, 255);
+                    const float left = static_cast<float>(x);
+                    const float top = static_cast<float>(y);
+                    vertices[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
+                    vertices[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
+                    vertices[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
+                    vertices[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
+                    if(vertexIndex == vertices.size()) {
+                        texture.draw(vertices.data(), vertexIndex, sf::Quads);
+                        vertexIndex = 0;
+                    }
+                }
+            }
+            if(vertexIndex != 0)
+                texture.draw(vertices.data(), vertexIndex, sf::Quads);
+        }
 
         struct fractal {
             vec v, initial_v;
@@ -293,12 +320,7 @@ class baseApp : public App {
 
                 sf::Color c = convert(Hsv((hue+random(0, 40))%360, 0.85, 2.8*random(0.03, 0.045)));
 
-                for(int i = 0; i <= screen_width; i++) {
-                    for(int j = 0; j <= screen_height; j++) {
-                        c.a = constrain(gaussian(90, 40), 1, 255);
-                        rect(i, j, 1, 1, c);
-                    }
-                }
+                drawNoise(c);
 
                 //bloom
 
@@ -335,8 +357,8 @@ class baseApp : public App {
                 texture.draw(background, 4, sf::Quads);
             }
 
-            sf::VertexArray pointBatch(sf::Quads,
-                fractals.size() * static_cast<std::size_t>(2980 * 4));
+            const std::size_t vertexCapacity = fractals.size() * static_cast<std::size_t>(2980 * 4);
+            if(pointBatch.size() < vertexCapacity) pointBatch.resize(vertexCapacity);
             std::size_t vertexIndex = 0;
 
             for(auto &f : fractals) {
@@ -383,8 +405,8 @@ class baseApp : public App {
                 }
             }
 
-            pointBatch.resize(vertexIndex);
-            if(vertexIndex != 0) texture.draw(pointBatch, sf::BlendAdd);
+            if(vertexIndex != 0)
+                texture.draw(pointBatch.data(), vertexIndex, sf::Quads, sf::BlendAdd);
             texture.display();
                 //f.iterate(preprocess, hits, cur_it, temp_hits);
 

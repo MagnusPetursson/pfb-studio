@@ -18,6 +18,7 @@ class baseApp : public App {
         double minx = 10, miny = 10, maxx = -10, maxy = -10, color_limit = 1;
         bool colored = 0;
         bool benchmark_force_draw = false;
+        std::vector<sf::Vertex> pointBatch;
 
         double ssin(double x, double p) {
             if(p == 0) return asin(sin(x));
@@ -95,8 +96,7 @@ class baseApp : public App {
             checkForEvents();
             #endif
 
-            sf::VertexArray batch(sf::Quads);
-            batch.resize(20000 * 4);
+            if(pointBatch.size() < 20000 * 4) pointBatch.resize(20000 * 4);
             std::size_t vertexIndex = 0;
 
             for(int i = 1; i <= 20000; i++) {
@@ -125,16 +125,16 @@ class baseApp : public App {
                 if(benchmark_force_draw || clock.getElapsedTime().asSeconds() > 1.5) {
                     const float left = static_cast<float>(xx);
                     const float top = static_cast<float>(yy);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
-                    batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
                 }
             }
 
-            batch.resize(vertexIndex);
             if(vertexIndex != 0)
-                texture.draw(batch, colored ? sf::BlendAdd : sf::BlendAlpha);
+                texture.draw(pointBatch.data(), vertexIndex, sf::Quads,
+                    colored ? sf::BlendAdd : sf::BlendAlpha);
 
             //std::cout << x << ' ' << y << '\n';
 
