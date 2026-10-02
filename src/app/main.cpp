@@ -938,6 +938,32 @@ static void renderFrame() {
     gWin->display();
 }
 
+static void writeJsonString(std::ostream& output, const std::string& value) {
+    static constexpr char hex[] = "0123456789abcdef";
+    output << '"';
+    for (const unsigned char ch : value) {
+        if (ch == '"' || ch == '\\') output << '\\' << static_cast<char>(ch);
+        else if (ch < 0x20) output << "\\u00" << hex[ch >> 4] << hex[ch & 0xf];
+        else output << static_cast<char>(ch);
+    }
+    output << '"';
+}
+
+static std::size_t changedPixelCount(const sf::Image& before, const sf::Image& after) {
+    if (before.getSize() != after.getSize()) return 0;
+    const auto size = after.getSize();
+    const std::size_t pixelCount = static_cast<std::size_t>(size.x) * size.y;
+    const auto* first = before.getPixelsPtr();
+    const auto* last = after.getPixelsPtr();
+    std::size_t changed = 0;
+    for (std::size_t i = 0; i < pixelCount; ++i) {
+        const std::size_t offset = i * 4;
+        if (first[offset] != last[offset] || first[offset + 1] != last[offset + 1] ||
+            first[offset + 2] != last[offset + 2]) ++changed;
+    }
+    return changed;
+}
+
 static int runSmokeTest(const std::filesystem::path& outputDirectory) {
     std::error_code ec;
     std::filesystem::create_directories(outputDirectory, ec);
@@ -954,8 +980,10 @@ static int runSmokeTest(const std::filesystem::path& outputDirectory) {
     for (int index = 0; index < GEN_COUNT; ++index) {
         const GenId id = static_cast<GenId>(index);
         params[id] = GenParams{};
-        params[id].seed = 424242u + static_cast<std::uint64_t>(index);
-        params[id].duration = 0.5;
+        params[id].seed = 424242u;
+        // Fixed work reaches the drawing phase even on fast machines. In
+        // particular, Fujii normally spends its first 1.5 seconds warming up.
+        params[id].benchmarkMode = true;
         params[id].outputW = 512;
         params[id].outputH = 512;
         if (id == GEN_PERLIN) {
@@ -963,27 +991,61 @@ static int runSmokeTest(const std::filesystem::path& outputDirectory) {
             params[id].customAspectW = 256;
             params[id].customAspectH = 256;
         }
-        if (id == GEN_FRACTAL) params[id].preprocessTime = 0.1;
+        // Fractal's coordinate mapping currently targets its native canvas.
+        if (id == GEN_FRACTAL) params[id].outputW = params[id].outputH = 2000;
 
+        sf::Clock timeout;
         const bool started = startGen(id, false);
-        while (anyRunning()) stepRunningGen();
+        sf::Image firstFrame;
+        if (started) {
+            // Some legacy generators first finalize their texture in step().
+            // Compare two finalized frames so setup gradients cannot pass as art.
+            stepRunningGen();
+            if (const auto* texture = textureGen(id)) firstFrame = texture->copyToImage();
+        }
+        constexpr float timeoutSeconds = 60.f;
+        while (anyRunning() && timeout.getElapsedTime().asSeconds() < timeoutSeconds)
+            stepRunningGen();
 
-        bool passed = started && runStates[id] == RunState::Complete;
+        const bool timedOut = anyRunning();
+        if (timedOut) stopGen();
+
+        const GenPerformance perf = performanceGen(id);
+        bool passed = started && runStates[id] == RunState::Complete &&
+            perf.benchmarkTarget > 0 && perf.workUnits >= perf.benchmarkTarget;
         std::string error = errors[id];
+        if (timedOut) error = "Generator exceeded the 60-second smoke-test limit.";
+        else if (started && !passed) error = "Generator stopped before completing its benchmark target.";
         std::filesystem::path imagePath = outputDirectory / (std::string(GEN_SLUGS[id]) + ".png");
+        std::size_t changedPixels = 0;
         if (passed) {
             const sf::Texture* texture = textureGen(id);
             sf::Image image = texture ? texture->copyToImage() : sf::Image{};
-            passed = texture && image.getSize().x > 0 && image.getSize().y > 0 && pfb::imageHasVariation(image);
+            changedPixels = changedPixelCount(firstFrame, image);
+            passed = texture && image.getSize().x == static_cast<unsigned>(nativeW(id)) &&
+                image.getSize().y == static_cast<unsigned>(nativeH(id)) &&
+                image.getSize().x > 0 && image.getSize().y > 0 &&
+                pfb::imageHasVariation(image) && changedPixels > 0;
             if (passed && !pfb::writeImage(image, imagePath, error)) passed = false;
-            if (!passed && error.empty()) error = "Generated image was empty or uniform.";
+            if (!passed && error.empty()) error = "Generated image was empty, uniform, incorrectly sized, or unchanged after its first frame.";
         }
         allPassed = allPassed && passed;
+        if (!passed) std::cerr << GEN_SLUGS[id] << " smoke test failed: " << error << '\n';
         report << "    {\"name\": \"" << GEN_SLUGS[id] << "\", \"passed\": "
-               << (passed ? "true" : "false") << ", \"error\": \"" << error << "\"}"
-               << (index + 1 < GEN_COUNT ? "," : "") << "\n";
+               << (passed ? "true" : "false") << ", \"seed\": " << params[id].seed
+               << ", \"workUnits\": " << perf.workUnits
+               << ", \"target\": " << perf.benchmarkTarget
+               << ", \"changedPixels\": " << changedPixels
+               << ", \"error\": ";
+        writeJsonString(report, error);
+        report << "}" << (index + 1 < GEN_COUNT ? "," : "") << "\n";
     }
     report << "  ],\n  \"passed\": " << (allPassed ? "true" : "false") << "\n}\n";
+    report.close();
+    if (!report) {
+        std::cerr << "Could not write the smoke-test report.\n";
+        return 2;
+    }
     return allPassed ? 0 : 1;
 }
 

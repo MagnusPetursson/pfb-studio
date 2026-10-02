@@ -156,6 +156,49 @@ if(BUILD_TESTING)
     target_include_directories(pfb-palette-tests PRIVATE src/generators src/legacy)
     target_link_libraries(pfb-palette-tests PRIVATE sfml-graphics sfml-window sfml-system)
     add_test(NAME pfb-palette-tests COMMAND pfb-palette-tests)
+
+    # SFML render tests need a display. Prefer an isolated virtual display on
+    # Linux so the same CTest suite also works on headless CI workers.
+    if(UNIX AND NOT APPLE)
+        find_program(PFB_XVFB_RUN xvfb-run)
+    endif()
+    function(pfb_add_render_test name target)
+        if(PFB_XVFB_RUN)
+            add_test(NAME ${name} COMMAND ${PFB_XVFB_RUN} -a $<TARGET_FILE:${target}> ${ARGN})
+        else()
+            add_test(NAME ${name} COMMAND ${target} ${ARGN})
+        endif()
+        set_tests_properties(${name} PROPERTIES TIMEOUT 180 RUN_SERIAL TRUE)
+    endfunction()
+
+    add_executable(pfb-perlin-tests tests/perlin_tests.cpp
+        src/generators/gen_perlin.cpp src/legacy/FastNoise.cpp)
+    target_include_directories(pfb-perlin-tests PRIVATE src/generators)
+    target_link_libraries(pfb-perlin-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    pfb_add_render_test(pfb-perlin-tests pfb-perlin-tests)
+
+    add_executable(pfb-fractal-render-tests tests/fractal_render_tests.cpp src/legacy/FastNoise.cpp)
+    target_include_directories(pfb-fractal-render-tests PRIVATE src/generators)
+    target_link_libraries(pfb-fractal-render-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    pfb_add_render_test(pfb-fractal-render-tests pfb-fractal-render-tests)
+
+    add_executable(pfb-circle-parameter-tests tests/circle_parameter_tests.cpp src/legacy/FastNoise.cpp)
+    target_include_directories(pfb-circle-parameter-tests PRIVATE src/generators)
+    target_link_libraries(pfb-circle-parameter-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    pfb_add_render_test(pfb-circle-parameter-tests pfb-circle-parameter-tests)
+
+    foreach(generator IN ITEMS fujii galaxies)
+        add_executable(pfb-${generator}-restart-tests
+            tests/attractor_restart_tests.cpp src/legacy/FastNoise.cpp)
+        target_include_directories(pfb-${generator}-restart-tests PRIVATE src/generators)
+        target_link_libraries(pfb-${generator}-restart-tests PRIVATE sfml-graphics sfml-window sfml-system)
+        if(generator STREQUAL "fujii")
+            target_compile_definitions(pfb-${generator}-restart-tests PRIVATE PFB_TEST_FUJII=1)
+        endif()
+        pfb_add_render_test(pfb-${generator}-restart-tests pfb-${generator}-restart-tests)
+    endforeach()
+
+    pfb_add_render_test(pfb-render-smoke pfb-studio --smoke-test ${CMAKE_CURRENT_BINARY_DIR}/smoke)
 endif()
 
 set(CPACK_PACKAGE_NAME "pfb-studio")
