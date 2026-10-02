@@ -29,18 +29,19 @@
 #include <system_error>
 #include <utility>
 
-enum GenId { GEN_PERLIN = 0, GEN_FRACTAL, GEN_CIRCLE, GEN_FUJII, GEN_GALAXIES, GEN_COUNT };
+enum GenId { GEN_PERLIN = 0, GEN_FRACTAL, GEN_CIRCLE, GEN_FUJII, GEN_GALAXIES, GEN_LOOM, GEN_COUNT };
 enum class RunState { Idle, Starting, Running, Complete, Canceled, Error };
 
-static const char* GEN_SHORT[] = { "Perlin", "Fractal", "Circle", "Fujii", "Galaxy" };
+static const char* GEN_SHORT[] = { "Perlin", "Fractal", "Circle", "Fujii", "Galaxy", "Loom" };
 static const char* GEN_LABELS[] = {
     "Noise Flowfield",
     "Fractal Flame",
     "Organic Growth",
     "Fujii Attractor",
-    "Galaxies"
+    "Galaxies",
+    "Magnetic Loom"
 };
-static const char* GEN_SLUGS[] = { "perlin", "fractal", "circle", "fujii", "galaxy" };
+static const char* GEN_SLUGS[] = { "perlin", "fractal", "circle", "fujii", "galaxy", "loom" };
 
 static const char* ASPECT_LABELS[] = {
     "Original random", "Square", "Wide", "Custom"
@@ -61,6 +62,7 @@ static const UiDefaults DEFAULTS[GEN_COUNT] = {
     {2000, 2000, 40.f},
     {1800, 1800, 60.f},
     {2048, 2048, 30.f},
+    {2048, 2048, 30.f},
     {2048, 2048, 30.f}
 };
 
@@ -74,7 +76,7 @@ static GenId activeGen = GEN_PERLIN;
 static int runningGen = -1;
 static GenParams params[GEN_COUNT];
 static RunState runStates[GEN_COUNT] = {
-    RunState::Idle, RunState::Idle, RunState::Idle, RunState::Idle, RunState::Idle
+    RunState::Idle, RunState::Idle, RunState::Idle, RunState::Idle, RunState::Idle, RunState::Idle
 };
 static float elapsedByGen[GEN_COUNT] = {};
 static float setupElapsedByGen[GEN_COUNT] = {};
@@ -132,6 +134,7 @@ static uint64_t getLastSeed(GenId id) {
         case GEN_CIRCLE:   return circle_last_seed();
         case GEN_FUJII:    return fujii_last_seed();
         case GEN_GALAXIES: return galaxies_last_seed();
+        case GEN_LOOM:     return loom_last_seed();
         default: return 0;
     }
 }
@@ -143,6 +146,7 @@ static GenPerformance performanceGen(GenId id) {
         case GEN_CIRCLE:   return circle_performance();
         case GEN_FUJII:    return fujii_performance();
         case GEN_GALAXIES: return galaxies_performance();
+        case GEN_LOOM:     return loom_performance();
         default: return {};
     }
 }
@@ -159,16 +163,19 @@ static void formatMetric(double value, char* buffer, std::size_t size) {
 }
 
 static float runProgress(GenId id) {
-    if (params[id].benchmarkMode) {
+    float workProgress = 0.f;
+    if (params[id].benchmarkMode || id == GEN_LOOM) {
         const GenPerformance perf = performanceGen(id);
-        if (perf.benchmarkTarget == 0) return 0.f;
-        return std::clamp(static_cast<float>(
-            static_cast<double>(perf.workUnits) / static_cast<double>(perf.benchmarkTarget)), 0.f, 1.f);
+        if (perf.benchmarkTarget > 0)
+            workProgress = std::clamp(static_cast<float>(
+                static_cast<double>(perf.workUnits) / static_cast<double>(perf.benchmarkTarget)), 0.f, 1.f);
+        if (params[id].benchmarkMode) return workProgress;
     }
     const float target = params[id].duration > 0
         ? static_cast<float>(params[id].duration)
         : DEFAULTS[id].duration;
-    return std::clamp(elapsedByGen[id] / std::max(1.f, target), 0.f, 1.f);
+    const float timeProgress = std::clamp(elapsedByGen[id] / std::max(1.f, target), 0.f, 1.f);
+    return id == GEN_LOOM ? std::max(workProgress, timeProgress) : timeProgress;
 }
 
 static bool stepGen(GenId id) {
@@ -178,6 +185,7 @@ static bool stepGen(GenId id) {
         case GEN_CIRCLE:   return circle_step();
         case GEN_FUJII:    return fujii_step();
         case GEN_GALAXIES: return galaxies_step();
+        case GEN_LOOM:     return loom_step();
         default: return false;
     }
 }
@@ -189,6 +197,7 @@ static const sf::Texture* textureGen(GenId id) {
         case GEN_CIRCLE:   return &circle_texture();
         case GEN_FUJII:    return &fujii_texture();
         case GEN_GALAXIES: return &galaxies_texture();
+        case GEN_LOOM:     return &loom_texture();
         default: return nullptr;
     }
 }
@@ -200,6 +209,7 @@ static int nativeW(GenId id) {
         case GEN_CIRCLE:   return circle_native_width();
         case GEN_FUJII:    return fujii_native_width();
         case GEN_GALAXIES: return galaxies_native_width();
+        case GEN_LOOM:     return loom_native_width();
         default: return 2048;
     }
 }
@@ -211,6 +221,7 @@ static int nativeH(GenId id) {
         case GEN_CIRCLE:   return circle_native_height();
         case GEN_FUJII:    return fujii_native_height();
         case GEN_GALAXIES: return galaxies_native_height();
+        case GEN_LOOM:     return loom_native_height();
         default: return 2048;
     }
 }
@@ -286,6 +297,7 @@ static bool startGen(GenId id, bool replayLast) {
         case GEN_CIRCLE:   ok = circle_start(p, error); break;
         case GEN_FUJII:    ok = fujii_start(p, error); break;
         case GEN_GALAXIES: ok = galaxies_start(p, error); break;
+        case GEN_LOOM:     ok = loom_start(p, error); break;
         default: break;
     }
 
@@ -404,7 +416,7 @@ static bool drawIntParam(const char* id, const char* label, int& target,
     int v = autoState ? fallback : target;
     bool changed = false;
     markItemAutoAlpha(autoState);
-    float inputW = 82.f;
+    float inputW = 128.f;
     float sliderW = ImGui::GetContentRegionAvail().x - inputW - 8.f;
     ImGui::SetNextItemWidth(std::max(90.f, sliderW));
     changed |= ImGui::SliderInt("##slider", &v, mn, mx);
@@ -423,7 +435,7 @@ static bool drawDurationParam(GenId id) {
     ImGui::PushID("duration");
     bool reset = false;
     bool autoState = p.duration <= 0;
-    paramHeader("Duration", autoState, &reset);
+    paramHeader(id == GEN_LOOM ? "Time budget" : "Duration", autoState, &reset);
     if (reset) {
         p.duration = -1;
         ImGui::PopID();
@@ -522,10 +534,10 @@ static void drawPinnedInt(const char* id, const char* label, int& value, int mn,
     ImGui::PopID();
 }
 
-static void drawOutputSize(GenId id, int maxValue) {
+static void drawOutputSize(GenId id, int maxValue, int minValue = 512) {
     GenParams& p = params[id];
-    drawIntParam("outputW", "Output width", p.outputW, DEFAULTS[id].width, 512, maxValue);
-    drawIntParam("outputH", "Output height", p.outputH, DEFAULTS[id].height, 512, maxValue);
+    drawIntParam("outputW", "Output width", p.outputW, DEFAULTS[id].width, minValue, maxValue);
+    drawIntParam("outputH", "Output height", p.outputH, DEFAULTS[id].height, minValue, maxValue);
 }
 
 static void section(const char* label) {
@@ -538,6 +550,8 @@ static void drawParams(GenId id) {
 
     section("Timing");
     drawDurationParam(id);
+    if (id == GEN_LOOM)
+        ImGui::TextWrapped("Weaves a complete composition, stopping when finished or when the time budget runs out.");
 
     if (id == GEN_PERLIN) {
         section("Canvas");
@@ -608,6 +622,18 @@ static void drawParams(GenId id) {
         drawDoubleParam("colorLimitGal", "Color limit", p.colorLimitGal, 1.f, 0.1f, 10.f, "%.2f");
 
         if (ImGui::CollapsingHeader("Output")) drawOutputSize(id, 4096);
+    } else if (id == GEN_LOOM) {
+        section("Weave");
+        drawIntParam("loomSymmetry", "Symmetry", p.loomSymmetry, 5, 2, 10);
+        drawDoubleParam("loomTurbulence", "Turbulence", p.loomTurbulence, 0.35f, 0.f, 1.f, "%.2f");
+        drawDoubleParam("loomTwist", "Twist", p.loomTwist, 0.3f, -1.f, 1.f, "%.2f");
+        drawDoubleParam("loomSpread", "Spread", p.loomSpread, 0.9f, 0.4f, 1.4f, "%.2f");
+
+        section("Color");
+        drawDoubleParam("loomHue", "Hue", p.loomHue, 190.f, 0.f, 360.f, "%.0f", true);
+        drawDoubleParam("loomExposure", "Exposure", p.loomExposure, 1.f, 0.25f, 2.f, "%.2f");
+
+        if (ImGui::CollapsingHeader("Output")) drawOutputSize(id, 4096, 64);
     }
 }
 
@@ -762,7 +788,9 @@ static void drawPerformancePanel(GenId id) {
     if (running) ImGui::BeginDisabled();
     ImGui::Checkbox("Fixed-work benchmark", &params[id].benchmarkMode);
     if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-        ImGui::SetTooltip("Ignores Duration and stops after a fixed amount of generator work.");
+        ImGui::SetTooltip(id == GEN_LOOM
+            ? "Ignores the time budget and renders the complete composition."
+            : "Ignores Duration and stops after a fixed amount of generator work.");
     }
     if (ImGui::Button("Run Benchmark", ImVec2(-1.f, 30.f))) {
         params[id].benchmarkMode = true;
@@ -823,7 +851,7 @@ static void renderInspector() {
     if (ImGui::BeginPopupModal("About PFB Studio", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
         ImGui::Text("PFB Studio %s", pfb::kVersion);
         ImGui::Separator();
-        ImGui::TextWrapped("Native generative art studio with five renderers.");
+        ImGui::TextWrapped("Native generative art studio with %d renderers.", GEN_COUNT);
         ImGui::Spacing();
         ImGui::TextWrapped("Original generator code Copyright (c) 2020 Dawid Alimowski.");
         ImGui::TextWrapped("Standalone application Copyright (c) 2026 Magnus Petursson.");
@@ -836,7 +864,8 @@ static void renderInspector() {
     ImGui::Spacing();
     if (anyRunning()) ImGui::BeginDisabled();
     float tabGap = ImGui::GetStyle().ItemSpacing.x;
-    float tabW = (ImGui::GetContentRegionAvail().x - tabGap * (GEN_COUNT - 1)) / GEN_COUNT;
+    constexpr int tabColumns = 3;
+    float tabW = (ImGui::GetContentRegionAvail().x - tabGap * (tabColumns - 1)) / tabColumns;
     for (int i = 0; i < GEN_COUNT; ++i) {
         ImGui::PushID(i);
         bool selected = activeGen == i;
@@ -851,7 +880,7 @@ static void renderInspector() {
             saveStatusIsError = false;
         }
         if (selected) ImGui::PopStyleColor(3);
-        if (i + 1 < GEN_COUNT) ImGui::SameLine();
+        if (i + 1 < GEN_COUNT && (i + 1) % tabColumns != 0) ImGui::SameLine();
         ImGui::PopID();
     }
     if (anyRunning()) ImGui::EndDisabled();
@@ -892,7 +921,16 @@ static void renderInspector() {
         const float target = params[activeGen].duration > 0
             ? static_cast<float>(params[activeGen].duration)
             : DEFAULTS[activeGen].duration;
-        std::snprintf(progressText, sizeof(progressText), "%.0fs / %.0fs", elapsedByGen[activeGen], target);
+        if (activeGen == GEN_LOOM) {
+            const GenPerformance perf = performanceGen(activeGen);
+            const double woven = perf.benchmarkTarget > 0
+                ? 100.0 * static_cast<double>(perf.workUnits) / static_cast<double>(perf.benchmarkTarget)
+                : 0.0;
+            std::snprintf(progressText, sizeof(progressText), "%.0f%% woven | %.0fs / %.0fs budget",
+                          woven, elapsedByGen[activeGen], target);
+        } else {
+            std::snprintf(progressText, sizeof(progressText), "%.0fs / %.0fs", elapsedByGen[activeGen], target);
+        }
     }
     ImGui::ProgressBar(progress, ImVec2(-1.f, 8.f), "");
     ImGui::TextColored(ImVec4(0.58f, 0.62f, 0.70f, 1.f), "%s", progressText);

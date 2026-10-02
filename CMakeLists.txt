@@ -83,6 +83,7 @@ set(PFB_SOURCES
     src/generators/gen_circle.cpp
     src/generators/gen_fujii.cpp
     src/generators/gen_galaxies.cpp
+    src/generators/gen_loom.cpp
     src/legacy/FastNoise.cpp
 )
 
@@ -186,6 +187,11 @@ if(BUILD_TESTING)
     target_include_directories(pfb-perlin-tests PRIVATE src/generators)
     target_link_libraries(pfb-perlin-tests PRIVATE sfml-graphics sfml-window sfml-system)
     pfb_add_render_test(pfb-perlin-tests pfb-perlin-tests)
+
+    add_executable(pfb-loom-tests tests/loom_tests.cpp src/generators/gen_loom.cpp)
+    target_include_directories(pfb-loom-tests PRIVATE src/generators)
+    target_link_libraries(pfb-loom-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    pfb_add_render_test(pfb-loom-tests pfb-loom-tests)
 
     add_executable(pfb-fractal-render-tests tests/fractal_render_tests.cpp src/legacy/FastNoise.cpp)
     target_include_directories(pfb-fractal-render-tests PRIVATE src/generators)

@@ -1,6 +1,6 @@
 # PFB Studio
 
-A native generative art application that explores procedural creation through multiple algorithmic approaches. PFB Studio lets you interactively generate and export unique artwork using five distinct mathematical renderers.
+A native generative art application that explores procedural creation through multiple algorithmic approaches. PFB Studio lets you interactively generate and export unique artwork using six distinct mathematical renderers.
 
 ## Generators
 
@@ -9,6 +9,7 @@ A native generative art application that explores procedural creation through mu
 - **Organic Growth** – Simulated biological and natural growth patterns
 - **Fujii Attractor** – Strange attractor-based visualizations
 - **Galaxies** – Particle systems simulating stellar structures
+- **Magnetic Loom** – Softened dipole fields traced into tapered, luminous filaments; an artistic field rather than a physically accurate magnetism simulation
 
 ## History
 
@@ -69,7 +70,7 @@ xvfb-run -a ./build/release-linux/pfb-studio --smoke-test build/smoke
 ```
 
 CTest includes support, palette, and rendering regression tests, plus a smoke
-render of all five generators. On Linux it uses `xvfb-run` automatically when
+render of all six generators. On Linux it uses `xvfb-run` automatically when
 available. Windows runs the same rendering checks directly.
 
 Smoke mode completes a fixed amount of work for every generator, verifies that
@@ -80,9 +81,39 @@ used to choose another output folder.
 The inspector's **Performance** panel reports setup time, render time, work
 completed, and throughput. Enable **Fixed-work benchmark** or choose **Run
 Benchmark** for comparisons with a pinned seed and identical parameters.
-Benchmark mode ignores Duration; Fractal skips its timed preprocess/bloom
-phases and Fujii starts drawing immediately. Normal rendering still uses the
-selected duration and visual phases.
+Benchmark mode ignores Duration (Magnetic Loom's **Time budget**); Fractal skips
+its timed preprocess/bloom phases and Fujii starts drawing immediately. The
+other five generators use the selected duration and visual phases in normal
+mode.
+
+To check that an optimization preserves artwork, compare the same seed,
+parameters, and completed work. A faster time-limited render can produce a
+different image because it completes more steps before its time budget ends.
+
+### Magnetic Loom
+
+Magnetic Loom traces a softened dipole field into tapered filaments. Adjust
+**Symmetry** (2–10), **Turbulence**, **Twist**, **Spread**, **Hue**, and
+**Exposure** to change the field and its rendering. Auto values are seeded, so
+reusing a seed also reuses those choices.
+
+An example with explicit controls:
+
+| Control | Value |
+| --- | --- |
+| Seed | 424242 |
+| Symmetry | 5 |
+| Turbulence | 0.35 |
+| Twist | 0.3 |
+| Spread | 0.9 |
+| Hue | 190 |
+| Exposure | 1 |
+
+Normal and benchmark modes use the same finite composition and work target.
+In normal mode, **Time budget** is an upper limit: the composition may finish
+early, while a shorter budget can stop it before completion. Benchmark mode
+runs the composition to completion regardless of that budget. Compare completed
+runs on the same build and graphics backend for fixed-work replay.
 
 ## Supported platforms
 
@@ -96,8 +127,9 @@ selected duration and visual phases.
 
 - There are no installers, automatic updates, saved presets, or persistent
   settings yet.
-- Replaying a seed reuses generator inputs, but wall-clock rendering does not
-  guarantee pixel-identical output across different machines.
+- Replaying a seed reuses generator inputs. Fixed-work comparisons require the
+  same completed work; timed runs can finish at different points. Pixel-identical
+  output across different machines or graphics backends is not guaranteed.
 
 ## License
 
