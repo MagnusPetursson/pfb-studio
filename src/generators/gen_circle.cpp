@@ -72,6 +72,23 @@ bool circle_start(const GenParams& p, std::string& error) {
         if (!std::isnan(p.noiseScaleCircle)) colony.noise_scale *= p.noiseScaleCircle;
         if (!std::isnan(p.coordScaleCircle)) colony.coord_scale *= p.coordScaleCircle;
         if (!std::isnan(p.timeStepScale))    colony.time_step   *= p.timeStepScale;
+
+        // Particles keep their own radius and coordinate scale for reset()
+        // and calcMood(). Update those copies as well as the colony controls.
+        if (!std::isnan(p.colonyScale) || !std::isnan(p.coordScaleCircle)) {
+            for (auto& particle : colony.particles) {
+                if (!std::isnan(p.colonyScale)) {
+                    particle.radius = colony.radius;
+                    if (p.colonyScale != 1.0) {
+                        particle.pos.x = colony.centerx + (particle.pos.x - colony.centerx) * p.colonyScale;
+                        particle.pos.y = colony.centery + (particle.pos.y - colony.centery) * p.colonyScale;
+                    }
+                }
+                if (!std::isnan(p.coordScaleCircle)) particle.coord_scale = colony.coord_scale;
+                // The first force calculation uses the initial mood snapshot.
+                particle.calcMood(colony.t);
+            }
+        }
     }
 
     testApp.clock.restart();
