@@ -53,7 +53,31 @@ bool color_choice;
 vector<vector<int> > tree1;
 vector<node> nodes1;
 
+void initialisePoints() {
+    points.clear();
+    const auto estimatedPointCount = static_cast<size_t>(
+        (2.0 * xlimit / step + 2.0) * (2.0 * ylimit / step + 2.0));
+    points.reserve(estimatedPointCount);
+    for(double i = -xlimit; i <= xlimit; i += step)
+        for(double j = -ylimit; j <= ylimit; j += step) {
+            particle p(i+0.003*rdnormal(0, 1), j+0.003*rdnormal(0, 1), sf::Color(0, 0, 0, 30));
+            points.push_back(p);
+        }
+}
+
 void setup() {
+    // Every run starts from the original defaults. Overrides from an earlier
+    // run must not alter either this run's layout or its random-number stream.
+    WIDTH = HEIGHT = 2048;
+    xlimit = ylimit = 3;
+    is_colored = true;
+    color_choice = false;
+    step = 0.035;
+    vector_scale = 0.001;
+    pal.clear();
+    tree1.clear();
+    nodes1.clear();
+
     //if(rd(0, 100) < 20) circle = 1;
     if(rd(0, 100) < 50) {
         HEIGHT = 1152;
@@ -64,14 +88,7 @@ void setup() {
     contrast = 0;//rd(0, 1);
     octaves = 3;
     smoothing = constrain(rd(0, 0.99), 0, 1);
-    const auto estimatedPointCount = static_cast<size_t>(
-        (2.0 * xlimit / step + 2.0) * (2.0 * ylimit / step + 2.0));
-    points.reserve(estimatedPointCount);
-    for(double i = -xlimit; i <= xlimit; i += step)
-        for(double j = -ylimit; j <= ylimit; j += step) {
-            particle p(i+0.003*rdnormal(0, 1), j+0.003*rdnormal(0, 1), sf::Color(0, 0, 0, 30));
-            points.push_back(p);
-        }
+    initialisePoints();
     initialise_variations();
 
     createFieldTree2(rdint(4, 6), rdint(3, 4), tree1, nodes1, 2);
