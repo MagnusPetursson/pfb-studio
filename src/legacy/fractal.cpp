@@ -27,11 +27,16 @@ class baseApp : public App {
     public:
         struct func {
             std::vector<std::string> id;
+            std::vector<flame::Variation> resolvedVariations;
             std::vector<double> w, c, p;
             sf::Color col;
             double mult;
 
-            func(std::vector<std::string> id, std::vector<double> w, std::vector<double> c, sf::Color col, std::vector<double> p, double mult) : id(id), w(w), c(c), col(col), p(p), mult(mult) {}
+            func(std::vector<std::string> id, std::vector<double> w, std::vector<double> c, sf::Color col, std::vector<double> p, double mult) : id(id), w(w), c(c), col(col), p(p), mult(mult) {
+                resolvedVariations.reserve(id.size());
+                for(const auto& name : id)
+                    resolvedVariations.push_back(variations.at(name));
+            }
             func() {
 
             }
@@ -71,7 +76,7 @@ class baseApp : public App {
             vec v, initial_v;
             sf::Color c;
             std::vector<func> funcs;
-            std::vector<double> weights, final_p;
+            std::vector<double> weights, cumulativeWeights, final_p;
             std::vector<std::string> available_vars;
             std::vector<std::vector<double> > backup_pcoeffs, backup_coeffs;
             double zoom = 1;
@@ -110,13 +115,26 @@ class baseApp : public App {
                 return vec(xnew+center.x, ynew+center.y);
             }
 
-            int weightedRand() {
-                double r = random(1.0), w = 0;
+            void cacheWeights() {
+                cumulativeWeights.clear();
+                cumulativeWeights.reserve(weights.size());
+                double sum = 0;
+                // Preserve the original left-to-right additions exactly.
+                for(const double weight : weights) {
+                    sum += weight;
+                    cumulativeWeights.push_back(sum);
+                }
+            }
+
+            int selectFunction(double r) const {
                 for(std::size_t i = 0; i < weights.size(); i++) {
-                    w += weights[i];
-                    if(r <= w) return static_cast<int>(i);
+                    if(r <= cumulativeWeights[i]) return static_cast<int>(i);
                 }
                 return 0;
+            }
+
+            int weightedRand() {
+                return selectFunction(random(1.0));
             }
 
             vec runFunc(vec v, int fi) {
@@ -132,7 +150,7 @@ class baseApp : public App {
 
                 const vec affineV = affine(v, f.c);
                 for(std::size_t i = 0; i < f.id.size(); i++) {
-                    vec s = variations[f.id[i]](affineV, f.w[i]);
+                    vec s = f.resolvedVariations[i](affineV, f.w[i]);
                     ret = ret + s;
                 }
                 //post
@@ -210,6 +228,7 @@ class baseApp : public App {
                     f_sum += f_inc;
                     f_inc /= 2;
                 }
+                cacheWeights();
                 //for(int i = 0; i < func_number; i++)
                 //    weights[i] = random(-1.0, 1.0);
 

@@ -85,10 +85,16 @@ class baseApp : public App {
                     yy = a[4]*ccos(f[4]*x, q) + a[5]*ssin(f[5]*y, p) + a[6]*ssin(f[6]*t, q);
                     t += v;
 
-                    vec step(xx-x, yy-y);
-                    step = step*10;
-                    double tt = constrain(map(step.mag2(), 0, M_PI*M_PI*2, 0, 1), -color_limit, color_limit);
-                    sf::Color color = interpolate(colors[0], colors[1], tt);
+                    const bool visible = i > 2000;
+                    sf::Color color;
+                    if(visible) {
+                        vec step(xx-x, yy-y);
+                        step = step*10;
+                        double tt = constrain(map(step.mag2(), 0, M_PI*M_PI*2, 0, 1), -color_limit, color_limit);
+                        color = interpolate(colors[0], colors[1], tt);
+                    }
+                    // Warm-up samples still consume the same random draw, so
+                    // visible samples retain their seeded opacity sequence.
                     color.a = 10 * gaussian(1, 0.1);
                     //std::cout << step.mag2()*pow(10, 5) << ' ' << tt << "\n\n";
                     x = xx;
@@ -98,6 +104,8 @@ class baseApp : public App {
                     miny = std::min(miny, y);
                     maxx = std::max(maxx, x);
                     maxy = std::max(maxy, y);
+
+                    if(!visible) continue;
 
                     xx = map(x, minx, maxx, -1, 1);
                     yy = map(y, miny, maxy, -1, 1);
@@ -117,14 +125,12 @@ class baseApp : public App {
                     vec f = vec(xxx, yyy) - vec(centerx, centery);
                     color.a *= map(f.mag(), 0, radius, 0, 1);
 
-                    if(i > 2000) {
-                        const float left = static_cast<float>(xxx);
-                        const float top = static_cast<float>(yyy);
-                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
-                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
-                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
-                        pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
-                    }
+                    const float left = static_cast<float>(xxx);
+                    const float top = static_cast<float>(yyy);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
                 }
 
                 if(vertexIndex != 0)

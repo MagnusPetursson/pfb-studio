@@ -22,6 +22,8 @@ static constexpr int FUJII_BENCHMARK_STEPS_PER_TICK = 8;
 bool fujii_start(const GenParams& p, std::string& error) {
     s_done = false;
     s_benchmark = p.benchmarkMode;
+    testApp.present_window = !s_benchmark;
+    testApp.defer_initial_window = true;
     s_workUnits = 0;
     error.clear();
 

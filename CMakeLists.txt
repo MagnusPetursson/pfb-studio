@@ -171,6 +171,16 @@ if(BUILD_TESTING)
         set_tests_properties(${name} PROPERTIES TIMEOUT 180 RUN_SERIAL TRUE)
     endfunction()
 
+    # Including the legacy production code constructs SFML texture resources,
+    # which need a context even though these tests only exercise CPU math.
+    foreach(generator IN ITEMS perlin fractal)
+        add_executable(pfb-${generator}-dispatch-tests
+            tests/${generator}_dispatch_tests.cpp src/legacy/FastNoise.cpp)
+        target_include_directories(pfb-${generator}-dispatch-tests PRIVATE src/generators)
+        target_link_libraries(pfb-${generator}-dispatch-tests PRIVATE sfml-graphics sfml-window sfml-system)
+        pfb_add_render_test(pfb-${generator}-dispatch-tests pfb-${generator}-dispatch-tests)
+    endforeach()
+
     add_executable(pfb-perlin-tests tests/perlin_tests.cpp
         src/generators/gen_perlin.cpp src/legacy/FastNoise.cpp)
     target_include_directories(pfb-perlin-tests PRIVATE src/generators)

@@ -21,8 +21,13 @@ namespace app {
             std::string window_name, save_path;
             sf::RenderWindow window;
             double timeLimit;
+            bool present_window = true;
+            bool defer_initial_window = false;
 
             virtual void initWindow() {
+                // Wrapped generators create the same window again in setup().
+                // Let that call create it once, after the render texture exists.
+                if (defer_initial_window) return;
                 sf::ContextSettings settings;
                 settings.antialiasingLevel = 8;
                 window.create(sf::VideoMode(screen_width, screen_height), window_name, sf::Style::Close, settings);
@@ -52,6 +57,9 @@ namespace app {
             }
 
             virtual void drawTextureToWindow() {
+                // Fixed-work benchmarks render only to the off-screen texture.
+                // Normal runs keep window display() for their original pacing.
+                if (!present_window) return;
                 window.clear();
                 window.draw(sf::Sprite(texture.getTexture()));
                 window.display();

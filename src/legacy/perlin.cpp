@@ -48,6 +48,7 @@ struct particle {
 };
 
 vector<particle> points;
+vector<sf::Vertex> pointBatch;
 double step = 0.035, vector_scale = 0.001, noise_scale = 10, coord_scale = 50, contrast;
 bool color_choice;
 vector<vector<int> > tree1;
@@ -107,7 +108,7 @@ void setup() {
 sf::Clock timerClock;
 
 void draw() {
-    sf::VertexArray batch(sf::Points, points.size());
+    if(pointBatch.size() < points.size()) pointBatch.resize(points.size());
     size_t index = 0;
     for(auto &i : points) {
         /*if(is_colored) {
@@ -125,10 +126,10 @@ void draw() {
         double xx = mathmap(i.x, -xlimit, xlimit, 10, WIDTH-10);
         double yy = mathmap(i.y, -ylimit, ylimit, 10, HEIGHT-10);
         i.vertex.position = sf::Vector2f(xx, yy);
-        batch[index++] = i.vertex;
+        pointBatch[index++] = i.vertex;
         //i.edgecheck();
     }
-    renderTexture.draw(batch, sf::BlendAdd);
+    if(index != 0) renderTexture.draw(pointBatch.data(), index, sf::Points, sf::BlendAdd);
 }
 
 int main() {
