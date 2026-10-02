@@ -33,6 +33,7 @@ class baseApp : public App {
             double centerx, centery, radius;
             sf::Color colors[3];
             double minx = 10, miny = 10, maxx = -10, maxy = -10, color_limit = 1;
+            std::vector<sf::Vertex> pointBatch;
 
             void create() {
                 for(int i = 1; i <= 6; i++)
@@ -44,6 +45,9 @@ class baseApp : public App {
             }
 
             void init(bool colored) {
+                sf::VertexArray batch(sf::Quads, static_cast<std::size_t>(11000 * 4));
+                std::size_t vertexIndex = 0;
+
                 for(double x = -1; x <= 1; x += 0.02)
                     for(double y = -1; y <= 1; y += 0.02) {
                         double xx = x*sqrt(1-y*y/2);
@@ -54,21 +58,43 @@ class baseApp : public App {
                         color3.a = 80 * map(radius, 80, 800, 0.2, 1.2);
                         vec f = vec(xx, yy) - vec(0, 0);
                         color3.a *= f.mag2();
-                        rect(xx*radius+centerx, yy*radius+centery, 2, 2, color3/*(colored ? sf::Color(255, 255, 255, 60) : sf::Color(0, 0, 0, 60))*/);
+
+                        const float left = static_cast<float>(xx*radius+centerx);
+                        const float top = static_cast<float>(yy*radius+centery);
+                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color3);
+                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top), color3);
+                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 2.f, top + 2.f), color3);
+                        batch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 2.f), color3);
                     }
+
+                batch.resize(vertexIndex);
+                if(vertexIndex != 0) renderer->draw(batch);
             }
 
             void iterate(int screen_width, int screen_height, bool colored) {
-                for(int i = 1; i <= 10000*map(radius, 80, 800, 0.2, 1); i++) {
+                const int maxIterations = static_cast<int>(10000*map(radius, 80, 800, 0.2, 1));
+                const std::size_t visibleCapacity = maxIterations > 2000
+                    ? static_cast<std::size_t>(maxIterations - 2000) * 4
+                    : 0;
+                if(pointBatch.size() < visibleCapacity) pointBatch.resize(visibleCapacity);
+                std::size_t vertexIndex = 0;
+
+                for(int i = 1; i <= maxIterations; i++) {
                     double xx = x, yy = y;
                     xx = a[1]*ssin(f[1]*x, p) + a[2]*ccos(f[2]*y, q) + a[3]*ssin(f[3]*t, p);
                     yy = a[4]*ccos(f[4]*x, q) + a[5]*ssin(f[5]*y, p) + a[6]*ssin(f[6]*t, q);
                     t += v;
 
-                    vec step(xx-x, yy-y);
-                    step = step*10;
-                    double tt = constrain(map(step.mag2(), 0, M_PI*M_PI*2, 0, 1), -color_limit, color_limit);
-                    sf::Color color = interpolate(colors[0], colors[1], tt);
+                    const bool visible = i > 2000;
+                    sf::Color color;
+                    if(visible) {
+                        vec step(xx-x, yy-y);
+                        step = step*10;
+                        double tt = constrain(map(step.mag2(), 0, M_PI*M_PI*2, 0, 1), -color_limit, color_limit);
+                        color = interpolate(colors[0], colors[1], tt);
+                    }
+                    // Warm-up samples still consume the same random draw, so
+                    // visible samples retain their seeded opacity sequence.
                     color.a = 10 * gaussian(1, 0.1);
                     //std::cout << step.mag2()*pow(10, 5) << ' ' << tt << "\n\n";
                     x = xx;
@@ -78,6 +104,8 @@ class baseApp : public App {
                     miny = std::min(miny, y);
                     maxx = std::max(maxx, x);
                     maxy = std::max(maxy, y);
+
+                    if(!visible) continue;
 
                     xx = map(x, minx, maxx, -1, 1);
                     yy = map(y, miny, maxy, -1, 1);
@@ -97,11 +125,17 @@ class baseApp : public App {
                     vec f = vec(xxx, yyy) - vec(centerx, centery);
                     color.a *= map(f.mag(), 0, radius, 0, 1);
 
-                    if(i > 2000) {
-                        if(colored) rect(xxx, yyy, 1, 1, color, sf::BlendAdd);
-                        else rect(xxx, yyy, 1, 1, color);
-                    }
+                    const float left = static_cast<float>(xxx);
+                    const float top = static_cast<float>(yyy);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left + 1.f, top + 1.f), color);
+                    pointBatch[vertexIndex++] = sf::Vertex(sf::Vector2f(left, top + 1.f), color);
                 }
+
+                if(vertexIndex != 0)
+                    renderer->draw(pointBatch.data(), vertexIndex, sf::Quads,
+                        colored ? sf::BlendAdd : sf::BlendAlpha);
             }
 
             attractor(double cx, double cy, double r) : centerx(cx), centery(cy), radius(r) {}
@@ -148,6 +182,7 @@ class baseApp : public App {
 
 
             double sum_angle = 0;
+            attractors.reserve(static_cast<std::size_t>(attractor_number));
             for(int i = 1; i <= attractor_number; i++) {
                 double radius = 600 * map(i, 1, attractor_number, 1, 0.125);//(random(0, 100) < 50 ? random(500.0, 800.0) : random(60.0, 250.0));
 

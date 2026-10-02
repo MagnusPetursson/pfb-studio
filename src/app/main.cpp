@@ -77,11 +77,13 @@ static RunState runStates[GEN_COUNT] = {
     RunState::Idle, RunState::Idle, RunState::Idle, RunState::Idle, RunState::Idle
 };
 static float elapsedByGen[GEN_COUNT] = {};
+static float setupElapsedByGen[GEN_COUNT] = {};
 static uint64_t lastSeeds[GEN_COUNT] = {};
 static bool hasPreview[GEN_COUNT] = {};
 static std::string errors[GEN_COUNT];
 static std::string saveStatus;
 static bool saveStatusIsError = false;
+static bool showLiveStats = true;
 static sf::Clock genClock;
 
 static const sf::Color COL_BG{7, 8, 10};
@@ -132,6 +134,41 @@ static uint64_t getLastSeed(GenId id) {
         case GEN_GALAXIES: return galaxies_last_seed();
         default: return 0;
     }
+}
+
+static GenPerformance performanceGen(GenId id) {
+    switch (id) {
+        case GEN_PERLIN:   return perlin_performance();
+        case GEN_FRACTAL:  return fractal_performance();
+        case GEN_CIRCLE:   return circle_performance();
+        case GEN_FUJII:    return fujii_performance();
+        case GEN_GALAXIES: return galaxies_performance();
+        default: return {};
+    }
+}
+
+static void formatMetric(double value, char* buffer, std::size_t size) {
+    if (value >= 1000000000.0)
+        std::snprintf(buffer, size, "%.2fB", value / 1000000000.0);
+    else if (value >= 1000000.0)
+        std::snprintf(buffer, size, "%.2fM", value / 1000000.0);
+    else if (value >= 1000.0)
+        std::snprintf(buffer, size, "%.2fk", value / 1000.0);
+    else
+        std::snprintf(buffer, size, "%.0f", value);
+}
+
+static float runProgress(GenId id) {
+    if (params[id].benchmarkMode) {
+        const GenPerformance perf = performanceGen(id);
+        if (perf.benchmarkTarget == 0) return 0.f;
+        return std::clamp(static_cast<float>(
+            static_cast<double>(perf.workUnits) / static_cast<double>(perf.benchmarkTarget)), 0.f, 1.f);
+    }
+    const float target = params[id].duration > 0
+        ? static_cast<float>(params[id].duration)
+        : DEFAULTS[id].duration;
+    return std::clamp(elapsedByGen[id] / std::max(1.f, target), 0.f, 1.f);
 }
 
 static bool stepGen(GenId id) {
@@ -235,6 +272,7 @@ static bool startGen(GenId id, bool replayLast) {
     runningGen = id;
     runStates[id] = RunState::Starting;
     elapsedByGen[id] = 0.f;
+    setupElapsedByGen[id] = 0.f;
     errors[id].clear();
     saveStatus.clear();
     saveStatusIsError = false;
@@ -251,6 +289,7 @@ static bool startGen(GenId id, bool replayLast) {
         default: break;
     }
 
+    setupElapsedByGen[id] = genClock.getElapsedTime().asSeconds();
     p.seed = visibleSeed;
     if (!ok) {
         runStates[id] = RunState::Error;
@@ -262,6 +301,7 @@ static bool startGen(GenId id, bool replayLast) {
     lastSeeds[id] = getLastSeed(id);
     hasPreview[id] = true;
     runStates[id] = RunState::Running;
+    genClock.restart(); // profile/render duration starts after synchronous setup
     return true;
 }
 
@@ -364,7 +404,7 @@ static bool drawIntParam(const char* id, const char* label, int& target,
     int v = autoState ? fallback : target;
     bool changed = false;
     markItemAutoAlpha(autoState);
-    float inputW = 82.f;
+    float inputW = 128.f;
     float sliderW = ImGui::GetContentRegionAvail().x - inputW - 8.f;
     ImGui::SetNextItemWidth(std::max(90.f, sliderW));
     changed |= ImGui::SliderInt("##slider", &v, mn, mx);
@@ -695,10 +735,7 @@ static void renderArtwork() {
     }
 
     if (runStates[activeGen] == RunState::Running) {
-        float target = params[activeGen].duration > 0
-            ? static_cast<float>(params[activeGen].duration)
-            : DEFAULTS[activeGen].duration;
-        float progress = std::clamp(elapsedByGen[activeGen] / std::max(1.f, target), 0.f, 1.f);
+        const float progress = runProgress(activeGen);
         sf::RectangleShape base(sf::Vector2f(static_cast<float>(ws.x), 3.f));
         base.setPosition(0.f, static_cast<float>(ws.y) - 3.f);
         base.setFillColor(sf::Color(255, 255, 255, 38));
@@ -714,6 +751,53 @@ static void drawActionButton(const char* label, bool enabled, float width, const
     if (!enabled) ImGui::BeginDisabled();
     if (ImGui::Button(label, ImVec2(width, 36.f)) && enabled) fn();
     if (!enabled) ImGui::EndDisabled();
+}
+
+static void drawPerformancePanel(GenId id) {
+    if (!ImGui::CollapsingHeader("Performance")) return;
+
+    const GenPerformance perf = performanceGen(id);
+    const bool running = anyRunning();
+
+    if (running) ImGui::BeginDisabled();
+    ImGui::Checkbox("Fixed-work benchmark", &params[id].benchmarkMode);
+    if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
+        ImGui::SetTooltip("Ignores Duration and stops after a fixed amount of generator work.");
+    }
+    if (ImGui::Button("Run Benchmark", ImVec2(-1.f, 30.f))) {
+        params[id].benchmarkMode = true;
+        startGen(id, false);
+    }
+    if (running) ImGui::EndDisabled();
+
+    ImGui::Checkbox("Show live stats", &showLiveStats);
+
+    char targetText[32];
+    formatMetric(static_cast<double>(perf.benchmarkTarget), targetText, sizeof(targetText));
+    ImGui::TextColored(ImVec4(0.58f, 0.62f, 0.70f, 1.f),
+        "Benchmark target: %s %s", targetText, perf.unitLabel);
+    ImGui::TextColored(ImVec4(0.58f, 0.62f, 0.70f, 1.f),
+        "Setup is timed separately; pin/replay a seed for comparisons.");
+
+    if (!showLiveStats) return;
+
+    const double renderSeconds = static_cast<double>(elapsedByGen[id]);
+    const double setupSeconds = static_cast<double>(setupElapsedByGen[id]);
+    const double rate = renderSeconds > 0.0
+        ? static_cast<double>(perf.workUnits) / renderSeconds
+        : 0.0;
+
+    char workText[32];
+    char rateText[32];
+    formatMetric(static_cast<double>(perf.workUnits), workText, sizeof(workText));
+    formatMetric(rate, rateText, sizeof(rateText));
+
+    ImGui::Spacing();
+    ImGui::Text("Work: %s %s", workText, perf.unitLabel);
+    ImGui::Text("Setup: %.3f s", setupSeconds);
+    ImGui::Text("Render: %.3f s", renderSeconds);
+    ImGui::Text("Total: %.3f s", setupSeconds + renderSeconds);
+    ImGui::Text("Throughput: %s %s/s", rateText, perf.unitLabel);
 }
 
 static void renderInspector() {
@@ -792,14 +876,24 @@ static void renderInspector() {
         ImGui::PopStyleColor();
     }
 
-    float target = params[activeGen].duration > 0
-        ? static_cast<float>(params[activeGen].duration)
-        : DEFAULTS[activeGen].duration;
-    float progress = runStates[activeGen] == RunState::Complete
+    const float progress = runStates[activeGen] == RunState::Complete
         ? 1.f
-        : std::clamp(elapsedByGen[activeGen] / std::max(1.f, target), 0.f, 1.f);
-    char progressText[64];
-    std::snprintf(progressText, sizeof(progressText), "%.0fs / %.0fs", elapsedByGen[activeGen], target);
+        : runProgress(activeGen);
+    char progressText[128];
+    if (params[activeGen].benchmarkMode) {
+        const GenPerformance perf = performanceGen(activeGen);
+        char workText[32];
+        char targetText[32];
+        formatMetric(static_cast<double>(perf.workUnits), workText, sizeof(workText));
+        formatMetric(static_cast<double>(perf.benchmarkTarget), targetText, sizeof(targetText));
+        std::snprintf(progressText, sizeof(progressText), "%s / %s %s",
+                      workText, targetText, perf.unitLabel);
+    } else {
+        const float target = params[activeGen].duration > 0
+            ? static_cast<float>(params[activeGen].duration)
+            : DEFAULTS[activeGen].duration;
+        std::snprintf(progressText, sizeof(progressText), "%.0fs / %.0fs", elapsedByGen[activeGen], target);
+    }
     ImGui::ProgressBar(progress, ImVec2(-1.f, 8.f), "");
     ImGui::TextColored(ImVec4(0.58f, 0.62f, 0.70f, 1.f), "%s", progressText);
 
@@ -808,6 +902,9 @@ static void renderInspector() {
         ImGui::TextWrapped("%s", errors[activeGen].c_str());
         ImGui::PopStyleColor();
     }
+
+    ImGui::Spacing();
+    drawPerformancePanel(activeGen);
 
     ImGui::Spacing();
     ImGui::Separator();
@@ -841,6 +938,32 @@ static void renderFrame() {
     gWin->display();
 }
 
+static void writeJsonString(std::ostream& output, const std::string& value) {
+    static constexpr char hex[] = "0123456789abcdef";
+    output << '"';
+    for (const unsigned char ch : value) {
+        if (ch == '"' || ch == '\\') output << '\\' << static_cast<char>(ch);
+        else if (ch < 0x20) output << "\\u00" << hex[ch >> 4] << hex[ch & 0xf];
+        else output << static_cast<char>(ch);
+    }
+    output << '"';
+}
+
+static std::size_t changedPixelCount(const sf::Image& before, const sf::Image& after) {
+    if (before.getSize() != after.getSize()) return 0;
+    const auto size = after.getSize();
+    const std::size_t pixelCount = static_cast<std::size_t>(size.x) * size.y;
+    const auto* first = before.getPixelsPtr();
+    const auto* last = after.getPixelsPtr();
+    std::size_t changed = 0;
+    for (std::size_t i = 0; i < pixelCount; ++i) {
+        const std::size_t offset = i * 4;
+        if (first[offset] != last[offset] || first[offset + 1] != last[offset + 1] ||
+            first[offset + 2] != last[offset + 2]) ++changed;
+    }
+    return changed;
+}
+
 static int runSmokeTest(const std::filesystem::path& outputDirectory) {
     std::error_code ec;
     std::filesystem::create_directories(outputDirectory, ec);
@@ -857,8 +980,10 @@ static int runSmokeTest(const std::filesystem::path& outputDirectory) {
     for (int index = 0; index < GEN_COUNT; ++index) {
         const GenId id = static_cast<GenId>(index);
         params[id] = GenParams{};
-        params[id].seed = 424242u + static_cast<std::uint64_t>(index);
-        params[id].duration = 0.5;
+        params[id].seed = 424242u;
+        // Fixed work reaches the drawing phase even on fast machines. In
+        // particular, Fujii normally spends its first 1.5 seconds warming up.
+        params[id].benchmarkMode = true;
         params[id].outputW = 512;
         params[id].outputH = 512;
         if (id == GEN_PERLIN) {
@@ -866,27 +991,61 @@ static int runSmokeTest(const std::filesystem::path& outputDirectory) {
             params[id].customAspectW = 256;
             params[id].customAspectH = 256;
         }
-        if (id == GEN_FRACTAL) params[id].preprocessTime = 0.1;
+        // Fractal's coordinate mapping currently targets its native canvas.
+        if (id == GEN_FRACTAL) params[id].outputW = params[id].outputH = 2000;
 
+        sf::Clock timeout;
         const bool started = startGen(id, false);
-        while (anyRunning()) stepRunningGen();
+        sf::Image firstFrame;
+        if (started) {
+            // Some legacy generators first finalize their texture in step().
+            // Compare two finalized frames so setup gradients cannot pass as art.
+            stepRunningGen();
+            if (const auto* texture = textureGen(id)) firstFrame = texture->copyToImage();
+        }
+        constexpr float timeoutSeconds = 60.f;
+        while (anyRunning() && timeout.getElapsedTime().asSeconds() < timeoutSeconds)
+            stepRunningGen();
 
-        bool passed = started && runStates[id] == RunState::Complete;
+        const bool timedOut = anyRunning();
+        if (timedOut) stopGen();
+
+        const GenPerformance perf = performanceGen(id);
+        bool passed = started && runStates[id] == RunState::Complete &&
+            perf.benchmarkTarget > 0 && perf.workUnits >= perf.benchmarkTarget;
         std::string error = errors[id];
+        if (timedOut) error = "Generator exceeded the 60-second smoke-test limit.";
+        else if (started && !passed) error = "Generator stopped before completing its benchmark target.";
         std::filesystem::path imagePath = outputDirectory / (std::string(GEN_SLUGS[id]) + ".png");
+        std::size_t changedPixels = 0;
         if (passed) {
             const sf::Texture* texture = textureGen(id);
             sf::Image image = texture ? texture->copyToImage() : sf::Image{};
-            passed = texture && image.getSize().x > 0 && image.getSize().y > 0 && pfb::imageHasVariation(image);
+            changedPixels = changedPixelCount(firstFrame, image);
+            passed = texture && image.getSize().x == static_cast<unsigned>(nativeW(id)) &&
+                image.getSize().y == static_cast<unsigned>(nativeH(id)) &&
+                image.getSize().x > 0 && image.getSize().y > 0 &&
+                pfb::imageHasVariation(image) && changedPixels > 0;
             if (passed && !pfb::writeImage(image, imagePath, error)) passed = false;
-            if (!passed && error.empty()) error = "Generated image was empty or uniform.";
+            if (!passed && error.empty()) error = "Generated image was empty, uniform, incorrectly sized, or unchanged after its first frame.";
         }
         allPassed = allPassed && passed;
+        if (!passed) std::cerr << GEN_SLUGS[id] << " smoke test failed: " << error << '\n';
         report << "    {\"name\": \"" << GEN_SLUGS[id] << "\", \"passed\": "
-               << (passed ? "true" : "false") << ", \"error\": \"" << error << "\"}"
-               << (index + 1 < GEN_COUNT ? "," : "") << "\n";
+               << (passed ? "true" : "false") << ", \"seed\": " << params[id].seed
+               << ", \"workUnits\": " << perf.workUnits
+               << ", \"target\": " << perf.benchmarkTarget
+               << ", \"changedPixels\": " << changedPixels
+               << ", \"error\": ";
+        writeJsonString(report, error);
+        report << "}" << (index + 1 < GEN_COUNT ? "," : "") << "\n";
     }
     report << "  ],\n  \"passed\": " << (allPassed ? "true" : "false") << "\n}\n";
+    report.close();
+    if (!report) {
+        std::cerr << "Could not write the smoke-test report.\n";
+        return 2;
+    }
     return allPassed ? 0 : 1;
 }
 

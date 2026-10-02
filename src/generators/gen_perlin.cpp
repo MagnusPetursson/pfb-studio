@@ -1,11 +1,12 @@
-// gen_perlin.cpp — wraps perlin.cpp in an anonymous namespace so its file-scope
+// gen_perlin.cpp — wraps perlin.cpp in a dedicated namespace so its file-scope
 // globals don't clash with the other generators when all are linked together.
-// All of aural.hpp's definitions get internal linkage this way too.
+// A named namespace also keeps unused legacy extern declarations at external
+// linkage, avoiding the need to instantiate dummy SFML globals for MSVC.
 
 #include "preinclude.hpp"
 #include "generator.hpp"
 
-namespace {
+namespace pfb_perlin_legacy {
     // Rename perlin's main() so we can write our own init/step wrappers.
     #define main perlin_original_main
     // perlin.cpp defines WINDOW and NOISE at its top; WINDOW causes it to create
@@ -13,16 +14,29 @@ namespace {
     // the renamed main). We leave WINDOW defined so the #define doesn't conflict.
     #include "../legacy/perlin.cpp"
     #undef main
-} // anonymous namespace
+} // namespace pfb_perlin_legacy
+
+using namespace pfb_perlin_legacy;
 
 // ── helpers ─────────────────────────────────────────────────────────────────
-// These functions live in the same TU and can therefore name the anon-ns symbols.
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
+static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
+static uint64_t s_workUnits   = 0;
+static constexpr uint64_t PERLIN_BENCHMARK_TARGET = 2000000ull;
+static constexpr int PERLIN_BENCHMARK_STEPS_PER_TICK = 8;
+
+static sf::Color grayscale(sf::Color color) {
+    const auto gray = static_cast<sf::Uint8>(
+        (77u * color.r + 150u * color.g + 29u * color.b) >> 8);
+    return sf::Color(gray, gray, gray, color.a);
+}
 
 static void applyPerlinParams(const GenParams& p) {
+    const double originalXLimit = xlimit;
+    const double originalYLimit = ylimit;
     if (p.aspect == 1) {          // square
         WIDTH = HEIGHT = 2048;
         xlimit = ylimit = 3;
@@ -80,15 +94,12 @@ static void applyPerlinParams(const GenParams& p) {
     if (!std::isnan(p.contrast))    contrast     = p.contrast;
     if (p.coloredSet) is_colored = p.colored;
 
-    if (!std::isnan(p.density)) {
+    if (!std::isnan(p.density))
         step = 0.035 / p.density;
-        points.clear();
-        for (double i = -xlimit; i <= xlimit; i += step)
-            for (double j = -ylimit; j <= ylimit; j += step)
-                points.push_back(particle(i + 0.003*rdnormal(0,1),
-                                           j + 0.003*rdnormal(0,1),
-                                           sf::Color(0,0,0,30)));
-    }
+    // A layout override changes the particle domain even when density remains
+    // random/default. Build the grid only after both settings are applied.
+    if (!std::isnan(p.density) || xlimit != originalXLimit || ylimit != originalYLimit)
+        initialisePoints();
 
     if (p.duration > 0) timeLimit = p.duration;
 }
@@ -96,8 +107,20 @@ static void applyPerlinParams(const GenParams& p) {
 // ── public interface ─────────────────────────────────────────────────────────
 
 bool perlin_start(const GenParams& p, std::string& error) {
+    s_initialized = false;
     s_done = false;
+    s_benchmark = p.benchmarkMode;
+    s_workUnits = 0;
     error.clear();
+
+    if (!std::isnan(p.density) && (!std::isfinite(p.density) || p.density <= 0)) {
+        error = "Perlin density must be finite and greater than zero.";
+        return false;
+    }
+    if (p.flowPreset < 0 || p.flowPreset >= FLOW_PRESET_COUNT) {
+        error = "Unknown Perlin flow preset.";
+        return false;
+    }
 
     timerClock.restart();
 
@@ -105,23 +128,22 @@ bool perlin_start(const GenParams& p, std::string& error) {
     uint64_t useSeed = p.seed ? p.seed : seedgen();
     seedgen(useSeed);
 
-    // Clear mutable state so restarts are clean
-    points.clear();
-    tree1.clear();
-    nodes1.clear();
-
     setup();               // randomises layout, fills points, builds field tree
     applyPerlinParams(p);  // override with user params after setup()
 
     // Rebuild the render texture at current WIDTH/HEIGHT
-    renderTexture.create(WIDTH, HEIGHT);
+    if (!renderTexture.create(WIDTH, HEIGHT)) {
+        error = "Could not create the Perlin render texture.";
+        return false;
+    }
     pn.SetNoiseType(FastNoise::PerlinFractal);
     pn.SetFractalOctaves(octaves);
     pn.SetSeed((int)useSeed);
 
     // Background painting (mirrors original main())
+    // Drawing always interpolates four palette entries, including monochrome.
+    pal = randomPalette(4, 50, rd(0.5, 0.9), rd(0.2, 0.6), hue, 2);
     if (is_colored) {
-        pal = randomPalette(4, 50, rd(0.5, 0.9), rd(0.2, 0.6), hue, 2);
         int brightness = (int)mathmap(contrast, 0, 1, 30, 220);
         bg1 = sf::Color(
             (sf::Uint8)constrain(rdnormal(brightness, brightness/20.0), 0, 255),
@@ -132,8 +154,9 @@ bool perlin_start(const GenParams& p, std::string& error) {
             (sf::Uint8)rdnormal(brightness/1.2, brightness/50.0),
             (sf::Uint8)rdnormal(brightness/1.2, brightness/50.0));
     } else {
-        bg1 = sf::Color((sf::Uint8)rdnormal(220,1),(sf::Uint8)rdnormal(220,1),(sf::Uint8)rdnormal(220,1));
-        bg2 = sf::Color((sf::Uint8)rdnormal(180,1),(sf::Uint8)rdnormal(180,1),(sf::Uint8)rdnormal(180,1));
+        for (auto& color : pal) color = grayscale(color);
+        bg1 = grayscale(sf::Color((sf::Uint8)rdnormal(220,1),(sf::Uint8)rdnormal(220,1),(sf::Uint8)rdnormal(220,1)));
+        bg2 = grayscale(sf::Color((sf::Uint8)rdnormal(180,1),(sf::Uint8)rdnormal(180,1),(sf::Uint8)rdnormal(180,1)));
     }
 
     renderTexture.clear(bg1);
@@ -148,23 +171,36 @@ bool perlin_start(const GenParams& p, std::string& error) {
         sf::Vertex(sf::Vector2f(0, (float)HEIGHT),
             randomPalette(1, (int)rd(30,80), 0.98, rd(0.2,0.4), rdnormal(invert_hue,10))[0])
     };
+    if (!is_colored)
+        for (auto& vertex : rectangle) vertex.color = grayscale(vertex.color);
     renderTexture.draw(rectangle, 4, sf::Quads);
+    renderTexture.display();
 
-    // Noise grain on background
+    // Noise grain on background. Generate the final pixel colors on the CPU,
+    // upload once, then draw the completed image in a single submission rather
+    // than issuing one draw call for every pixel.
     auto image = renderTexture.getTexture().copyToImage();
     for (int i = 1; i < HEIGHT; i++) {
         for (int j = 1; j < WIDTH; j++) {
             auto pc = image.getPixel(j, i);
-            pc = sf::Color(
-                (sf::Uint8)constrain(rdnormal(pc.r,2), pc.r/2.0, std::min(255, pc.r*2)),
-                (sf::Uint8)constrain(rdnormal(pc.g,2), pc.g/2.0, std::min(255, pc.g*2)),
-                (sf::Uint8)constrain(rdnormal(pc.b,2), pc.b/2.0, std::min(255, pc.b*2)));
-            sf::Vertex pv;
-            pv.position = sf::Vector2f((float)j, (float)i);
-            pv.color    = pc;
-            renderTexture.draw(&pv, 1, sf::Points);
+            if (is_colored) {
+                pc = sf::Color(
+                    (sf::Uint8)constrain(rdnormal(pc.r,2), pc.r/2.0, std::min(255, pc.r*2)),
+                    (sf::Uint8)constrain(rdnormal(pc.g,2), pc.g/2.0, std::min(255, pc.g*2)),
+                    (sf::Uint8)constrain(rdnormal(pc.b,2), pc.b/2.0, std::min(255, pc.b*2)));
+            } else {
+                const auto gray = (sf::Uint8)constrain(rdnormal(pc.r,2), pc.r/2.0, std::min(255, pc.r*2));
+                pc = sf::Color(gray, gray, gray);
+            }
+            image.setPixel(j, i, pc);
         }
     }
+    sf::Texture grainTexture;
+    if (!grainTexture.loadFromImage(image)) {
+        error = "Could not upload the Perlin background grain texture.";
+        return false;
+    }
+    renderTexture.draw(sf::Sprite(grainTexture));
     renderTexture.display();
 
     timerClock.restart(); // restart after setup so timeLimit is measured from first step
@@ -175,16 +211,25 @@ bool perlin_start(const GenParams& p, std::string& error) {
 
 bool perlin_step() {
     if (!s_initialized || s_done) return false;
-    if (timerClock.getElapsedTime().asSeconds() >= (float)timeLimit) {
+    if (!s_benchmark && timerClock.getElapsedTime().asSeconds() >= (float)timeLimit) {
         s_done = true;
         return false;
     }
-    sf::Vertex point;
-    point.color    = sf::Color(0, 0, 0, 0);
-    point.position = sf::Vector2f((float)rd(0, WIDTH), (float)rd(0, HEIGHT));
-    renderTexture.draw(&point, 1, sf::Points);
-    draw();
-    renderTexture.display();
+
+    const int stepCount = s_benchmark ? PERLIN_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        sf::Vertex point;
+        point.color    = sf::Color(0, 0, 0, 0);
+        point.position = sf::Vector2f((float)rd(0, WIDTH), (float)rd(0, HEIGHT));
+        renderTexture.draw(&point, 1, sf::Points);
+        draw();
+        renderTexture.display();
+        s_workUnits += static_cast<uint64_t>(points.size());
+        if (s_benchmark && s_workUnits >= PERLIN_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
+    }
     return true;
 }
 
@@ -195,3 +240,6 @@ const sf::Texture& perlin_texture() {
 int perlin_native_width()  { return WIDTH;  }
 int perlin_native_height() { return HEIGHT; }
 uint64_t perlin_last_seed() { return s_lastSeed; }
+GenPerformance perlin_performance() {
+    return {s_workUnits, PERLIN_BENCHMARK_TARGET, "particle updates"};
+}

@@ -12,10 +12,33 @@ namespace {
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
+static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
+static uint64_t s_workUnits   = 0;
+static constexpr uint64_t GALAXIES_BENCHMARK_TARGET = 5000000ull;
+static constexpr int GALAXIES_BENCHMARK_STEPS_PER_TICK = 4;
+
+static uint64_t iterationsForRadius(double radius) {
+    const double mapped = 0.2 + (radius - 80.0) * (0.8 / 720.0);
+    const int iterations = static_cast<int>(10000.0 * mapped);
+    return iterations > 0 ? static_cast<uint64_t>(iterations) : 0ull;
+}
+
+static uint64_t galaxyIterationsPerStep() {
+    uint64_t total = 0;
+    for (const auto& attractor : testApp.attractors)
+        total += iterationsForRadius(attractor.radius);
+    if (testApp.timer < 50)
+        total += iterationsForRadius(testApp.bg.radius);
+    return total;
+}
 
 bool galaxies_start(const GenParams& p, std::string& error) {
     s_done = false;
+    s_benchmark = p.benchmarkMode;
+    testApp.present_window = !s_benchmark;
+    testApp.defer_initial_window = true;
+    s_workUnits = 0;
     error.clear();
 
     // Clear attractor list for clean restart.
@@ -23,6 +46,7 @@ bool galaxies_start(const GenParams& p, std::string& error) {
     testApp.screen_height = (p.outputH > 0) ? std::clamp(p.outputH, 512, 4096) : 2048;
     testApp.attractors.clear();
     testApp.timer = 0;
+    testApp.colored = false;
 
     testApp.init();
     testApp.window.setVisible(false);
@@ -40,9 +64,15 @@ bool galaxies_start(const GenParams& p, std::string& error) {
 
     testApp.setup();
     testApp.window.setVisible(false);
+    testApp.window.setVerticalSyncEnabled(!s_benchmark);
+    testApp.window.setFramerateLimit(s_benchmark ? 0u : 60u);
 
     // Apply post-setup overrides (skip if NaN → use generator's random)
-    if (!std::isnan(p.colorLimitGal) && p.colorLimitGal > 0) testApp.color_limit = p.colorLimitGal;
+    if (!std::isnan(p.colorLimitGal) && p.colorLimitGal > 0) {
+        for (auto& a : testApp.attractors)
+            a.color_limit = p.colorLimitGal;
+        testApp.bg.color_limit = p.colorLimitGal;
+    }
     if (!std::isnan(p.attractorScale)) {
         for (auto& a : testApp.attractors)
             a.radius *= p.attractorScale;
@@ -58,12 +88,22 @@ bool galaxies_start(const GenParams& p, std::string& error) {
 
 bool galaxies_step() {
     if (!s_initialized || s_done) return false;
-    if (testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
+    if (!s_benchmark && testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
         s_done = true;
         return false;
     }
-    testApp.loop();
-    testApp.texture.display(); // galaxies.cpp does NOT call display() — we must. ✓
+
+    const int stepCount = s_benchmark ? GALAXIES_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        const uint64_t iterationsThisStep = galaxyIterationsPerStep();
+        testApp.loop();
+        testApp.texture.display(); // galaxies.cpp does NOT call display() — we must. ✓
+        s_workUnits += iterationsThisStep;
+        if (s_benchmark && s_workUnits >= GALAXIES_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
+    }
     return true;
 }
 
@@ -71,3 +111,6 @@ const sf::Texture& galaxies_texture()    { return testApp.texture.getTexture(); 
 int  galaxies_native_width()             { return testApp.screen_width;  }
 int  galaxies_native_height()            { return testApp.screen_height; }
 uint64_t galaxies_last_seed()            { return s_lastSeed; }
+GenPerformance galaxies_performance() {
+    return {s_workUnits, GALAXIES_BENCHMARK_TARGET, "attractor iterations"};
+}

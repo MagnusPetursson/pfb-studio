@@ -15,10 +15,27 @@ namespace {
 
 static bool     s_initialized = false;
 static bool     s_done        = false;
+static bool     s_benchmark   = false;
 static uint64_t s_lastSeed    = 0;
+static uint64_t s_workUnits   = 0;
+static constexpr uint64_t CIRCLE_BENCHMARK_TARGET = 20000000ull;
+static constexpr int CIRCLE_BENCHMARK_STEPS_PER_TICK = 2;
+
+static uint64_t pairEvaluationsPerStep() {
+    uint64_t total = 0;
+    for (const auto& colony : testApp.colonies) {
+        const uint64_t count = static_cast<uint64_t>(colony.particles.size());
+        total += count * count;
+    }
+    return total;
+}
 
 bool circle_start(const GenParams& p, std::string& error) {
     s_done = false;
+    s_benchmark = p.benchmarkMode;
+    testApp.present_window = !s_benchmark;
+    testApp.defer_initial_window = true;
+    s_workUnits = 0;
     error.clear();
 
     // Reset mutable state before re-setup so restarts are clean.
@@ -45,6 +62,8 @@ bool circle_start(const GenParams& p, std::string& error) {
 
     testApp.setup();
     testApp.window.setVisible(false);
+    testApp.window.setVerticalSyncEnabled(!s_benchmark);
+    testApp.window.setFramerateLimit(s_benchmark ? 0u : 60u);
 
     if (p.duration > 0) testApp.timeLimit = p.duration;
 
@@ -55,6 +74,23 @@ bool circle_start(const GenParams& p, std::string& error) {
         if (!std::isnan(p.noiseScaleCircle)) colony.noise_scale *= p.noiseScaleCircle;
         if (!std::isnan(p.coordScaleCircle)) colony.coord_scale *= p.coordScaleCircle;
         if (!std::isnan(p.timeStepScale))    colony.time_step   *= p.timeStepScale;
+
+        // Particles keep their own radius and coordinate scale for reset()
+        // and calcMood(). Update those copies as well as the colony controls.
+        if (!std::isnan(p.colonyScale) || !std::isnan(p.coordScaleCircle)) {
+            for (auto& particle : colony.particles) {
+                if (!std::isnan(p.colonyScale)) {
+                    particle.radius = colony.radius;
+                    if (p.colonyScale != 1.0) {
+                        particle.pos.x = colony.centerx + (particle.pos.x - colony.centerx) * p.colonyScale;
+                        particle.pos.y = colony.centery + (particle.pos.y - colony.centery) * p.colonyScale;
+                    }
+                }
+                if (!std::isnan(p.coordScaleCircle)) particle.coord_scale = colony.coord_scale;
+                // The first force calculation uses the initial mood snapshot.
+                particle.calcMood(colony.t);
+            }
+        }
     }
 
     testApp.clock.restart();
@@ -65,11 +101,21 @@ bool circle_start(const GenParams& p, std::string& error) {
 
 bool circle_step() {
     if (!s_initialized || s_done) return false;
-    if (testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
+    if (!s_benchmark && testApp.clock.getElapsedTime().asSeconds() >= (float)testApp.timeLimit) {
         s_done = true;
         return false;
     }
-    testApp.loop();
+
+    const int stepCount = s_benchmark ? CIRCLE_BENCHMARK_STEPS_PER_TICK : 1;
+    for (int stepIndex = 0; stepIndex < stepCount; ++stepIndex) {
+        const uint64_t evaluationsThisStep = pairEvaluationsPerStep();
+        testApp.loop();
+        s_workUnits += evaluationsThisStep;
+        if (s_benchmark && s_workUnits >= CIRCLE_BENCHMARK_TARGET) {
+            s_done = true;
+            return false;
+        }
+    }
     // texture.display() is inside #ifdef WINDOW in circle.cpp, which is defined,
     // so the loop() call already finalises the texture. ✓
     return true;
@@ -79,3 +125,6 @@ const sf::Texture& circle_texture()    { return testApp.texture.getTexture(); }
 int  circle_native_width()             { return testApp.screen_width;  }
 uint64_t circle_last_seed()            { return s_lastSeed; }
 int  circle_native_height()            { return testApp.screen_height; }
+GenPerformance circle_performance() {
+    return {s_workUnits, CIRCLE_BENCHMARK_TARGET, "pair evaluations"};
+}

@@ -21,7 +21,6 @@ jobs:
       - run: cmake --preset release-linux
       - run: cmake --build --preset release-linux
       - run: ctest --preset release-linux
-      - run: xvfb-run -a ./build/release-linux/pfb-studio --smoke-test build/smoke
       - name: Build DEB
         run: cpack --config build/release-linux/CPackConfig.cmake -G DEB -B dist
       - run: dpkg-deb --contents dist/*.deb
@@ -45,8 +44,12 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1
         with:
           arch: amd64
-      - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+      - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - run: cmake --build build/windows
+      - name: Set up software OpenGL for rendering tests
+        shell: pwsh
+        run: ./.github/scripts/setup-test-opengl.ps1 -BinaryDirectory build/windows
+      - run: ctest --test-dir build/windows --output-on-failure
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: windows-release

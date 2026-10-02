@@ -99,6 +99,10 @@ target_link_libraries(pfb-studio PRIVATE pfb-imgui-sfml sfml-graphics sfml-windo
 
 if(MSVC)
     target_compile_options(pfb-studio PRIVATE /W3 /permissive-)
+    # The Windows resource script already embeds packaging/windows/pfb-studio.manifest
+    # as RT_MANIFEST resource 1. Suppress the linker's default manifest to avoid a
+    # duplicate resource on current MSVC toolchains.
+    target_link_options(pfb-studio PRIVATE /MANIFEST:NO)
 elseif(MINGW)
     target_compile_options(pfb-studio PRIVATE -Wall -Wextra)
     target_link_options(pfb-studio PRIVATE -static -static-libgcc -static-libstdc++)
@@ -147,6 +151,64 @@ if(BUILD_TESTING)
     endif()
     target_compile_definitions(pfb-support-tests PRIVATE PFB_TESTING=1)
     add_test(NAME pfb-support-tests COMMAND pfb-support-tests)
+
+    add_executable(pfb-palette-tests tests/palette_tests.cpp)
+    target_include_directories(pfb-palette-tests PRIVATE src/generators src/legacy)
+    target_link_libraries(pfb-palette-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    add_test(NAME pfb-palette-tests COMMAND pfb-palette-tests)
+
+    # SFML render tests need a display. Prefer an isolated virtual display on
+    # Linux so the same CTest suite also works on headless CI workers.
+    if(UNIX AND NOT APPLE)
+        find_program(PFB_XVFB_RUN xvfb-run)
+    endif()
+    function(pfb_add_render_test name target)
+        if(PFB_XVFB_RUN)
+            add_test(NAME ${name} COMMAND ${PFB_XVFB_RUN} -a $<TARGET_FILE:${target}> ${ARGN})
+        else()
+            add_test(NAME ${name} COMMAND ${target} ${ARGN})
+        endif()
+        set_tests_properties(${name} PROPERTIES TIMEOUT 180 RUN_SERIAL TRUE)
+    endfunction()
+
+    # Including the legacy production code constructs SFML texture resources,
+    # which need a context even though these tests only exercise CPU math.
+    foreach(generator IN ITEMS perlin fractal)
+        add_executable(pfb-${generator}-dispatch-tests
+            tests/${generator}_dispatch_tests.cpp src/legacy/FastNoise.cpp)
+        target_include_directories(pfb-${generator}-dispatch-tests PRIVATE src/generators)
+        target_link_libraries(pfb-${generator}-dispatch-tests PRIVATE sfml-graphics sfml-window sfml-system)
+        pfb_add_render_test(pfb-${generator}-dispatch-tests pfb-${generator}-dispatch-tests)
+    endforeach()
+
+    add_executable(pfb-perlin-tests tests/perlin_tests.cpp
+        src/generators/gen_perlin.cpp src/legacy/FastNoise.cpp)
+    target_include_directories(pfb-perlin-tests PRIVATE src/generators)
+    target_link_libraries(pfb-perlin-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    pfb_add_render_test(pfb-perlin-tests pfb-perlin-tests)
+
+    add_executable(pfb-fractal-render-tests tests/fractal_render_tests.cpp src/legacy/FastNoise.cpp)
+    target_include_directories(pfb-fractal-render-tests PRIVATE src/generators)
+    target_link_libraries(pfb-fractal-render-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    pfb_add_render_test(pfb-fractal-render-tests pfb-fractal-render-tests)
+
+    add_executable(pfb-circle-parameter-tests tests/circle_parameter_tests.cpp src/legacy/FastNoise.cpp)
+    target_include_directories(pfb-circle-parameter-tests PRIVATE src/generators)
+    target_link_libraries(pfb-circle-parameter-tests PRIVATE sfml-graphics sfml-window sfml-system)
+    pfb_add_render_test(pfb-circle-parameter-tests pfb-circle-parameter-tests)
+
+    foreach(generator IN ITEMS fujii galaxies)
+        add_executable(pfb-${generator}-restart-tests
+            tests/attractor_restart_tests.cpp src/legacy/FastNoise.cpp)
+        target_include_directories(pfb-${generator}-restart-tests PRIVATE src/generators)
+        target_link_libraries(pfb-${generator}-restart-tests PRIVATE sfml-graphics sfml-window sfml-system)
+        if(generator STREQUAL "fujii")
+            target_compile_definitions(pfb-${generator}-restart-tests PRIVATE PFB_TEST_FUJII=1)
+        endif()
+        pfb_add_render_test(pfb-${generator}-restart-tests pfb-${generator}-restart-tests)
+    endforeach()
+
+    pfb_add_render_test(pfb-render-smoke pfb-studio --smoke-test ${CMAKE_CURRENT_BINARY_DIR}/smoke)
 endif()
 
 set(CPACK_PACKAGE_NAME "pfb-studio")

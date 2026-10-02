@@ -18,7 +18,6 @@ jobs:
       - run: cmake --preset release-linux
       - run: cmake --build --preset release-linux
       - run: ctest --preset release-linux
-      - run: xvfb-run -a ./build/release-linux/pfb-studio --smoke-test build/smoke
 
   windows:
     runs-on: windows-latest
@@ -29,6 +28,29 @@ jobs:
           arch: amd64
       - run: cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - run: cmake --build build/windows
+      - name: Launch normal GUI smoke check
+        shell: pwsh
+        run: |
+          $p = Start-Process ./build/windows/PFBStudio.exe -PassThru
+          Start-Sleep -Seconds 3
+          $p.Refresh()
+          if ($p.HasExited) {
+            $code = $p.ExitCode -band 0xffffffff
+            throw ("PFBStudio.exe exited during startup with 0x{0:X8}" -f $code)
+          }
+          Stop-Process -Id $p.Id -Force
+          $p.WaitForExit()
+      - name: Launch version smoke check
+        shell: pwsh
+        run: |
+          $p = Start-Process ./build/windows/PFBStudio.exe -ArgumentList '--version' -PassThru -Wait
+          if ($p.ExitCode -ne 0) {
+            $code = $p.ExitCode -band 0xffffffff
+            throw ("PFBStudio.exe --version exited with 0x{0:X8}" -f $code)
+          }
+      - name: Set up software OpenGL for rendering tests
+        shell: pwsh
+        run: ./.github/scripts/setup-test-opengl.ps1 -BinaryDirectory build/windows
       - run: ctest --test-dir build/windows --output-on-failure
       - name: Verify single executable output
         shell: pwsh

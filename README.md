@@ -42,6 +42,16 @@ cmake --build --preset release-linux
 ./build/release-linux/pfb-studio
 ```
 
+On Windows, install Visual Studio 2022 Build Tools with the **Desktop development
+with C++** workload, then run these commands in an x64 developer shell:
+
+```powershell
+cmake -S . -B build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+cmake --build build/windows
+ctest --test-dir build/windows --output-on-failure
+./build/windows/PFBStudio.exe
+```
+
 SFML, Dear ImGui, and ImGui-SFML are pinned to specific revisions and fetched
 at configure time. Platform development libraries are provided by the host
 system.
@@ -50,7 +60,7 @@ system.
 
 Launch the app, adjust parameters, and use **Save Image** to export artwork as PNG or JPEG at full resolution.
 
-For automated testing:
+For automated testing on Linux (install `xvfb` for headless rendering):
 
 ```sh
 ctest --preset release-linux
@@ -58,9 +68,21 @@ ctest --preset release-linux
 xvfb-run -a ./build/release-linux/pfb-studio --smoke-test build/smoke
 ```
 
-Smoke mode renders all five generators with bounded settings and writes PNG
-outputs plus a JSON report. `xvfb-run` supplies the display required on a
-headless Linux machine.
+CTest includes support, palette, and rendering regression tests, plus a smoke
+render of all five generators. On Linux it uses `xvfb-run` automatically when
+available. Windows runs the same rendering checks directly.
+
+Smoke mode completes a fixed amount of work for every generator, verifies that
+rendering changes the image, and writes PNG outputs plus a JSON report. CTest
+writes these to the build directory's `smoke` folder; the command above can be
+used to choose another output folder.
+
+The inspector's **Performance** panel reports setup time, render time, work
+completed, and throughput. Enable **Fixed-work benchmark** or choose **Run
+Benchmark** for comparisons with a pinned seed and identical parameters.
+Benchmark mode ignores Duration; Fractal skips its timed preprocess/bloom
+phases and Fujii starts drawing immediately. Normal rendering still uses the
+selected duration and visual phases.
 
 ## Supported platforms
 

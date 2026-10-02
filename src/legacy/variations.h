@@ -638,6 +638,10 @@ struct node {
     int type;
     char operation;
     string var;
+    variation variationFunction = nullptr;
+    extrapolation extrapolationFunction = nullptr;
+    truncation truncationFunction = nullptr;
+    transformation transformationFunction = nullptr;
     node() {};
     node(int t, char o, string v1) {
         type = t;
@@ -823,24 +827,44 @@ bool stringToFieldTree(string s) {
 
 set<int> freenodes;
 
+void cacheFieldTree2Functions(int u, const vector<vector<int> >& tree, vector<node>& nodes) {
+    auto& current = nodes[u];
+    // Follow the resolver's leaf rule as well as its four unary node types.
+    // Only reachable nodes are initialized by the legacy tree builder.
+    if (tree[u].empty()) {
+        if (current.type == 0) current.truncationFunction = truncations[current.var];
+        else current.variationFunction = variations[current.var];
+    } else {
+        switch (current.type) {
+            case 0: current.truncationFunction = truncations[current.var]; break;
+            case 1: current.variationFunction = variations[current.var]; break;
+            case 2: current.extrapolationFunction = extrapolations[current.var]; break;
+            case 3: current.transformationFunction = transformations[current.var]; break;
+        }
+        for (int child : tree[u]) cacheFieldTree2Functions(child, tree, nodes);
+    }
+}
+
 sf::Vector2f resolveFieldTree2(int u, sf::Vector2f v, double amount, vector<vector<int> > &tree, vector<node> &nodes) { //0 - trunc, 1- var, 2 - ext, 3 - trans, 4 - op
-    node U = nodes[u];
+    // Keep the nested child calls intact: stochastic variations depend on
+    // the compiler's existing argument evaluation order for these expressions.
+    const node& U = nodes[u];
     if(!tree[u].size()) {
-        if(U.type == 0) return sf::Vector2f(truncations[U.var](v), 0);
-        else return variations[U.var](v, amount);
+        if(U.type == 0) return sf::Vector2f(U.truncationFunction(v), 0);
+        else return U.variationFunction(v, amount);
     } else if(U.type < 4) {
         switch(U.type) {
             case 0:
-                return sf::Vector2f(truncations[U.var](resolveFieldTree2(tree[u][0], v, amount, tree, nodes)), 0);
+                return sf::Vector2f(U.truncationFunction(resolveFieldTree2(tree[u][0], v, amount, tree, nodes)), 0);
                 break;
             case 1:
-                return variations[U.var](resolveFieldTree2(tree[u][0], v, amount, tree, nodes), amount);
+                return U.variationFunction(resolveFieldTree2(tree[u][0], v, amount, tree, nodes), amount);
                 break;
             case 2:
-                return extrapolations[U.var](resolveFieldTree2(tree[u][0], v, amount, tree, nodes).x, amount);
+                return U.extrapolationFunction(resolveFieldTree2(tree[u][0], v, amount, tree, nodes).x, amount);
                 break;
             case 3:
-                return sf::Vector2f(transformations[U.var](resolveFieldTree2(tree[u][0], v, amount, tree, nodes).x), 0);
+                return sf::Vector2f(U.transformationFunction(resolveFieldTree2(tree[u][0], v, amount, tree, nodes).x), 0);
                 break;
         }
     }
@@ -940,4 +964,5 @@ void createFieldTree2(int maxcount, int maxdepth, vector<vector<int> > &tree, ve
     node n(type, randOperation(), type == 1 ? randVariation() : randExtrapolation());
     nodes[ncount] = n;
     addFieldNode2(1, 0, tree, nodes);
+    cacheFieldTree2Functions(1, tree, nodes);
 }
