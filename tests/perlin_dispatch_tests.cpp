@@ -1,4 +1,4 @@
-// Exercise the production field-tree builder and resolver.
+// Exercise the production tree builder and resolver.
 #include "../src/generators/gen_perlin.cpp"
 
 #include <stdexcept>

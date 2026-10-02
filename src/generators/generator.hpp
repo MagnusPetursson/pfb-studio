@@ -74,14 +74,6 @@ struct GenParams {
     // ---- galaxies ----
     double attractorScale  = R;
     double colorLimitGal   = R;
-
-    // ---- magnetic loom ----
-    int    loomSymmetry   = -1; // -1 = seeded layout; otherwise 2..10 pole pairs
-    double loomTurbulence = R;  // 0..1
-    double loomTwist      = R;  // -1..1
-    double loomSpread     = R;  // 0.4..1.4
-    double loomHue        = R;  // 0..360
-    double loomExposure   = R;  // 0.25..2
 };
 
 // Each generator exposes these functions (defined in their respective .cpp):
@@ -90,7 +82,7 @@ struct GenParams {
 // const sf::Texture& perlin_texture ();
 // int  perlin_native_width  ();
 // int  perlin_native_height ();
-// ... same pattern for fractal_, circle_, fujii_, galaxies_, loom_
+// ... same pattern for fractal_, circle_, fujii_, galaxies_
 
 bool perlin_start  (const GenParams& p, std::string& error);
 bool perlin_step   ();
@@ -131,11 +123,3 @@ int      galaxies_native_width ();
 int      galaxies_native_height();
 uint64_t galaxies_last_seed    ();
 GenPerformance galaxies_performance();
-
-bool loom_start(const GenParams& p, std::string& error);
-bool loom_step();
-const sf::Texture& loom_texture();
-int loom_native_width();
-int loom_native_height();
-uint64_t loom_last_seed();
-GenPerformance loom_performance();

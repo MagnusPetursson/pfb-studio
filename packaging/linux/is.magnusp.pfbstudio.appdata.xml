@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>is.magnusp.pfbstudio</id>
   <name>PFB Studio</name>
-  <summary>Create generative artwork with six native renderers</summary>
+  <summary>Create generative artwork with five native renderers</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
   <developer id="is.magnusp">
@@ -10,8 +10,7 @@
   </developer>
   <url type="homepage">https://github.com/MagnusPetursson/pfb-studio</url>
   <description>
-    <p>PFB Studio creates full-resolution generative artwork using noise flowfields, fractal flames, organic growth, Fujii attractors, galaxy simulations, and Magnetic Loom.</p>
-    <p>Magnetic Loom traces softened dipole fields into tapered, luminous filaments. It is an artistic field rather than a physically accurate magnetism simulation, with seeded controls for symmetry, turbulence, twist, spread, hue, and exposure.</p>
+    <p>PFB Studio creates full-resolution generative artwork using noise flowfields, fractal flames, organic growth, Fujii attractors, and galaxy simulations.</p>
   </description>
   <launchable type="desktop-id">is.magnusp.pfbstudio.desktop</launchable>
   <provides>
