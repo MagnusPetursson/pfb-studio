@@ -27,7 +27,7 @@ for _variable in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ.setdefault(_variable, "1")
 os.environ.setdefault("MPLBACKEND", "Agg")
 
-from experiments.render import STUDIES, controls_for, seed_list
+from experiments.render import PERLIN_STUDIES, STUDIES, controls_for, seed_list
 
 VALUES = (0.0, 0.5, 1.0)
 VALUE_LABELS = ("0", "0.5", "1")
@@ -76,7 +76,8 @@ def _render_checked(name: str, seed: int, width: int, height: int,
         "width": width, "height": height, "controls": values,
         "source_sha256": actual_source, "environment": environment,
     }
-    common = Path(__file__).with_name("common.py")
+    common = (Path(module.__file__).with_name("perlin_common.py") if name in PERLIN_STUDIES
+              else Path(__file__).with_name("common.py"))
     signature["common_source_sha256"] = hashlib.sha256(common.read_bytes()).hexdigest() if common.exists() else None
     json_path = path.with_suffix(".json")
     if resume and path.is_file() and json_path.is_file():

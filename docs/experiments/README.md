@@ -1,5 +1,10 @@
 # Seven generator studies: implementation and visual review
 
+**Direction update:** the user's subsequent review accepted only the attractor
+direction from this round. The assessments below document the earlier review;
+they are not the current creative plan. Continue with the [three minimal Perlin
+studies on black](perlin/README.md).
+
 3 October 2026 · `agent/generator-experiments` · code commit [`c43fdf0`](https://github.com/MagnusPetursson/pfb-studio/commit/c43fdf07bf26df0beca657cd0ffa474e340c2cc9)
 
 All seven proposed directions are implemented as runnable, seeded Python studies.

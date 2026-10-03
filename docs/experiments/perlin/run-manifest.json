@@ -1,0 +1,1431 @@
+{
+  "date": "2026-10-03",
+  "branch": "agent/generator-experiments",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "Pillow": "11.3.0"
+  },
+  "source_sha256": {
+    "folded_veils": "9f86d45afc2d3f8a36467c1dcaf20c6aad1dce12a48c8638570777a3540528e8",
+    "branched_light": "ffaa336c4bcf8cca7d5a384bbc0689f83848cc4ba20e4508a9d261773d9dcf5d",
+    "inertial_filaments": "d700dc6d62f540d1e558d487b29c2dafd4eecf5b1464e25986b2fdd22308fecc"
+  },
+  "perlin_common_sha256": "92b8a94f1a09e0243dcf7e0020be6fab0ba70c412ca4b8be083a9b3f50317415",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "images": [
+    {
+      "study": "folded_veils",
+      "seed": 1,
+      "image": "experiments/folded_veils/seed-0001.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "e955ac1997690722a394c33289f6570d0b3c90e3a2c93bf65718d794ef8aeea0",
+      "seconds": 8.332603400000153,
+      "black_fraction": 0.8865729437934028,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 2,
+      "image": "experiments/folded_veils/seed-0002.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3f4a9f9ff5fd6557d709f0e7ce72c9a4c10bdaf790a2405d73b447f6e017deeb",
+      "seconds": 8.392184099999213,
+      "black_fraction": 0.8856523301866319,
+      "mechanism": {
+        "sheet_count": 2,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 3,
+      "image": "experiments/folded_veils/seed-0003.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "470c41ae45024518526158e8f35094b34cb69f1736fbdb6281a91e4b33fd550e",
+      "seconds": 8.322552300000098,
+      "black_fraction": 0.9191165500217013,
+      "mechanism": {
+        "sheet_count": 2,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 4,
+      "image": "experiments/folded_veils/seed-0004.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "c14bde5a4a4de77df2dbc13928264ef71ba0e35446e8291d8804e040423fdaf2",
+      "seconds": 8.587139300001581,
+      "black_fraction": 0.8563910590277778,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 5,
+      "image": "experiments/folded_veils/seed-0005.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "88c5ea8da8476a76c6630c4af55657be92f6fd8d58ec875e9881ca0b60d83c46",
+      "seconds": 8.538729000001695,
+      "black_fraction": 0.8789825439453125,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 6,
+      "image": "experiments/folded_veils/seed-0006.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "81021198c1008ac8942137729ed77b618a436d510e2eadbbe055a7c8a06c043a",
+      "seconds": 8.752870899999834,
+      "black_fraction": 0.8427174886067709,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 7,
+      "image": "experiments/folded_veils/seed-0007.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "14786bc10a218287a7ce24cc60cfba28580b4268bf48cc7ab2c809d4a62e07cb",
+      "seconds": 8.476413899999898,
+      "black_fraction": 0.8596666124131944,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 8,
+      "image": "experiments/folded_veils/seed-0008.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "160981105e2150bb9c60752b572bea7523863d31a92295b3863b3443a91e96cd",
+      "seconds": 8.47012530000029,
+      "black_fraction": 0.8934461805555556,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 9,
+      "image": "experiments/folded_veils/seed-0009.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3da1d0c2fcc9d6a8d27bfcc1809029f541afd7900c3146b255471e3194f5c610",
+      "seconds": 8.409383800000796,
+      "black_fraction": 0.84722900390625,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 10,
+      "image": "experiments/folded_veils/seed-0010.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "779b495e69a19e5c7be11202ad7ac9ad6921ff7eb35f7369036aaadf3188ea95",
+      "seconds": 8.816098999999667,
+      "black_fraction": 0.8217637803819444,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 11,
+      "image": "experiments/folded_veils/seed-0011.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "9bc86e781f30f432a51ffe15adfc0b558b1457791dd291ff818b0032a909aa92",
+      "seconds": 8.87018530000023,
+      "black_fraction": 0.8626200358072916,
+      "mechanism": {
+        "sheet_count": 2,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 12,
+      "image": "experiments/folded_veils/seed-0012.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "9fbf953685bc39fc2042e8eb2d6347e921c9d79b4f31e3f9291f2b35048bded6",
+      "seconds": 8.832471800000349,
+      "black_fraction": 0.8735860188802084,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 13,
+      "image": "experiments/folded_veils/seed-0013.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "2a166a56251fff7c0738698f99fdca77e80ff06ed3bd88f0097ca780cd0d1fc6",
+      "seconds": 8.381705800000418,
+      "black_fraction": 0.8195037841796875,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 14,
+      "image": "experiments/folded_veils/seed-0014.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "1cf8695552dc178d03839d590f488d7d7e14920f5205f85e0ca741341078169a",
+      "seconds": 8.29597879999892,
+      "black_fraction": 0.8844790988498263,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 15,
+      "image": "experiments/folded_veils/seed-0015.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "1c08e914796b1459fd2a54df7cc23f3711cc87c472e73d5f337dc62e9e68ff0a",
+      "seconds": 8.40506280000045,
+      "black_fraction": 0.8551669650607638,
+      "mechanism": {
+        "sheet_count": 2,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 16,
+      "image": "experiments/folded_veils/seed-0016.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "62d524fb3c7031e6a2c47bac9907cd140c4fb396859a44ddd5fc3cb643af714e",
+      "seconds": 9.187643299999763,
+      "black_fraction": 0.8865729437934028,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 17,
+      "image": "experiments/folded_veils/seed-0017.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "b6817f9f83fc8bed137ebfa45314e35980c330aec65a0330bf108313ff9d9e43",
+      "seconds": 9.26285309999912,
+      "black_fraction": 0.8320227728949653,
+      "mechanism": {
+        "sheet_count": 3,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 18,
+      "image": "experiments/folded_veils/seed-0018.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "20c5c5cbd01d008fda18b85d0c98b4b83e288c43d5ee1c886956e34bf30a1aa1",
+      "seconds": 9.223927600000025,
+      "black_fraction": 0.8515285915798612,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 19,
+      "image": "experiments/folded_veils/seed-0019.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "5b584059967dbf365dd68cfd85cd4b2f3f798d0013b9a4947fe8e8a5d7c29ad3",
+      "seconds": 9.577072200001567,
+      "black_fraction": 0.8731248643663194,
+      "mechanism": {
+        "sheet_count": 2,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 20,
+      "image": "experiments/folded_veils/seed-0020.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "e9e626dc918c67e573e45ec60886c46fda1d2f1c81f54aaffded6a9055242e3a",
+      "seconds": 9.401499300000069,
+      "black_fraction": 0.8415951199001737,
+      "mechanism": {
+        "sheet_count": 2,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 21,
+      "image": "experiments/folded_veils/seed-0021.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "9f9bca45586560ddcb6c54f0aeff8de2c11861d7fe7f41f3dbec3682a51401de",
+      "seconds": 9.561386100000163,
+      "black_fraction": 0.8848724365234375,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 22,
+      "image": "experiments/folded_veils/seed-0022.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "817884b5fdb1501e0ff9a7d8fb79f4095bce8dbf306f0a07913bb47b6178eab1",
+      "seconds": 9.791805200000454,
+      "black_fraction": 0.8170555962456597,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 23,
+      "image": "experiments/folded_veils/seed-0023.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "b4f112ecc33e9e19d71b10440e9db43b34ec7d0e94f9b82f3e1685a7ed6f2e6a",
+      "seconds": 9.802264100000684,
+      "black_fraction": 0.8817562527126737,
+      "mechanism": {
+        "sheet_count": 4,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 24,
+      "image": "experiments/folded_veils/seed-0024.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "fcff040c4aa138628b9409bf931c4f7ce466b8dccecddfa1dbde6c5d94023b45",
+      "seconds": 9.802411299999221,
+      "black_fraction": 0.8837788899739584,
+      "mechanism": {
+        "sheet_count": 2,
+        "particles": 76000,
+        "retained_particles": 76000,
+        "escaped_particles": 0,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 1,
+      "image": "experiments/branched_light/seed-0001.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7f4b89a9066c90cd2faba761cb693a48976278f2ece1716ac2a06ec6414bface",
+      "seconds": 4.908697099999699,
+      "black_fraction": 0.6594051784939237,
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 4647899,
+        "mean_momentum_change": 0.5567399108376903,
+        "mean_displacement_from_ballistic": 0.4786547235975987
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 2,
+      "image": "experiments/branched_light/seed-0002.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "080e0edde260316fb9da3b4c22b114931cef8201f2edc28de24751146e5fd3b8",
+      "seconds": 4.2489486999984365,
+      "black_fraction": 0.4906802707248264,
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 4486788,
+        "mean_momentum_change": 0.5335559655200733,
+        "mean_displacement_from_ballistic": 0.5471634891484207
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 3,
+      "image": "experiments/branched_light/seed-0003.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "c25413a472fb6fa604e15caeedb9dd84de1caf31e75f64e293462cddad2e07c6",
+      "seconds": 4.087246299999606,
+      "black_fraction": 0.4853922526041667,
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 4205913,
+        "mean_momentum_change": 0.4897348060510762,
+        "mean_displacement_from_ballistic": 0.4564374167761716
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 4,
+      "image": "experiments/branched_light/seed-0004.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "26fd30dda1c04d62ddce027e7129ba272ecaf8b26bcfd698faeaca8a034ff6ec",
+      "seconds": 9.12786270000106,
+      "black_fraction": 0.054512871636284724,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 10878279,
+        "mean_momentum_change": 0.6606826668421086,
+        "mean_displacement_from_ballistic": 0.7174335048506821
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 5,
+      "image": "experiments/branched_light/seed-0005.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "f3339d78db3aad07fd3fb6b339f41b977d7716b0665047259ceb5b2af2f6758b",
+      "seconds": 5.65033559999938,
+      "black_fraction": 0.5331810845269097,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 5572829,
+        "mean_momentum_change": 0.5673781278511574,
+        "mean_displacement_from_ballistic": 0.41787929251448136
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 6,
+      "image": "experiments/branched_light/seed-0006.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "e0fbc590939c4a5c83bb0ba77980744f3ed5ff39e9301348b44d8c9442c99903",
+      "seconds": 5.924150599999848,
+      "black_fraction": 0.3854200575086806,
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 7195057,
+        "mean_momentum_change": 0.5763402214179917,
+        "mean_displacement_from_ballistic": 0.572492599441118
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 7,
+      "image": "experiments/branched_light/seed-0007.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "e2cb000d6be444bbba9ff764c185d9e9e64f342ab452528b042c34ebccea2b7f",
+      "seconds": 4.599206000000777,
+      "black_fraction": 0.6167043050130209,
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 4389116,
+        "mean_momentum_change": 0.42139083857520715,
+        "mean_displacement_from_ballistic": 0.40114430366697756
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 8,
+      "image": "experiments/branched_light/seed-0008.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7dc4115be9271ca33e96c48d4f17e4e4c6d356fda0fef3258c1356fed5e27c76",
+      "seconds": 3.929207699999097,
+      "black_fraction": 0.7256300184461806,
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 3563974,
+        "mean_momentum_change": 0.6002360478216734,
+        "mean_displacement_from_ballistic": 0.5063231198742214
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 9,
+      "image": "experiments/branched_light/seed-0009.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "b207d5c81cd57248008e5dd72fe46b40e6bff8b427301019313aa63427946589",
+      "seconds": 5.91540569999961,
+      "black_fraction": 0.4901292588975694,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 5729348,
+        "mean_momentum_change": 0.3928828795681814,
+        "mean_displacement_from_ballistic": 0.3211036719234372
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 10,
+      "image": "experiments/branched_light/seed-0010.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "6ebd72619934a5d522d6c895785727b6c56cf39da295aa5f91f47b3a9a08f08a",
+      "seconds": 8.187200800000937,
+      "black_fraction": 0.3635203043619792,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 10708072,
+        "mean_momentum_change": 0.5435341769425475,
+        "mean_displacement_from_ballistic": 0.5702273893975821
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 11,
+      "image": "experiments/branched_light/seed-0011.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "75d2e817286a0fc7761b7c5f1651bf1c9d4f19b5816a59bbd9ad74ef0fccb8ca",
+      "seconds": 2.771498000000065,
+      "black_fraction": 0.8783348931206597,
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 2630963,
+        "mean_momentum_change": 0.4043475469571997,
+        "mean_displacement_from_ballistic": 0.3589553302119719
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 12,
+      "image": "experiments/branched_light/seed-0012.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7aa761cf81c95edd32e761b87a5877caf9456e948a079888c9fca759a70f594c",
+      "seconds": 3.518058799998471,
+      "black_fraction": 0.6212565104166666,
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 2917872,
+        "mean_momentum_change": 0.4164500399861271,
+        "mean_displacement_from_ballistic": 0.3535650942513834
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 13,
+      "image": "experiments/branched_light/seed-0013.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "1767e96143602c178eb2546d11b94db8ab6f8747fb430e0d3600064201728741",
+      "seconds": 4.188144399999146,
+      "black_fraction": 0.7401411268446181,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 3422218,
+        "mean_momentum_change": 0.3257792287725853,
+        "mean_displacement_from_ballistic": 0.19558627899876313
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 14,
+      "image": "experiments/branched_light/seed-0014.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "0fd9b1e49bb5dca3e96cdc8eb8e0ac449a08531203b611cd7c173839f4f85044",
+      "seconds": 5.879908399998385,
+      "black_fraction": 0.4887593587239583,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 5742839,
+        "mean_momentum_change": 0.49453854671852554,
+        "mean_displacement_from_ballistic": 0.38044259177280765
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 15,
+      "image": "experiments/branched_light/seed-0015.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "8fce0d0034857e1685e5925e882de5b259c0a098434aa5868f24d765cd6e6452",
+      "seconds": 8.521693099999538,
+      "black_fraction": 0.11519538031684028,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 9998293,
+        "mean_momentum_change": 0.6932146878497613,
+        "mean_displacement_from_ballistic": 0.7326548259668759
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 16,
+      "image": "experiments/branched_light/seed-0016.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "cfaf6d7a61544bdd91d84d825eacb7529cdbb7ad17c9030264229f8de2456a15",
+      "seconds": 5.409156100000473,
+      "black_fraction": 0.5613844129774306,
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 5828398,
+        "mean_momentum_change": 0.4049460103730762,
+        "mean_displacement_from_ballistic": 0.42854820121044773
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 17,
+      "image": "experiments/branched_light/seed-0017.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "5c86953972a793a91f7993b72f097fdc37711420b8a636848451b65ec8a67c71",
+      "seconds": 7.367875700001605,
+      "black_fraction": 0.3706834581163194,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 7904442,
+        "mean_momentum_change": 0.361686961517413,
+        "mean_displacement_from_ballistic": 0.34059518414405915
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 18,
+      "image": "experiments/branched_light/seed-0018.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "8e7bc765ce0d2a99595dffb1c76b75d2550c2f277e4477cafc13f23ffaa47e74",
+      "seconds": 7.1152351000000635,
+      "black_fraction": 0.1699608696831597,
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 7301649,
+        "mean_momentum_change": 0.633998955491556,
+        "mean_displacement_from_ballistic": 0.6485915825957299
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 19,
+      "image": "experiments/branched_light/seed-0019.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "550c4b296a9162c3fad9dc3aa6b73c44049afa97fd77fc756c6759eca4e9f8af",
+      "seconds": 6.623020900000483,
+      "black_fraction": 0.2520107693142361,
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 6690724,
+        "mean_momentum_change": 0.6027400536146436,
+        "mean_displacement_from_ballistic": 0.623976660390506
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 20,
+      "image": "experiments/branched_light/seed-0020.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "01ec958bd855fb8e6c917b5beaae0f5ae27e785f660c007ccd0ebdb057115166",
+      "seconds": 2.389937199999622,
+      "black_fraction": 0.8692338731553819,
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 1625918,
+        "mean_momentum_change": 0.3773746223305273,
+        "mean_displacement_from_ballistic": 0.1924306064203819
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 21,
+      "image": "experiments/branched_light/seed-0021.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "292351b371d7945634958efbd287de8991cfe4e4c8290a4741e3404d28d07410",
+      "seconds": 7.590585500000088,
+      "black_fraction": 0.3579457600911458,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 7940079,
+        "mean_momentum_change": 0.6197045801319582,
+        "mean_displacement_from_ballistic": 0.5802314636480156
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 22,
+      "image": "experiments/branched_light/seed-0022.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "5213014ceaa5f958b5b4b20bcd6ed66cb10ca87bdb48dd085503789ce857b305",
+      "seconds": 5.900583000000552,
+      "black_fraction": 0.5739627414279513,
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 6170791,
+        "mean_momentum_change": 0.41430904728747014,
+        "mean_displacement_from_ballistic": 0.4472899970562806
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 23,
+      "image": "experiments/branched_light/seed-0023.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "143afee2a795166feb44c033e3fab7b31ae5205637544ea9ec3165e96fa73c36",
+      "seconds": 7.941516700000648,
+      "black_fraction": 0.4474266899956597,
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 8014124,
+        "mean_momentum_change": 0.5292219362746872,
+        "mean_displacement_from_ballistic": 0.4744143641358426
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 24,
+      "image": "experiments/branched_light/seed-0024.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7a0848e983b5d36d4a97306ee05c7012798a5dda4ea9fcb40552651e13162a46",
+      "seconds": 4.057255399999121,
+      "black_fraction": 0.7127549913194444,
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 3748311,
+        "mean_momentum_change": 0.5091774327980007,
+        "mean_displacement_from_ballistic": 0.46502340682362686
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 1,
+      "image": "experiments/inertial_filaments/seed-0001.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "5a08f1afdc45d84fce587f58437be489908f1fb9eb50d858e192b6dc633f9ee5",
+      "seconds": 1.6183627000009437,
+      "black_fraction": 0.9518890380859375,
+      "mechanism": {
+        "particles_per_cohort": 550,
+        "escaped_particle_count": 6,
+        "mean_velocity_lag_by_cohort": [
+          0.0024257150025033905,
+          0.034828884644637736,
+          0.09701681290143221
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.296655535697937,
+          0.6259050965309143
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 2,
+      "image": "experiments/inertial_filaments/seed-0002.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a20a3c033dc13aee0773a854d7b5f1f61d8e4d1b1164c793ee26a1f4d423bf86",
+      "seconds": 4.197849599999245,
+      "black_fraction": 0.8785909016927084,
+      "mechanism": {
+        "particles_per_cohort": 1690,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.0051754374708545305,
+          0.06546658588814827,
+          0.15012247053109581
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.8387935161590576,
+          1.6132895946502686
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 3,
+      "image": "experiments/inertial_filaments/seed-0003.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "1e4a2e56803e59f6d72650c2bd3d2df3cfec705f10d1a133d8baedbf7efa4022",
+      "seconds": 2.1494806000009703,
+      "black_fraction": 0.9472690158420138,
+      "mechanism": {
+        "particles_per_cohort": 678,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.007587055953182176,
+          0.08915470762758006,
+          0.1701766647571928
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.5328620672225952,
+          2.6712944507598877
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 4,
+      "image": "experiments/inertial_filaments/seed-0004.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "599402b3b77da9d7f6283d70c7f56f32f2c03df787c1cdf756187c1a19dd71c0",
+      "seconds": 3.7034249999996973,
+      "black_fraction": 0.9088304307725694,
+      "mechanism": {
+        "particles_per_cohort": 1455,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.005694165441514958,
+          0.07513541938375351,
+          0.1421917540115315
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.665734052658081,
+          3.6720759868621826
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 5,
+      "image": "experiments/inertial_filaments/seed-0005.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a3298ca4fd466293b29795fa52ce6cf25b5e63ae4a9a6f17f9de7ff60fcf6c7c",
+      "seconds": 1.618581600001562,
+      "black_fraction": 0.9148627387152778,
+      "mechanism": {
+        "particles_per_cohort": 488,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.007959119158179562,
+          0.10242792363106078,
+          0.23478754623395448
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.1747143268585205,
+          2.316908121109009
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 6,
+      "image": "experiments/inertial_filaments/seed-0006.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "2dc168a5006f6bdfb7fa47239825e20ca90def43978e24b51429a18a0bdfcd9d",
+      "seconds": 1.8741587000004074,
+      "black_fraction": 0.9482845730251737,
+      "mechanism": {
+        "particles_per_cohort": 658,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.002705049438015335,
+          0.04226465817347949,
+          0.10376745815649045
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.5171706080436707,
+          1.3113542795181274
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 7,
+      "image": "experiments/inertial_filaments/seed-0007.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7a60bf888919cace988d427e6e6c7cefce2990ca6ceb6869a4c96ad362564806",
+      "seconds": 1.9113122000017029,
+      "black_fraction": 0.9469553629557291,
+      "mechanism": {
+        "particles_per_cohort": 617,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.004380453770806928,
+          0.0506940568634143,
+          0.12373518484003124
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.5839750170707703,
+          1.7185026407241821
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 8,
+      "image": "experiments/inertial_filaments/seed-0008.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "6710c5f6f0413d2619ac33945cab1bc5a536033d1cfd05da6b32a5e99dabd25f",
+      "seconds": 3.4676502000002074,
+      "black_fraction": 0.8803880479600694,
+      "mechanism": {
+        "particles_per_cohort": 1265,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.00550259661105711,
+          0.07369308084402579,
+          0.17183346973717736
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.5873801708221436,
+          1.2884420156478882
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 9,
+      "image": "experiments/inertial_filaments/seed-0009.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3353b0fe60b9845202c7daf01171694108bc293a3168d04cf945d14966ec5526",
+      "seconds": 3.0446640999998635,
+      "black_fraction": 0.9469451904296875,
+      "mechanism": {
+        "particles_per_cohort": 1284,
+        "escaped_particle_count": 15,
+        "mean_velocity_lag_by_cohort": [
+          0.00586173054208868,
+          0.07565397883951509,
+          0.16342519101331143
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.5903785228729248,
+          1.7221325635910034
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 10,
+      "image": "experiments/inertial_filaments/seed-0010.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "c4f6f06b247bf6015d3aa71ff1800c22234b8f0c51358e904a762c854da12b1c",
+      "seconds": 2.7388449999998556,
+      "black_fraction": 0.8698272705078125,
+      "mechanism": {
+        "particles_per_cohort": 1066,
+        "escaped_particle_count": 32,
+        "mean_velocity_lag_by_cohort": [
+          0.004842952342356652,
+          0.062441547936959094,
+          0.1545244210933712
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.642697274684906,
+          1.0689316987991333
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 11,
+      "image": "experiments/inertial_filaments/seed-0011.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "699cc63fd9f97cbf1ba5932f833e71beb139df02fca04d32de11e623a917cce4",
+      "seconds": 1.534528300000602,
+      "black_fraction": 0.8891669379340278,
+      "mechanism": {
+        "particles_per_cohort": 430,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.006597010287640866,
+          0.10378070183180572,
+          0.2339790025535278
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.673217535018921,
+          2.7557339668273926
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 12,
+      "image": "experiments/inertial_filaments/seed-0012.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "abe74aaa5e70e0f985fe0840db24939e2e77eddc6f03731a1dca0a16b1903d63",
+      "seconds": 1.2647873999994772,
+      "black_fraction": 0.9382917616102431,
+      "mechanism": {
+        "particles_per_cohort": 338,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.006835473108370409,
+          0.06924708762726293,
+          0.16926441860716837
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.8415881395339966,
+          2.027148723602295
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 13,
+      "image": "experiments/inertial_filaments/seed-0013.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3625b30fbd851a6c49a42590bed81eda60b029ed9d16342e02e6ed11c266b76c",
+      "seconds": 1.7510612000005494,
+      "black_fraction": 0.9143795437282987,
+      "mechanism": {
+        "particles_per_cohort": 604,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.006323235900157957,
+          0.07024847303369548,
+          0.14452601119459643
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          2.199556350708008,
+          2.21506929397583
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 14,
+      "image": "experiments/inertial_filaments/seed-0014.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "b9ac9e0b4d3bb68d27bd368422c386ed6820f253982c1a79319933c29b2abaa1",
+      "seconds": 2.2477027000004455,
+      "black_fraction": 0.9163377549913194,
+      "mechanism": {
+        "particles_per_cohort": 838,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.0036964645935232167,
+          0.0557538982442496,
+          0.13744776704957554
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.6690238118171692,
+          1.3867048025131226
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 15,
+      "image": "experiments/inertial_filaments/seed-0015.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a23dc40552f0ee52745028392b98ea31810f549aa56615468063b462918f01be",
+      "seconds": 2.352925499999401,
+      "black_fraction": 0.8908148871527778,
+      "mechanism": {
+        "particles_per_cohort": 919,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.004403184921068987,
+          0.0611497028274506,
+          0.1457090699971473
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.7467769980430603,
+          2.01285719871521
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 16,
+      "image": "experiments/inertial_filaments/seed-0016.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "20f3362d130f585612e7d25669ba721a593f0958824462f397f32ed0b008cac3",
+      "seconds": 2.592591500000708,
+      "black_fraction": 0.914154052734375,
+      "mechanism": {
+        "particles_per_cohort": 847,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.003659321856494244,
+          0.04635484429485545,
+          0.11913065675075253
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.2655662298202515,
+          2.032865524291992
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 17,
+      "image": "experiments/inertial_filaments/seed-0017.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "d8506c2e397328265d0b51567deb2fdfde69b3d992ea425c3253f8cb77f2e923",
+      "seconds": 1.8046522000004188,
+      "black_fraction": 0.9117092556423612,
+      "mechanism": {
+        "particles_per_cohort": 473,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.0033320696363440465,
+          0.05309541016681965,
+          0.15307699041065073
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.2768332958221436,
+          1.8501747846603394
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 18,
+      "image": "experiments/inertial_filaments/seed-0018.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "22f0443167c6934dafce370a2d8d6910502b1a2c58eeeba91d9cf39663c3800c",
+      "seconds": 2.9602231000008032,
+      "black_fraction": 0.9013858371310763,
+      "mechanism": {
+        "particles_per_cohort": 935,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.0061936365718993315,
+          0.06111655012686242,
+          0.14962096077759587
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.6734862327575684,
+          2.6884372234344482
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 19,
+      "image": "experiments/inertial_filaments/seed-0019.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "1b65e6a1531d1dce3a83803d7f0b396ab61e9959e32db043c2f61c17eddded6b",
+      "seconds": 2.1080693999992945,
+      "black_fraction": 0.9152103000217013,
+      "mechanism": {
+        "particles_per_cohort": 652,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.006917000617681699,
+          0.07861435899478458,
+          0.17733057042286854
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.022735834121704,
+          1.930912733078003
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 20,
+      "image": "experiments/inertial_filaments/seed-0020.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "47e5ef67f8e21f46da2060d24dcddd87f285a5be068b189de7216600058169d6",
+      "seconds": 3.7007109000005585,
+      "black_fraction": 0.8919542100694444,
+      "mechanism": {
+        "particles_per_cohort": 1416,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.004476767669426943,
+          0.06091606049078243,
+          0.14784096164032848
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.7960048913955688,
+          1.8567087650299072
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 21,
+      "image": "experiments/inertial_filaments/seed-0021.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "ece833754af442568a6e53c063760f0cee67a2cdaf52eafb298a4686a7eab6f9",
+      "seconds": 1.8550419000002876,
+      "black_fraction": 0.9319322374131944,
+      "mechanism": {
+        "particles_per_cohort": 584,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.006455918550904141,
+          0.07234870774294411,
+          0.17622589004197375
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.9358817338943481,
+          1.4849354028701782
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 22,
+      "image": "experiments/inertial_filaments/seed-0022.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "41c79cdb489caceab918d597a7d369170eddcc5bd82f353941c6de7f8e93480f",
+      "seconds": 2.9400179000003845,
+      "black_fraction": 0.9131995307074653,
+      "mechanism": {
+        "particles_per_cohort": 1120,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.007282037470340222,
+          0.08955157492432249,
+          0.19021449751692615
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.3172383308410645,
+          2.2995572090148926
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 23,
+      "image": "experiments/inertial_filaments/seed-0023.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "2b312c01fd967602a735f3e00b8172f7b2bf2d987705473aaf0ed7c69cb4bc70",
+      "seconds": 1.7266485000000102,
+      "black_fraction": 0.9249742296006944,
+      "mechanism": {
+        "particles_per_cohort": 592,
+        "escaped_particle_count": 0,
+        "mean_velocity_lag_by_cohort": [
+          0.005098921465831986,
+          0.06820605851710837,
+          0.16496656717323685
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.9053410291671753,
+          3.838655948638916
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 24,
+      "image": "experiments/inertial_filaments/seed-0024.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "d083ac1822264715971ac3c3f4c61c7590911c045b9503b39a8cd1107d54786b",
+      "seconds": 2.2780559999991965,
+      "black_fraction": 0.9224751790364584,
+      "mechanism": {
+        "particles_per_cohort": 999,
+        "escaped_particle_count": 10,
+        "mean_velocity_lag_by_cohort": [
+          0.005982175657251987,
+          0.0733526253572832,
+          0.17711734315854147
+        ],
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.3103851079940796,
+          1.736145257949829
+        ]
+      }
+    }
+  ],
+  "rendering": {
+    "background": [
+      0,
+      0,
+      0
+    ],
+    "tint": [
+      205,
+      225,
+      255
+    ],
+    "bloom": false,
+    "image_texture_overlay": false
+  },
+  "notes": [
+    "Hashes cover working source file bytes and decoded RGB pixels.",
+    "Full PNG paths are relative to build/experiments/gallery.",
+    "Numerical checks establish the mechanisms; aesthetics are assessed separately."
+  ]
+}

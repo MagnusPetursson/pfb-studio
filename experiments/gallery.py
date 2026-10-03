@@ -12,7 +12,13 @@ TITLES = {
     "perlin": "Original · Noise Flowfield", "fractal": "Original · Fractal Flame",
     "circle": "Original · Organic Growth", "fujii": "Original · Fujii Attractor",
     "galaxies": "Original · Galaxies",
+    "folded_veils": "Folded veils", "branched_light": "Branched light",
+    "inertial_filaments": "Inertial filaments",
 }
+
+PERLIN_GROUPS = ("experiments/folded_veils", "experiments/branched_light",
+                 "experiments/inertial_filaments", "originals/perlin",
+                 "originals/fujii", "experiments/attractors")
 
 
 def font(size):
@@ -67,7 +73,7 @@ figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radi
 @media(max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.compare img{height:360px}}
 @media(max-width:650px){main{padding:24px 15px}h1{font-size:32px}.compare{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head><body><main>
-<header><div class="eyebrow">PFB STUDIO / EXPERIMENTAL BRANCH</div><h1>Seven directions. Every seed.</h1>
+<header><div class="eyebrow">PFB STUDIO / EXPERIMENTAL BRANCH</div><h1>Generator studies. Every seed.</h1>
 <p>Algorithmic studies compared with the five original generators. Every numbered sample is retained. Open an image to inspect the full-resolution PNG; use grayscale to compare structure independently of hue.</p>
 <div id="counts" class="count"></div><nav class="chips" id="jump"></nav></header>
 <section aria-labelledby="compare-heading"><h2 id="compare-heading">Compare the same seed</h2>
@@ -79,8 +85,8 @@ figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radi
 <script>const groups=__DATA__;
 const $=id=>document.getElementById(id), selectNames=['left','right'];
 for(const id of selectNames)for(const [key,g] of Object.entries(groups)){const o=new Option(g.title,key);$(id).add(o)}
-$('left').value=groups['experiments/attractors']?'experiments/attractors':Object.keys(groups)[0];
-$('right').value=groups['originals/fractal']?'originals/fractal':Object.keys(groups).at(-1);
+$('left').value=groups['experiments/folded_veils']?'experiments/folded_veils':groups['experiments/attractors']?'experiments/attractors':Object.keys(groups)[0];
+$('right').value=groups['experiments/folded_veils']&&groups['originals/perlin']?'originals/perlin':groups['originals/fractal']?'originals/fractal':Object.keys(groups).at(-1);
 function seeds(){const previous=$('seed').value,a=groups[$('left').value],b=groups[$('right').value];const common=a.images.filter(x=>b.images.some(y=>x.seed===y.seed));$('seed').replaceChildren(...common.map(x=>new Option(String(x.seed).padStart(2,'0'),x.seed)));$('seed').disabled=!common.length;if(common.some(x=>String(x.seed)===previous))$('seed').value=previous;update()}
 function update(){for(const side of selectNames){const g=groups[$(side).value],im=g.images.find(x=>x.seed===Number($('seed').value)),img=$(side+'-img'),link=$(side+'-link');if(!im){img.removeAttribute('src');img.alt='';img.style.display='none';link.removeAttribute('href');$(side+'-meta').textContent='These groups have no shared seeds. Choose two default groups or two holdout groups.';continue}img.style.display='block';img.src=im.path;img.alt=g.title+' seed '+im.seed;link.href=im.path;link.target='_blank';$(side+'-meta').textContent=g.title+' · seed '+im.seed+' · '+im.width+' × '+im.height+' · '+im.seconds.toFixed(2)+'s';}}
 for(const id of selectNames)$(id).addEventListener('change',seeds);$('seed').addEventListener('change',update);seeds();
@@ -93,12 +99,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path("build/experiments/gallery"))
     parser.add_argument("--publish-sheets", type=Path)
+    parser.add_argument("--focus-perlin", action="store_true",
+                        help="Show the three black-background studies and their Perlin/Fujii/attractor references")
     args = parser.parse_args()
     root = args.root.resolve()
     groups = {}
     for kind in ("experiments", "originals", "holdouts"):
         for directory in sorted((root / kind).glob("*")):
             if not directory.is_dir():
+                continue
+            if args.focus_perlin and f"{kind}/{directory.name}" not in PERLIN_GROUPS:
                 continue
             items = []
             for path in sorted(directory.glob("seed-*.png")):
@@ -131,8 +141,15 @@ def main():
                                          "sheet": f"sheets/{basename}.jpg", "gray": f"sheets/{basename}-gray.jpg"}
     if not groups:
         raise SystemExit("No rendered images found")
+    if args.focus_perlin:
+        groups = {key: groups[key] for key in PERLIN_GROUPS if key in groups}
     data = json.dumps(groups).replace("<", "\\u003c")
-    (root / "index.html").write_text(PAGE.replace("__DATA__", data), encoding="utf-8")
+    page = PAGE
+    if args.focus_perlin:
+        page = page.replace("Generator studies. Every seed.", "Three Perlin studies on black.")
+        page = page.replace("Algorithmic studies compared with the five original generators.",
+                            "Folded veils, branched light, and inertial filaments: one pale hue on pure black, without bloom or added texture. Compared with original Perlin, original Fujii, and the earlier attractor study.")
+    (root / "index.html").write_text(page.replace("__DATA__", data), encoding="utf-8")
     (root / "manifest.json").write_text(json.dumps(groups, indent=2), encoding="utf-8")
     print(f"Gallery: {root / 'index.html'}; {sum(len(g['images']) for g in groups.values())} images")
 

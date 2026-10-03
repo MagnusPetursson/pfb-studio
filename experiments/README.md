@@ -1,6 +1,6 @@
 # Generator experiments
 
-Seven standalone algorithm studies live on `agent/generator-experiments`. They
+Standalone algorithm studies live on `agent/generator-experiments`. They
 export images and metadata through a Python CLI. The native PFB Studio application
 still contains its five original generators; the optional C++ tool below runs
 those originals for comparison. Nothing here is installed into the production app.
@@ -9,9 +9,30 @@ These are actual seeded algorithms, not image-generation prompts or stored prese
 See [the research brief](../docs/generator-research.md) for their provenance and
 intended visual range.
 
-The [completed visual review](../docs/experiments/README.md) includes 24 default
+The [first visual review](../docs/experiments/README.md) includes 24 default
 seeds and eight additional seeds per study, twelve native references per original,
 color/grayscale sheets, and the observed strengths and limitations of each direction.
+
+## Minimal Perlin studies on black
+
+The current audition adds `folded_veils`, `branched_light`, and
+`inertial_filaments`. Each uses actual seeded Perlin gradient noise, a fixed
+pale blue tint, and exact black wherever no light is deposited. There is no
+bloom or image-space texture layer. These are small tests of three mechanisms,
+with two controls each, rather than production generators.
+
+```powershell
+./build/experiments/venv/Scripts/python.exe -m experiments.render --study perlin --seeds 1:24 --size 768 --jobs 3
+./build/experiments/venv/Scripts/python.exe -m experiments.gallery --focus-perlin
+```
+
+The `perlin` group renders just these three. `all` includes all ten studies.
+The focused gallery compares the new studies with saved original Perlin/Fujii
+renders and the earlier attractor study. Omitting `--focus-perlin` restores the
+gallery of every saved study. Both views use the existing gallery folder.
+New image metadata includes the shared Perlin/renderer source hash as well as
+the individual study hash. See the [minimal-study review](../docs/experiments/perlin/README.md)
+for the complete seed sheets and their observed limitations.
 
 ## Setup
 
@@ -27,7 +48,7 @@ pin the principal numerical and drawing dependencies. Replay is checked within
 one environment; identical pixels across library versions or platforms are not
 promised.
 
-## Run the seven studies
+## Run individual studies
 
 ```powershell
 ./build/experiments/venv/Scripts/python.exe -m experiments.render --list
@@ -35,8 +56,8 @@ promised.
 ./build/experiments/venv/Scripts/python.exe -m experiments.render --study engravings --seeds 7 --control level_spacing=0.8
 ```
 
-Names are `engravings`, `membranes`, `attractors`, `geology`, `cells`, `ecologies`,
-and `cities`. `--list` prints their named controls, all normalized from 0 to 1.
+Names also include `engravings`, `membranes`, `attractors`, `geology`, `cells`,
+`ecologies`, and `cities`. `--list` prints all named controls, normalized from 0 to 1.
 The default is 1024 × 1024; use `--width`, `--height`, or `--size` for dimensions
 between 256 and 2048. Each PNG has a JSON companion recording the seed, controls,
 algorithm details, runtime, pixel hash, and module source hash.

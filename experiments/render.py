@@ -17,7 +17,8 @@ for _name in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ.setdefault(_name, "1")
 os.environ.setdefault("MPLBACKEND", "Agg")
 
-STUDIES = ("engravings", "membranes", "attractors", "geology", "cells", "ecologies", "cities")
+PERLIN_STUDIES = ("folded_veils", "branched_light", "inertial_filaments")
+STUDIES = ("engravings", "membranes", "attractors", "geology", "cells", "ecologies", "cities", *PERLIN_STUDIES)
 
 
 def seed_list(value):
@@ -65,13 +66,16 @@ def render_one(name, seed, width, height, controls, root):
             "pixel_sha256": hashlib.sha256(image.tobytes()).hexdigest(),
             "source_sha256": hashlib.sha256(Path(module.__file__).read_bytes()).hexdigest(),
             "details": details}
+    if name in PERLIN_STUDIES:
+        shared = Path(module.__file__).with_name("perlin_common.py")
+        data["source_dependencies_sha256"] = {shared.name: hashlib.sha256(shared.read_bytes()).hexdigest()}
     output.with_suffix(".json").write_text(json.dumps(data, indent=2, allow_nan=False), encoding="utf-8")
     return f"{name} seed={seed} {width}x{height} {elapsed:.2f}s -> {output}"
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--study", choices=("all", *STUDIES), default="all")
+    parser.add_argument("--study", choices=("all", "perlin", *STUDIES), default="all")
     parser.add_argument("--seeds", type=seed_list, default=seed_list("1:24"))
     parser.add_argument("--size", type=int, default=1024)
     parser.add_argument("--width", type=int)
@@ -97,7 +101,7 @@ def main():
         for item in args.control:
             key, value = item.split("=", 1)
             controls[key] = float(value)
-        names = STUDIES if args.study == "all" else (args.study,)
+        names = STUDIES if args.study == "all" else PERLIN_STUDIES if args.study == "perlin" else (args.study,)
         for name in names:
             controls_for(importlib.import_module(f"experiments.studies.{name}"), controls)
     except (ValueError, ModuleNotFoundError) as error:
