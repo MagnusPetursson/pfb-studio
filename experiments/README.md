@@ -23,6 +23,11 @@ Each study has two transport controls and a shared `finish` control; `finish=0`
 shows its current geometry with the original pale density rendering. These are
 standalone prototypes.
 
+Branched light and inertial filaments also have a `texture` control. Its default
+adds sparse, compensated particle emission before rasterization; `texture=0`
+replays the smooth colored finish from commit `030ce26`. Their transport and
+camera are independent of this control. Folded veils retain their approved finish.
+
 ```powershell
 ./build/experiments/venv/Scripts/python.exe -m experiments.render --study perlin --seeds 1:24 --size 768 --jobs 3
 ./build/experiments/venv/Scripts/python.exe -m experiments.gallery --focus-perlin
@@ -30,14 +35,16 @@ standalone prototypes.
 ```
 
 The `perlin` group renders just these three. `all` includes all ten studies.
-The focused gallery compares the refined studies with the saved first tests
+The focused gallery compares the refined studies with their previous colored
+finishes under `build/experiments/gallery/smooth`, the saved first tests
 under `build/experiments/gallery/baseline`, original Perlin/Fujii renders, and the
 earlier attractor study. Omitting `--focus-perlin` restores the gallery of every
 saved study. Both views use the existing gallery folder. The initial prototype
 code and sheets are preserved at commit `5bc43b4`; `finish=0` disables finishing
 on the current geometry, so it is not a substitute for that historical baseline.
 New metadata hashes both shared Perlin and finishing sources as well as the study.
-See the [refinement review](../docs/experiments/perlin-refinement/README.md) and
+See the [particle texture review](../docs/experiments/perlin-texture/README.md),
+[refinement review](../docs/experiments/perlin-refinement/README.md), and
 [first-test review](../docs/experiments/perlin/README.md) for complete seed sheets.
 
 ## Setup

@@ -23,6 +23,7 @@ CONTROLS = {
     "refraction": {"default": 0.5, "label": "Refraction strength"},
     "distance": {"default": 0.5, "label": "Travel distance"},
     "finish": {"default": 1.0, "label": "Material finish"},
+    "texture": {"default": 1.0, "label": "Light packets"},
 }
 
 
@@ -146,6 +147,16 @@ class _Potential:
         }
 
 
+def _packet_multiplier(rng, noise, coordinate, age, probability, texture):
+    selected = rng.random(len(age)) < probability
+    # This emission pattern lives in launch-coordinate / travel-time space.
+    # The selected positions still lie on the fully integrated ray paths.
+    modulation = noise.noise2(coordinate[selected] * 48.0 + 3.17,
+                              age[selected] * 23.0 + 7.91)
+    envelope = 1 + texture * (1.76 * np.clip(.5 + 1.75 * modulation, 0, 1) - .88)
+    return selected, envelope / probability
+
+
 def render(seed: int, width: int, height: int, controls: dict | None = None):
     if width < 64 or height < 64:
         raise ValueError("Images must be at least 64 pixels on each side")
@@ -156,7 +167,7 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
     strength = .85 * cfg["refraction"]
     distance = 1.1 + 2.0 * cfg["distance"]
     ds = .0027
-    positions, momenta, lifetimes, weights, materials = [], [], [], [], []
+    positions, momenta, lifetimes, weights, materials, source_coordinates = [], [], [], [], [], []
     count_per_launch = 4608
     radiance_noise = Perlin(int(seed) + 87371)
     radiance_samples = []
@@ -185,11 +196,13 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         radiance_samples.append(radiance)
         weights.append((np.cos(t * math.pi)**2) * launch["weight"] * launch["width"] / count_per_launch * radiance)
         materials.append(material_coordinate(int(seed), initial[:, 0] * 1.7, initial[:, 1] * 1.7))
+        source_coordinates.append(transverse + launch_index * 17.13)
     position = np.concatenate(positions)
     momentum = np.concatenate(momenta)
     lifetime = np.concatenate(lifetimes)
     weight = np.concatenate(weights)
     material = np.concatenate(materials)
+    source_coordinate = np.concatenate(source_coordinates)
     initial_position, initial_momentum = position.copy(), momentum.copy()
     age = np.zeros(len(position))
     sampling_rng = np.random.default_rng(np.random.SeedSequence([int(seed), 19873]))
@@ -228,7 +241,14 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
     camera_max = center + span * .5
     density = np.zeros((height, width), dtype=np.float64)
     color_density = np.zeros_like(density)
-    samples = 0
+    candidates = int(np.minimum(steps, np.ceil((lifetime - first_step) / ds)).sum())
+    packet_target = 90000
+    probability = float(np.clip(packet_target / candidates, .003, .025)) ** cfg["texture"]
+    packet_rng = np.random.default_rng(np.random.SeedSequence([int(seed), 53719]))
+    packet_noise_seed = int(np.random.default_rng(np.random.SeedSequence([int(seed), 64283])).integers(2**31))
+    packet_noise = Perlin(packet_noise_seed)
+    continuous_fraction = .12 * cfg["texture"] if cfg["texture"] > 0 else 1.0
+    samples, packets = 0, 0
     for begin in range(0, steps, 24):
         end = min(steps, begin + 24)
         sample_age = first_step[None, :] + np.arange(begin, end)[:, None] * ds
@@ -238,15 +258,30 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         fade *= np.minimum(1, sample_age / .28)**2
         radiance = (weight[None, :] * fade * ds)[visible]
         color_radiance = (weight[None, :] * fade * ds * material[None, :])[visible]
+        samples += len(points)
+        if cfg["texture"] > 0:
+            # A faint continuous deposit keeps the caustic seams connected;
+            # most light is emitted by sparse, irregular packets below.
+            px = (points[:, 0] - camera_min[0]) / span[0] * (width - 1)
+            py = (points[:, 1] - camera_min[1]) / span[1] * (height - 1)
+            splat(density, px, py, radiance * continuous_fraction)
+            splat(color_density, px, py, color_radiance * continuous_fraction)
+            coordinate = np.broadcast_to(source_coordinate, sample_age.shape)[visible]
+            selected, multiplier = _packet_multiplier(packet_rng, packet_noise, coordinate,
+                                                       sample_age[visible], probability, cfg["texture"])
+            points = points[selected]
+            radiance = radiance[selected] * multiplier * (1 - continuous_fraction)
+            color_radiance = color_radiance[selected] * multiplier * (1 - continuous_fraction)
         px = (points[:, 0] - camera_min[0]) / span[0] * (width - 1)
         py = (points[:, 1] - camera_min[1]) / span[1] * (height - 1)
         splat(density, px, py, radiance)
         splat(color_density, px, py, color_radiance)
-        samples += len(points)
+        packets += len(points)
     nonzero = density[density > 0]
     exposure = float(np.quantile(nonzero, .992)) if len(nonzero) else 1.0
     image, finish_meta = finish_density(density, int(seed), color_density=color_density,
-                                       exposure=exposure, strength=cfg["finish"], grain=.06, bloom=.10, detail=.20)
+                                       exposure=exposure, strength=cfg["finish"], grain=.06,
+                                       bloom=.10 - .07 * cfg["texture"], detail=.20)
     ballistic = initial_position + initial_momentum * age[:, None]
     displacement = np.linalg.norm(position - ballistic, axis=1)
     return image, {
@@ -256,6 +291,12 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         "potential_strength": strength, "integration_step": ds,
         "sample_phase": "seeded first-step offsets in [0.05*ds, ds]; then constant ds",
         "integration_steps": steps, "ray_count": len(position), "ray_samples_in_frame": samples,
+        "deposition": {"packet_count": packets, "target_packets": packet_target,
+                       "continuous_radiance_fraction": continuous_fraction,
+                       "retention_probability": probability, "perlin_seed": packet_noise_seed,
+                       "rng_stream": 53719, "source_frequency": 48.0, "time_frequency": 23.0,
+                       "mechanism": ("independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+                                     if cfg["texture"] > 0 else "continuous ray deposition")},
         "launch_material": {"radiance_perlin_seed": int(seed) + 87371,
                             "frequencies": [5.7, 92.0, 237.0], "transport": "constant radiance and color coordinate carried by each ray",
                             "radiance_minimum": float(np.min(radiance_samples)),
@@ -264,6 +305,7 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         "deposited_world_bounds": [world_min.tolist(), world_max.tolist()],
         "trajectory_capacity_bytes": int(trajectory.nbytes),
         "travel_distance": distance, "density_exposure": exposure,
+        "density_sum": float(density.sum()),
         "density_maximum": float(density.max()), "nonzero_pixels": int(len(nonzero)),
         "mean_displacement_from_ballistic": float(displacement.mean()),
         "maximum_displacement_from_ballistic": float(displacement.max()),

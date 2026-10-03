@@ -1,0 +1,1000 @@
+{
+  "date": "2026-10-03",
+  "previous_commit": "030ce26217402585388ba75cb0ed41174a273cb5",
+  "branch": "agent/generator-experiments",
+  "dependencies_sha256": {
+    "perlin_common.py": "92b8a94f1a09e0243dcf7e0020be6fab0ba70c412ca4b8be083a9b3f50317415",
+    "perlin_finish.py": "4258f1351021cec6c86c887707e99f426f9ed78e78cec48086469a3e525e85d4"
+  },
+  "approved_veils_source_and_24_pixels_unchanged": true,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "Pillow": "11.3.0"
+  },
+  "images": [
+    {
+      "study": "branched_light",
+      "seed": 1,
+      "pixel_sha256": "5ac5ea370b6a67fc1aedfe1b5bf3dc38239c301e607e23b1c9df84ecb290fb1e",
+      "previous_pixel_sha256": "d31f17d06958981cf9b0c5dea93ddd5b7a7e9fc1ddc90c7ece53cd433b0ea3bd",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 18.308296400000472,
+      "black_fraction": 0.7885182698567709,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90087,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.009634102152526035,
+        "perlin_seed": 1424352553,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 2,
+      "pixel_sha256": "a432bd0ce0a1e87847be2c0fb1f784cfef0922989cd5080374e8a047cf8e16ca",
+      "previous_pixel_sha256": "e87256437ce4cb44b824b57ac2452b8ac91f21972e6ace95e67e9869eede8ae8",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 12.363122799999474,
+      "black_fraction": 0.7936197916666666,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89294,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.015038088973020499,
+        "perlin_seed": 424322242,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 3,
+      "pixel_sha256": "0fa08a5f4355e9f4e166fdc1d1fdb1796f008795224a69d4729f61a63b76a0ac",
+      "previous_pixel_sha256": "3ea6d66fbdced8c423d57f3898989816ea378235e269074f35b8467c6c10a38f",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 12.649155999999493,
+      "black_fraction": 0.8502705891927084,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90089,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.014586133060540232,
+        "perlin_seed": 537649420,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 4,
+      "pixel_sha256": "2caf746a1255fe12930f58ff071018ff9ac50f77b2590d20bacf3cbf23dfa48a",
+      "previous_pixel_sha256": "3ac0ad020d227dc76d8d7ea58657af22f84727f7805a50a328cc466c6c8c18d0",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 27.636567899999136,
+      "black_fraction": 0.7833879258897569,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89643,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.006642166420808107,
+        "perlin_seed": 2021944460,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 5,
+      "pixel_sha256": "4f94fd820e08dbcc7402ad6dceb9ae019f98963c18b3c69ff9a91843884c10cd",
+      "previous_pixel_sha256": "2b2fe2edb288009e9d620710bfcb096c5d5d3b298423b74cd77cf9c9f124fbf4",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 25.40581050000037,
+      "black_fraction": 0.8756764729817709,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89625,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.007610164744846396,
+        "perlin_seed": 2060510251,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 6,
+      "pixel_sha256": "fd0c314fb4e287c49d86648e08acda401f5e9655a681ba302a3b01abb4a69e71",
+      "previous_pixel_sha256": "60d755a2a4a62268b50096b6800357cbd7c7bf4cf28da23e3a9d343dc7a93ade",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 17.97781279999981,
+      "black_fraction": 0.8092498779296875,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90032,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.010852008031450566,
+        "perlin_seed": 1408494037,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 7,
+      "pixel_sha256": "6b38e5c70cdb3c0e75e08c0abe2e8b3f4319efd8d2e652450521642fcfbb01e1",
+      "previous_pixel_sha256": "d78f393de9b86f3a1893ab351a691ad12c0540691b11997f683957d908ef8f26",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 18.38048759999947,
+      "black_fraction": 0.8648291693793403,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90636,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.008674371050269716,
+        "perlin_seed": 1363310236,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 8,
+      "pixel_sha256": "3389b013d696aa8bcc63c3b5b8fea2979d79d5c9ed47128b1e1b265ea38d1faa",
+      "previous_pixel_sha256": "c5dbcff97534f6d3328d6563eb83b1e3e318666b7a34b98a3d59ff25c9eb29ec",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 11.295726399999694,
+      "black_fraction": 0.8405287000868056,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90225,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.014141544605495687,
+        "perlin_seed": 1795276446,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 9,
+      "pixel_sha256": "7a77255de59ec979fe30e2bdecbc5ba3069cded42e6062a4d3fadfc8f066d44e",
+      "previous_pixel_sha256": "8b3bf4348bf08e39417b665e90a4606245414d475250f71c74a7028493a462cb",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 22.01930629999879,
+      "black_fraction": 0.8483869764539931,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89793,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.0065334150058604734,
+        "perlin_seed": 306735601,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 10,
+      "pixel_sha256": "e17e69bc25d635fbea3c19ddb68c6788cd5a674caa6deecbba5dd25cf0c6d2ed",
+      "previous_pixel_sha256": "b56034248fea278ebe3e4a3b48e2ec7437bc717c1edf4a274bf434b8a8434027",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 27.622536699998818,
+      "black_fraction": 0.8377872043185763,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90163,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.006434870247276334,
+        "perlin_seed": 1139736458,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 11,
+      "pixel_sha256": "f5c9fee1c5fe243307ff17eba8e97d5014a9955ecfce063ce52f10b9f48f675e",
+      "previous_pixel_sha256": "3c754ccb9e13003170030389d2fd59d2a67d3d3d7af82ae8f1a34f9c9107f405",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 15.690697399999408,
+      "black_fraction": 0.8375922309027778,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89834,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.012773569044476006,
+        "perlin_seed": 619604924,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 12,
+      "pixel_sha256": "afccc8ca149dab17ddc1f21c24f4cd76b78893a7a5c698cf8e7f7b5732dc8fed",
+      "previous_pixel_sha256": "fb51a1524c09993ca4acb77ffb74031b689a92ca0d64891b30f54da330229d17",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 15.458843999998862,
+      "black_fraction": 0.8828447129991319,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90005,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.01665981763052967,
+        "perlin_seed": 92226311,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 13,
+      "pixel_sha256": "f6d3145f88f47027261236d2b591d62e677b99092e6eb4b49742bd5a58119e58",
+      "previous_pixel_sha256": "e8b340fc4104d64ae131026b8458403bf22e169d42012d6ae2b960447353ff4e",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 25.86986330000036,
+      "black_fraction": 0.8470696343315972,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90016,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.007606085240045093,
+        "perlin_seed": 460637699,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 14,
+      "pixel_sha256": "a7c69dc392a464a8704d375a00c123dcfdb560c05fe9401f725f5c534e9ff3c5",
+      "previous_pixel_sha256": "de8f2be05ae65e2a31824ea29f4ed53873181f111d81f74cdae2a4e7d8beb4a2",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 27.165395799998805,
+      "black_fraction": 0.8392418755425347,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89890,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.0068810580070131746,
+        "perlin_seed": 1806890852,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 15,
+      "pixel_sha256": "a03c53d00192d0080dd426159ddbe7857388cd67ecf64d503c8a289e5046e327",
+      "previous_pixel_sha256": "3b91f0a6324e6f8d678b8c8da9fa28ac7600094f81135831ad400e56fd2be56f",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 27.63393939999878,
+      "black_fraction": 0.7795528835720487,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89822,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.006653849381247456,
+        "perlin_seed": 1418330423,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 16,
+      "pixel_sha256": "eed5b26c71e8e70b3aa52aedb097826917f0c94c62b745e5017c1ce132355324",
+      "previous_pixel_sha256": "8de7e3679cfbad6659a42f22a45c6ce8f26ca3a37f5e8032cc848c6f73545c77",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 23.106470499998977,
+      "black_fraction": 0.9047936333550347,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90060,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.009508009124308135,
+        "perlin_seed": 1271225856,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 17,
+      "pixel_sha256": "48b4a9c4f0eed9056f3f32e355d53c1d66ff5fc5780b23ae00675214b1dc7e2c",
+      "previous_pixel_sha256": "4d6fbee522c7c22b861ceffdf87c57cb7c53f8959229dc7e0312a3ff20016854",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 26.915846699999747,
+      "black_fraction": 0.8168385823567709,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90024,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.007920808809629169,
+        "perlin_seed": 1894146039,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 18,
+      "pixel_sha256": "d533c20be9547430689a2aba8cb15406a47cbb1a92ecc7bed1a735901031a974",
+      "previous_pixel_sha256": "31a6e31d4f1b438215d9691768b2f8065d34e95ee03059f29b27d2def0fffdf1",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 29.475645700000314,
+      "black_fraction": 0.8141665988498263,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89919,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.008369617952049343,
+        "perlin_seed": 1056906265,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 19,
+      "pixel_sha256": "4297537d57d4b2fc91d31c01ce489e98d957fa2f7eacade1b4562fd74e4c8dfe",
+      "previous_pixel_sha256": "4c48a71987b5662aad3f43fb99f3f9031a0435a19403ffdf574cb8b3c5790fa9",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 28.24151350000102,
+      "black_fraction": 0.8461998833550347,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90244,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.008557096656970525,
+        "perlin_seed": 761540877,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 20,
+      "pixel_sha256": "1a714d68436bcec3248e02b6f02e5f3f542b3028055c57673e2a99a3b9cb103a",
+      "previous_pixel_sha256": "6ab5a7bf184bf2da25e9b93b67e2374cf657744290ce5a349afd8bebe96da1f8",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 15.961207899999863,
+      "black_fraction": 0.9178805881076388,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90071,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.016144812510292317,
+        "perlin_seed": 1736540752,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 21,
+      "pixel_sha256": "66be30c2d13892d72bdf36125edbccbc95b0f40d1f9e0164df4682b2a99b7119",
+      "previous_pixel_sha256": "40dcf331f3a32f6549e15bb4fd13695a8d4eb55ae99d46e41e230e4a8b16a48f",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 37.37509379999938,
+      "black_fraction": 0.8469289143880209,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90047,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.006253172616606731,
+        "perlin_seed": 2058529059,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 22,
+      "pixel_sha256": "c4061ec797c1c6ed769c7dff96c6a7dff08d2c8acfbf0d21fbe6252b40f1122f",
+      "previous_pixel_sha256": "a1648f4d5b6985e65ac8eadfe230e77745c5e2f4b71bfd4cb4bf575e71d982b8",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 28.55508120000013,
+      "black_fraction": 0.8016577826605903,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 89378,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.007946229103735108,
+        "perlin_seed": 2092042260,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 23,
+      "pixel_sha256": "4baa2d388870244ec7a618249f5f7eb7b80fef78d6b77534f92572070d87039d",
+      "previous_pixel_sha256": "8a11e4c1f9c1b743750705c2baa63b1c2f45bd54a6868b353425ca5878b1d6d0",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 31.849945399999342,
+      "black_fraction": 0.7980058458116319,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90471,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.006330205906827669,
+        "perlin_seed": 1484106899,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 24,
+      "pixel_sha256": "62c6d382d9ec05f5619b5e179c9280f2e4b1a12a3c2897b22606e56145b5995e",
+      "previous_pixel_sha256": "d7c7346ccfb853933d0680dcbe4f0d694e80bff0a0da51e6d82f5048a4c09217",
+      "source_sha256": "2cbdffdb1c11d773a4fc8f320e52d344324493f136b6bcab3e46ffc4fb36be29",
+      "seconds": 13.978419200000644,
+      "black_fraction": 0.8200903998480903,
+      "transport_matches_previous": true,
+      "deposition": {
+        "packet_count": 90055,
+        "target_packets": 90000,
+        "continuous_radiance_fraction": 0.12,
+        "retention_probability": 0.01308274545774346,
+        "perlin_seed": 1295765859,
+        "rng_stream": 53719,
+        "source_frequency": 48.0,
+        "time_frequency": 23.0,
+        "mechanism": "independent sparse trajectory samples with inverse-probability weights and Perlin emission modulation"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 1,
+      "pixel_sha256": "dfef21de8679ab36f21541cfc1f13ebbee78fa31421415144ab22d012de5f9f9",
+      "previous_pixel_sha256": "e6c598b0d09e7455934a669bdd25a082db736d15da239d50499b8c2887f10611",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 10.044181600000229,
+      "black_fraction": 0.9319101969401041,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85070,
+        "target_packets": 100000,
+        "base_probability": 0.05010421677088344,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "ac317785fb4472efdc88587886450e4c26de0774a93fb34d7307f757d7485f68"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 2,
+      "pixel_sha256": "7a368c9c75b56a3788322736f62b3e49fdac20e0a51b344d5567391c70caabae",
+      "previous_pixel_sha256": "5242630bc2f207f41dd3739e188391f8d03f2e3f6aa45722e8e2802105dacb62",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 21.37335460000031,
+      "black_fraction": 0.8580983479817709,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85649,
+        "target_packets": 100000,
+        "base_probability": 0.01637068468751637,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "4cee032ecb501d3807e1105501e51e4f25997f4d74931201bd478e2455574630"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 3,
+      "pixel_sha256": "0a07b4cb39a4bbde3388e72c463e44be8b2c8508f77b7817e94e263736ee68e9",
+      "previous_pixel_sha256": "21a82368d31b3fa4c82e90c8a4bb77bde17f86e4618fc60c31654f8d240244fa",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 11.782476700000188,
+      "black_fraction": 0.8990851508246528,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85735,
+        "target_packets": 100000,
+        "base_probability": 0.04294647151790009,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "c09abe54317924ff21daad43c1d8583fa7021264693594cd1eeb09c5b00a5e32"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 4,
+      "pixel_sha256": "0975363121d214cd0d31119452284170f763cb438a8b7fde018c8fe9a1dd435c",
+      "previous_pixel_sha256": "4d2afda01d8e9a669b54f3cb72b2527882f22ab6c0b8b048733b3093b77a6521",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 16.822119599999496,
+      "black_fraction": 0.8424546983506944,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85537,
+        "target_packets": 100000,
+        "base_probability": 0.018640802180824728,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "bff970df9652c98360f8c6cc46ac30a2f2f77e9ab08e496e600827fd2832d437"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 5,
+      "pixel_sha256": "432e9a9abcde06d0695f1d4eb8276df6a6136fdb08d6bd20d1e97d99e5ce105e",
+      "previous_pixel_sha256": "bed551bc615c99a4ed10122349db58b6d56aee997128b071d62567708ad7bd9b",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 8.677668300000732,
+      "black_fraction": 0.8575659857855903,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85455,
+        "target_packets": 100000,
+        "base_probability": 0.042835211228993614,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "a48acae25266e2a46bc10da748bf6f5d88a0383bce90fc8f65775e2a51473e18"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 6,
+      "pixel_sha256": "5c5f23b4330d26d4a931b03e65ef5ec249a1e7286d2dd6f6d111575f8d79c3f9",
+      "previous_pixel_sha256": "c4b9628be5146dd9db3e020c85e556f5dcab9bfdd32e0da4331de8d35852b2b2",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 9.071597799998926,
+      "black_fraction": 0.8858591715494791,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85476,
+        "target_packets": 100000,
+        "base_probability": 0.04420960303313245,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "25ebb0c6b910c8e143141f0c3599a804a960060dd845cb960f5788de0a24bb71"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 7,
+      "pixel_sha256": "24f0a590689d48923c8b6e55d30493604d085c22c38fab6c40750afaa3bc2ccc",
+      "previous_pixel_sha256": "a985c648ab4d4363a558ba2508ac32b3c0ab9144bfe6fd43c82d3ca091a41d77",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 9.148642000000109,
+      "black_fraction": 0.8814273410373263,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 87602,
+        "target_packets": 100000,
+        "base_probability": 0.04420960303313245,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "754499eca6a395ea1a3615e860984f9d93071f6bd77b9def0b432736f8717886"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 8,
+      "pixel_sha256": "b991ca09198bb7cd6d2b399254cf8c2e349ad4016d98e3072cddf2a693b04529",
+      "previous_pixel_sha256": "ac52b30352843106740f5bf286b4201429d2b2d7ac519a88f3c8a1a7304f7823",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 20.228485300000102,
+      "black_fraction": 0.868927001953125,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 86051,
+        "target_packets": 100000,
+        "base_probability": 0.019315877960737773,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "8266e872992217f0a0373ceb72dea1c20850fc105779011186623648af454814"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 9,
+      "pixel_sha256": "5c55c515890560f256cdec79e0d71a914a764d364dbba1c7775cdd330e2f3836",
+      "previous_pixel_sha256": "bcb04e06ef39aa5efee5d5efd1c4b1ea771ed4a6d27ffb303c266d77368b8086",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 18.60273740000048,
+      "black_fraction": 0.9037136501736112,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85011,
+        "target_packets": 100000,
+        "base_probability": 0.02201650004579432,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "946d6fb6d26469ac0d0886956b4830eb68cf525f50d911a7ff0b553be55057dc"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 10,
+      "pixel_sha256": "b484d82f58391e367711eb1d9f04f14f33bf2672753a7a9db8969c9bd06fd31b",
+      "previous_pixel_sha256": "7a1a0f942bbbea4db49476c68bddcdde59916db17b38fd872b498e3d08f74a1c",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 18.744302799999787,
+      "black_fraction": 0.8359849717881944,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 84386,
+        "target_packets": 100000,
+        "base_probability": 0.021727189926927116,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "22c34cbebf893ce3e8583863172de1df3e182e4d8b75dc8571d73aa0391c5f76"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 11,
+      "pixel_sha256": "6cf320a9a89c6c4c091173bbc84789844f7746f4cee0d61b4ee3032cc9437006",
+      "previous_pixel_sha256": "78391cd199e88f1836089562970facf060d7fe0852a0f013b0eddc6ec4f726d2",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 8.626305400001002,
+      "black_fraction": 0.8781399197048612,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85711,
+        "target_packets": 100000,
+        "base_probability": 0.059263052094593316,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "4356cb7d0952416c1fc797826fdb79b3cb44b5d8167911e111ce01aa56d86aa8"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 12,
+      "pixel_sha256": "399976b8392b5f1045036566763e9d4afe0e676c26090efcb0ec3fe31f1ede88",
+      "previous_pixel_sha256": "b76c19c12ed15b81dc6a7e9907da88c6f962cbd27bad34619b1205538b042f91",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 10.419657399999778,
+      "black_fraction": 0.8792843288845487,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 84919,
+        "target_packets": 100000,
+        "base_probability": 0.04409171075837742,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "7370612fcd457eb71d8f5f472620df0f265f91f89c56a04d999c85532cf79e13"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 13,
+      "pixel_sha256": "70bda41b3fb4eb6bedd3a0fb82654cac1bfbba0a8c3299dbf25540d77143e1af",
+      "previous_pixel_sha256": "cd1b0f2582ae955545d1808a05e69e735cc68a77fe16d31b2523a24bdf830d20",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 10.83520370000042,
+      "black_fraction": 0.8405405680338541,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85644,
+        "target_packets": 100000,
+        "base_probability": 0.04217957024079473,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "8dde1962904a9036e81e720d1a546a11426b0efec33b4472a23973decd224534"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 14,
+      "pixel_sha256": "f1b6d89bad2fac60ffffe0f4375dd3847fc291f4fe480dda0e79fcf9c0b7867b",
+      "previous_pixel_sha256": "4a78781245b6655865c076fc7150306a221041f2eacab75ee0d611a2bf7fbc23",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 14.065200900000491,
+      "black_fraction": 0.8575880262586806,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 86103,
+        "target_packets": 100000,
+        "base_probability": 0.029631526047296658,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "db3692d0f71d49565d217c8a062831ddaff38eedb226c0aa2944d60dceba4029"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 15,
+      "pixel_sha256": "b84a92d121997318863c99ca48bf75c42bc9e31c3f66f0c77c9d739c8026079b",
+      "previous_pixel_sha256": "894c71eb40d7277ca256b45a57b215eb1feb4bf3de79326e1824c6880083f3fd",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 15.145570900000166,
+      "black_fraction": 0.8002878824869791,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85430,
+        "target_packets": 100000,
+        "base_probability": 0.030227406827041198,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "4a2a770deb2cec71255c9338acbb11d0bae085fe96b981dc18acfcfe2f7a368f"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 16,
+      "pixel_sha256": "48021c6615dec03c944be9e2289f37ffffe8ecfd067aded163d7c5b173a349a9",
+      "previous_pixel_sha256": "526bfcfc9b5fd13c1313eabd0ce95e5c55100f7a9c44c68e60dede6ab19eb6d9",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 15.614636100001007,
+      "black_fraction": 0.8525627983940972,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85530,
+        "target_packets": 100000,
+        "base_probability": 0.028024392431172093,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "15411865cf42bf008d751e785c7288f76677850bf4f862f76c270835c46c03e8"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 17,
+      "pixel_sha256": "c6c660335b3ddc3f3d22eafffec3a36187b181bdd8ced48a45bc5ad1601fd382",
+      "previous_pixel_sha256": "a5bc74c4b793672d92372003b86c0e72a31793e8d43038eb0d2f8eca98159459",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 11.124369500001194,
+      "black_fraction": 0.8078884548611112,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 86105,
+        "target_packets": 100000,
+        "base_probability": 0.049063476363179634,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "bf5ec6b2d770c183997afcc637515e096e1b46c898ae5e2045c551c0646f3228"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 18,
+      "pixel_sha256": "af1fe29fe9703ef054ccfae4575290a8bae0ab92d8f6a3e5e512ed5a7e439f51",
+      "previous_pixel_sha256": "764a7178cb0cc39fae3f76b9970c9271ffa53575574bae8d083aa7b0a2964ff3",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 15.386362400000507,
+      "black_fraction": 0.8687795003255209,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85288,
+        "target_packets": 100000,
+        "base_probability": 0.030733069766527017,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "087d82eefcc4e0b1ae2062372e2cbae1c89ef67071ca43355d53043a9e4c56b2"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 19,
+      "pixel_sha256": "324413739aa0fdf34709db1c9e623c918f871f69b7f4db8badb5db7636fbaac3",
+      "previous_pixel_sha256": "dd46dfaf65c56fc44846d6edc014997007cdf4fc3debba51bc2f01caea3d63d6",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 14.450084599999172,
+      "black_fraction": 0.9123450385199653,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 86891,
+        "target_packets": 100000,
+        "base_probability": 0.030963280026950438,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "74bcb3579181c73914ca89eaa59e1aaca2425447ab72542edead4fd6123ac4d9"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 20,
+      "pixel_sha256": "c730461e538738f7e842a1fa6696b70658902cbbc966f0a373bc4f2b0c865bd0",
+      "previous_pixel_sha256": "a86385d2dbff5c57db76d12483da04af4450fc912b8d164abeaa84abd7c3f569",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 21.354337300001134,
+      "black_fraction": 0.8573540581597222,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 84196,
+        "target_packets": 100000,
+        "base_probability": 0.01878908128908129,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "1d3a9fcbcf7c9c3f46a9d7a054f2334231e4d9ee2c3189e23131b7c8154dc4ed"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 21,
+      "pixel_sha256": "009be8b3dad202fd196679cacc9ac9aae986028968596af372404c1e152064c2",
+      "previous_pixel_sha256": "440f96f02baa3f4e6fb6360ca63c7e2b42772f7c22a805b6e612fb715950b940",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 10.845493400000123,
+      "black_fraction": 0.8791453043619791,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85653,
+        "target_packets": 100000,
+        "base_probability": 0.04374177654600935,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "528672479513d48631b13cf29c365b030415935c57297115ad528fbeba92b9b7"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 22,
+      "pixel_sha256": "6fea79e1c52fda3f217328015539cffca6741fd62304ea944f0e5a8289db8286",
+      "previous_pixel_sha256": "8c093e8bb6e85a50a9b6b2446244e7d35492af30836bef7147ad2ff4d60f51f8",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 20.36931889999869,
+      "black_fraction": 0.8558824327256944,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85666,
+        "target_packets": 100000,
+        "base_probability": 0.023824771663388377,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "59455f87a908bb938a084e1025b3e094f96e9501cfe766f295330fde7aa8b186"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 23,
+      "pixel_sha256": "7d9cdae9b03e2ce88983a9e02d983ab760bb59144fb162dd1c85059d553c7435",
+      "previous_pixel_sha256": "dc498527cca8e7a56cb06c859df143fce6a525244db4cf6480cc67da1d3e13c6",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 10.436930399999255,
+      "black_fraction": 0.8625047471788194,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 85425,
+        "target_packets": 100000,
+        "base_probability": 0.05056388848437779,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "37e5e6920b0cbda47470af51b7b980c616096d7af4f588c10d342ccedf1efe2e"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 24,
+      "pixel_sha256": "2da4ffd8ccaae5257f6f3577b10291e9aa63a1f4b4118ee78e29d865d7f723bb",
+      "previous_pixel_sha256": "781a18bfc7df0029ba2794bb7c778933c1d9be2678c140d3451931fcc220360f",
+      "source_sha256": "ef89bdd78c87b236ca35c746dd7335fd197e22da1706abfaa01885618e0bdf03",
+      "seconds": 14.263340100000278,
+      "black_fraction": 0.8523118760850694,
+      "transport_matches_previous": true,
+      "deposition": {
+        "strength": 1.0,
+        "emitted_packets": 84377,
+        "target_packets": 100000,
+        "base_probability": 0.02365435126522394,
+        "continuous_fraction": 0.12,
+        "expected_light_compensated": true,
+        "weight_sha256": "be4f1275767555e68d3f6afa23cc4788323109f504ba8783496a74fc2c7aa464"
+      }
+    }
+  ],
+  "texture_zero_ablations": [
+    {
+      "study": "branched_light",
+      "seed": 2,
+      "dimensions": [
+        768,
+        768
+      ],
+      "texture_zero_matches_previous_pixels": true,
+      "pixel_sha256": "e87256437ce4cb44b824b57ac2452b8ac91f21972e6ace95e67e9869eede8ae8"
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 2,
+      "dimensions": [
+        768,
+        768
+      ],
+      "texture_zero_matches_previous_pixels": true,
+      "pixel_sha256": "5242630bc2f207f41dd3739e188391f8d03f2e3f6aa45722e8e2802105dacb62"
+    }
+  ]
+}

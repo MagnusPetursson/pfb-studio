@@ -2,6 +2,10 @@
 
 3 October 2026 · `agent/generator-experiments`
 
+This is the archived first refinement. The user approved Folded Veils and found
+the other two too smooth. The [next texture review](../perlin-texture/README.md)
+records their subsequent particle-deposition changes; these sheets remain intact.
+
 This pass follows the user's verdict: keep the folded veils, add color and
 finer material to branched light, and give inertial filaments more texture over
 larger areas. All three remain standalone experiments. The production generators

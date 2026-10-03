@@ -6,8 +6,10 @@ https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph2007-curlnoise.pdf
 The particles instead retain velocity: dv/dt = (flow(position, time)-v)/tau.
 This is an artistic inertial-tracer model, not a fluid or light simulation.
 Wide, unequal particle curtains carry continuous variations in response time
-and material through the flow. The optional shared finish colors and develops
-the resulting density without changing the world-space simulation.
+and material through the flow. Sparse, compensated light packets give their
+deposits irregular material texture. Packet emission follows an independent
+seeded stream and coherent source/arclength Perlin modulation. The optional
+shared finish colors the density without changing the world-space simulation.
 """
 from __future__ import annotations
 
@@ -25,6 +27,7 @@ DESCRIPTION = "Unequal particle curtains stretch into textured luminous areas an
 CONTROLS = {
     "inertia": {"default": 0.5, "label": "Momentum separation"},
     "turbulence": {"default": 0.5, "label": "Fine currents"},
+    "texture": {"default": 1.0, "label": "Granular material"},
     "finish": {"default": 1.0, "label": "Color and material finish"},
 }
 
@@ -268,6 +271,55 @@ def _density(history: np.ndarray, weight: np.ndarray, width: int, height: int,
     return density, color_density
 
 
+def _packet_weights(history: np.ndarray, weight: np.ndarray, seed: int,
+                    strength: float):
+    """Thin material emission in world space, preserving local light in expectation.
+
+    Sampling and probability compensation happen before rasterization. The
+    packet budget does not depend on image size, finishing or the flow's RNG.
+    A small continuous deposit retains the faintest connections between packets.
+    """
+    if strength == 0:
+        return weight, {"strength": 0.0, "emitted_packets": 0,
+                        "continuous_fraction": 1.0,
+                        "weight_sha256": hashlib.sha256(weight.tobytes()).hexdigest()}
+    rng = np.random.default_rng(np.random.SeedSequence([int(seed), 91373]))
+    noise = Perlin(int(np.random.default_rng(np.random.SeedSequence([int(seed), 94811])).integers(2**31)))
+    # Approximately 70% of the finite-lifetime samples are active. Use the fixed
+    # sample count here so changing one cohort cannot reroll another's packets.
+    probability = min(0.25, 100000.0 / max(weight.size * 0.7, 1))
+    continuous = 0.12
+    output = np.empty_like(weight)
+    travelled = np.zeros(weight.shape[1], dtype=np.float32)
+    origin = history[0]
+    source_u = noise.noise2(origin[:, 0] * 2.2 + 12.7,
+                           origin[:, 1] * 2.2 - 6.3) * 3.4
+    source_v = origin[:, 0] * 4.1 + origin[:, 1] * 3.7 - 27.3
+    emitted = 0
+    for first in range(0, len(weight), 48):
+        last = min(first + 48, len(weight))
+        displacement = history[first + 1:last + 1] - history[first:last]
+        distance = np.cumsum(np.linalg.norm(displacement, axis=2), axis=0) + travelled
+        travelled = distance[-1].copy()
+        # Nonperiodic patches of fine and coarse packets move with each source's
+        # material coordinate and accumulate along its actual travelled distance.
+        modulation = noise.noise2(source_u[None, :] + distance * 7.5,
+                                 source_v[None, :])
+        chance = probability * np.clip(0.78 + 1.25 * modulation, 0.35, 1.8)
+        selected = rng.random(chance.shape) < chance
+        local = weight[first:last]
+        emitted += int(np.count_nonzero(selected & (local > 0)))
+        compensated = selected / chance
+        multiplier = ((1 - strength) + strength * continuous
+                      + strength * (1 - continuous) * compensated)
+        output[first:last] = local * multiplier
+    return output, {"strength": float(strength), "emitted_packets": emitted,
+                    "target_packets": 100000, "base_probability": float(probability),
+                    "continuous_fraction": float(1 - strength * (1 - continuous)),
+                    "expected_light_compensated": True,
+                    "weight_sha256": hashlib.sha256(output.tobytes()).hexdigest()}
+
+
 def render(seed: int, width: int, height: int, controls: dict | None = None):
     if (isinstance(width, bool) or isinstance(height, bool)
             or not isinstance(width, (int, np.integer))
@@ -276,12 +328,13 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         raise ValueError("Study dimensions must be integers of at least 64 pixels")
     cfg = _settings(controls)
     history, weight, metadata = _simulate(seed, cfg)
+    weight, metadata["packet_deposition"] = _packet_weights(history, weight, seed, cfg["texture"])
     material = material_coordinate(seed, history[0, :, 0], history[0, :, 1])
     density, color_density = _density(history, weight, int(width), int(height), material)
     metadata["nonzero_density_pixels"] = int(np.count_nonzero(density))
     metadata["density_sha256"] = hashlib.sha256(density.tobytes()).hexdigest()
     metadata["material_sha256"] = hashlib.sha256(color_density.tobytes()).hexdigest()
     result, finish = finish_density(density, seed, color_density=color_density,
-                                    strength=cfg["finish"])
+                                    strength=cfg["finish"], bloom=0.10 - 0.07 * cfg["texture"])
     metadata["finish"] = finish
     return result, metadata

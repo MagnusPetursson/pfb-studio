@@ -1,6 +1,7 @@
 """Mechanism and reproducibility checks for the branched-light audition."""
 import json
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 
@@ -85,8 +86,32 @@ class BranchedLightTests(unittest.TestCase):
         self.assertTrue(np.all(actual_high < high))
         json.dumps(metadata, allow_nan=False)
 
+    def test_packet_texture_changes_deposits_but_preserves_transport_and_palette(self):
+        deposits = []
+        finish = branched_light.finish_density
+
+        def capture(density, *args, **kwargs):
+            deposits.append(density.copy())
+            return finish(density, *args, **kwargs)
+
+        with patch.object(branched_light, "finish_density", side_effect=capture):
+            _, smooth = branched_light.render(2, 96, 96, {"texture": 0})
+            _, textured = branched_light.render(2, 96, 96, {"texture": 1})
+        self.assertFalse(np.array_equal(deposits[0], deposits[1]))
+        for key in ("scene", "camera_bounds", "deposited_world_bounds", "integration_steps",
+                    "mean_displacement_from_ballistic", "maximum_displacement_from_ballistic",
+                    "mean_momentum_change", "potential_bounds", "potential_tile_count", "ray_samples_in_frame"):
+            self.assertEqual(smooth[key], textured[key], key)
+        self.assertEqual(smooth["finish"]["palette_rgb"], textured["finish"]["palette_rgb"])
+        self.assertEqual(smooth["deposition"]["packet_count"], smooth["ray_samples_in_frame"])
+        self.assertEqual(smooth["deposition"]["retention_probability"], 1)
+        self.assertGreater(textured["deposition"]["packet_count"], 85000)
+        self.assertLess(textured["deposition"]["packet_count"], 95000)
+        self.assertEqual(smooth["finish"]["bloom"], .10)
+        self.assertLess(textured["finish"]["bloom"], smooth["finish"]["bloom"])
+
     def test_invalid_controls_fail_before_simulation(self):
-        for values in ({"refraction": float("nan")}, {"distance": 1.1}, {"unknown": .5}):
+        for values in ({"refraction": float("nan")}, {"distance": 1.1}, {"texture": -.1}, {"unknown": .5}):
             with self.assertRaises(ValueError):
                 branched_light.render(1, 64, 64, values)
 
