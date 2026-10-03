@@ -223,3 +223,15 @@ set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 set(CPACK_DEBIAN_PACKAGE_RECOMMENDS "zenity")
 set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
 include(CPack)
+
+# Optional research tools: no change to the production executable or packages.
+option(PFB_BUILD_EXPERIMENTS "Build the native reference renderer for visual studies" OFF)
+if(PFB_BUILD_EXPERIMENTS)
+    add_executable(pfb-reference-render
+        experiments/reference_main.cpp
+        src/generators/gen_perlin.cpp src/generators/gen_fractal.cpp
+        src/generators/gen_circle.cpp src/generators/gen_fujii.cpp
+        src/generators/gen_galaxies.cpp src/legacy/FastNoise.cpp)
+    target_include_directories(pfb-reference-render PRIVATE src/generators)
+    target_link_libraries(pfb-reference-render PRIVATE sfml-graphics sfml-window sfml-system)
+endif()
