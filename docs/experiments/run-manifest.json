@@ -1,0 +1,5345 @@
+{
+  "date": "2026-10-03",
+  "code_commit": "c43fdf07bf26df0beca657cd0ffa474e340c2cc9",
+  "originals_commit": "38995bcff08d2d4f39909466e87ceea7deab0423",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "Pillow": "11.3.0",
+    "matplotlib": "3.10.3",
+    "aggdraw": "1.3.19",
+    "contourpy": "1.4.0"
+  },
+  "source_sha256": {
+    "engravings": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+    "membranes": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+    "attractors": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+    "geology": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+    "cells": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+    "ecologies": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+    "cities": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e"
+  },
+  "comparison_images": {
+    "experiments": 168,
+    "holdouts": 56,
+    "originals": 60,
+    "total": 284
+  },
+  "checks": {
+    "python_unit_tests": 19,
+    "native_ctest": 10,
+    "audit_tasks": 478,
+    "audit_passed": 478,
+    "control_renders": 450,
+    "replay_pairs": 7,
+    "framing_renders": 21,
+    "semantic_triplet_comparisons": 72
+  },
+  "audit": {
+    "audit_version": 1,
+    "started_at": "2026-10-03T00:17:58.368350+00:00",
+    "finished_at": "2026-10-03T00:21:36.244748+00:00",
+    "mode": "all",
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "size": 512,
+    "jobs": 3,
+    "tasks_total": 478,
+    "tasks_passed": 478,
+    "failures": []
+  },
+  "semantic_checks": [
+    {
+      "study": "engravings",
+      "control": "fold_scale",
+      "seed": 1,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "fold_scale",
+      "seed": 2,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "fold_scale",
+      "seed": 3,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "fold_scale",
+      "seed": 4,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "fold_scale",
+      "seed": 5,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "fold_scale",
+      "seed": 6,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "level_spacing",
+      "seed": 1,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "level_spacing",
+      "seed": 2,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "level_spacing",
+      "seed": 3,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "level_spacing",
+      "seed": 4,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "level_spacing",
+      "seed": 5,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "level_spacing",
+      "seed": 6,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "directional_bias",
+      "seed": 1,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "directional_bias",
+      "seed": 2,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "directional_bias",
+      "seed": 3,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "directional_bias",
+      "seed": 4,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "directional_bias",
+      "seed": 5,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "directional_bias",
+      "seed": 6,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "mark_density",
+      "seed": 1,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "mark_density",
+      "seed": 2,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "mark_density",
+      "seed": 3,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "mark_density",
+      "seed": 4,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "mark_density",
+      "seed": 5,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "engravings",
+      "control": "mark_density",
+      "seed": 6,
+      "invariant_keys": [
+        "expression",
+        "selected_candidate",
+        "candidate_scores",
+        "palette_index"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "complexity",
+      "seed": 1,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "complexity",
+      "seed": 2,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "complexity",
+      "seed": 3,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "complexity",
+      "seed": 4,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "complexity",
+      "seed": 5,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "complexity",
+      "seed": 6,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "persistence",
+      "seed": 1,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "persistence",
+      "seed": 2,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "persistence",
+      "seed": 3,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "persistence",
+      "seed": 4,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "persistence",
+      "seed": 5,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "persistence",
+      "seed": 6,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "spread",
+      "seed": 1,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "spread",
+      "seed": 2,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "spread",
+      "seed": 3,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "spread",
+      "seed": 4,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "spread",
+      "seed": 5,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "spread",
+      "seed": 6,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "glow",
+      "seed": 1,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "glow",
+      "seed": 2,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "glow",
+      "seed": 3,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "glow",
+      "seed": 4,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "glow",
+      "seed": 5,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "attractors",
+      "control": "glow",
+      "seed": 6,
+      "invariant_keys": [
+        "selected_candidate",
+        "candidate_scores",
+        "palette"
+      ]
+    },
+    {
+      "study": "ecologies",
+      "control": "density",
+      "seed": 1,
+      "invariant_keys": [
+        "layout",
+        "palette"
+      ]
+    },
+    {
+      "study": "ecologies",
+      "control": "density",
+      "seed": 2,
+      "invariant_keys": [
+        "layout",
+        "palette"
+      ]
+    },
+    {
+      "study": "ecologies",
+      "control": "density",
+      "seed": 3,
+      "invariant_keys": [
+        "layout",
+        "palette"
+      ]
+    },
+    {
+      "study": "ecologies",
+      "control": "density",
+      "seed": 4,
+      "invariant_keys": [
+        "layout",
+        "palette"
+      ]
+    },
+    {
+      "study": "ecologies",
+      "control": "density",
+      "seed": 5,
+      "invariant_keys": [
+        "layout",
+        "palette"
+      ]
+    },
+    {
+      "study": "ecologies",
+      "control": "density",
+      "seed": 6,
+      "invariant_keys": [
+        "layout",
+        "palette"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "density",
+      "seed": 1,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "density",
+      "seed": 2,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "density",
+      "seed": 3,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "density",
+      "seed": 4,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "density",
+      "seed": 5,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "density",
+      "seed": 6,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "order",
+      "seed": 1,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "order",
+      "seed": 2,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "order",
+      "seed": 3,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "order",
+      "seed": 4,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "order",
+      "seed": 5,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cities",
+      "control": "order",
+      "seed": 6,
+      "invariant_keys": [
+        "water_palette_index",
+        "water_color"
+      ]
+    },
+    {
+      "study": "cells",
+      "control": "cutouts",
+      "seed": 1,
+      "invariant_keys": [
+        "palette",
+        "region_materials"
+      ]
+    },
+    {
+      "study": "cells",
+      "control": "cutouts",
+      "seed": 2,
+      "invariant_keys": [
+        "palette",
+        "region_materials"
+      ]
+    },
+    {
+      "study": "cells",
+      "control": "cutouts",
+      "seed": 3,
+      "invariant_keys": [
+        "palette",
+        "region_materials"
+      ]
+    },
+    {
+      "study": "cells",
+      "control": "cutouts",
+      "seed": 4,
+      "invariant_keys": [
+        "palette",
+        "region_materials"
+      ]
+    },
+    {
+      "study": "cells",
+      "control": "cutouts",
+      "seed": 5,
+      "invariant_keys": [
+        "palette",
+        "region_materials"
+      ]
+    },
+    {
+      "study": "cells",
+      "control": "cutouts",
+      "seed": 6,
+      "invariant_keys": [
+        "palette",
+        "region_materials"
+      ]
+    }
+  ],
+  "ci": {
+    "native": "https://github.com/MagnusPetursson/pfb-studio/actions/runs/37081656867",
+    "experiments": "https://github.com/MagnusPetursson/pfb-studio/actions/runs/37081656928",
+    "conclusion": "success"
+  },
+  "notes": [
+    "Experimental pixel replay is verified within the recorded environment.",
+    "Originals completed normal time-limited rendering at native defaults; work varies with hardware and load.",
+    "Module source hashes cover the working file bytes. Pixel hashes cover decoded RGB bytes.",
+    "Paths refer to build/experiments/gallery; full PNGs are local build artifacts."
+  ],
+  "images": [
+    {
+      "generator": "engravings",
+      "seed": 1,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7856418999999732,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0001.png",
+      "pixel_sha256": "f2f23e0b2678826160b92e7882d6a8d248167243c85eac4bb94740f95d4035ef",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 2,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5412806999993336,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0002.png",
+      "pixel_sha256": "80cec2748a1b221295a7efc0e4bacb1cce0d96e99b0ec17aaf19e49294b8b5dc",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 3,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7034801000008883,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0003.png",
+      "pixel_sha256": "5424c11ec22a63b8648f691a4e62851eb13b37112055e56125b0d4dba1a22b5a",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 4,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6835419999988517,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0004.png",
+      "pixel_sha256": "9ea5b3b30ac6bb5ab7cb737900f023cca45e4ab1ff18be58bbad1b37871f2b19",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 5,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6341518999997788,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0005.png",
+      "pixel_sha256": "ba676714d690dfde2f33e9b5bb585d38e30d184b253bc2de02b770674fbb13e0",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 6,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5414964000010514,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0006.png",
+      "pixel_sha256": "6129634adbc00ea70a916cc5d54ddc0ddadc2ef7a5284028e8c11539a8188696",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.738161700001001,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0007.png",
+      "pixel_sha256": "d6f917d71513cc30edcb40703f623866f9d936bed6419069477cef481c7cf239",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 8,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6398048999999446,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0008.png",
+      "pixel_sha256": "dba8669e17f2d77e9b3976ebc0dab48f4e8c0d9a07b70cfcf6eebee28490fcf0",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 9,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7888888999987103,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0009.png",
+      "pixel_sha256": "3fd7801b4957c8d7784fef2006efd78b75f051e9040c7866852c85ce3ac6ca18",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 10,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5448692999998457,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0010.png",
+      "pixel_sha256": "d88749e5aa54184c1e3897e81dadae2154f3876e12a6efc4808eec3d776a2b8f",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 11,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7188342000008561,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0011.png",
+      "pixel_sha256": "c81941eab90e6931ec8e474bb698bae7842c61a371e96b523c9555c0c098f313",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 12,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6781304000014643,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0012.png",
+      "pixel_sha256": "db8300de4de82e9877b31bef7d920ea6b218550ead24ad7d23cfdbaae8ba232d",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 13,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6309707000000344,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0013.png",
+      "pixel_sha256": "0e18c5ccc85129c7dc38035ca391b5b4e5eedab4c60abcba5746a046cf8b2f25",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 14,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7139982999997301,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0014.png",
+      "pixel_sha256": "7825e325831059c45bc3549c5f41bbbc3801cb73632383266b6450ef5aea9a02",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 15,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5058121000001847,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0015.png",
+      "pixel_sha256": "10db384d5d07577ffb5f1b4c3cca26e5eb2f82c8e5bcdeab4f4d5a63bf9e91fc",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 16,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5652636000013445,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0016.png",
+      "pixel_sha256": "d7b945cbae71b3a47745d2bb503fef93208fa0fff39bb30b66976391380ad0b7",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 17,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6104647000011028,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0017.png",
+      "pixel_sha256": "a54ff90e4e811431285bc22260c7ad6e1e1bceb5dbd81f57d6bea5d9a9b74d9e",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 18,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6421232000011514,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0018.png",
+      "pixel_sha256": "bff75e6e90ed4f33ef3c3fc7fe9214bdecbdf2688a02a275b97a594a363d4fb1",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 19,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7605473000003258,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0019.png",
+      "pixel_sha256": "cdba9f71eabde6cfcfdad86b7919483f39e7de271d790368bed5b1898d20974b",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 20,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7979341999998724,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0020.png",
+      "pixel_sha256": "ad267cf85f10ede02089969ca4c5e1f5b90886998f0c7c47d2d3995ca538e756",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 21,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5659502999988035,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0021.png",
+      "pixel_sha256": "1cde471527dbbb1d5e3fd9b17f35369cebf4be2f2ea30e9529c4598e91e74a68",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 22,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5012745000003633,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0022.png",
+      "pixel_sha256": "284a97778798d96f80bb376488e9bdfe624ba39e044904fc9488eaa296630e09",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 23,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.827178499999718,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0023.png",
+      "pixel_sha256": "003ba29a655c6a8ebffa49484c0fc4ae66519804ba372441656067fcdf8e4a81",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 24,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5766450999999506,
+      "group": "experiments",
+      "image": "experiments/engravings/seed-0024.png",
+      "pixel_sha256": "fa025d7abe00abf7d080a097d5e30577ee52a2e4298335ee7ebfc3eddaec5a17",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 1,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 7.41406730000017,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0001.png",
+      "pixel_sha256": "351414b289ce923727a63f247925859e52f68005ebe7d97491ac7c10de97a85f",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 2,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 3.922112799999013,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0002.png",
+      "pixel_sha256": "d2a4cb08e484f6d999817235fcc7f8cae3a05cac2d9bb9eac2e3ce1b844e82ec",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 3,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 3.080685799999628,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0003.png",
+      "pixel_sha256": "f8cc769082958d060afcd3b82702ebb3234557a2238b6124dd8a7155b9c82d42",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 4,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.9244287999990775,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0004.png",
+      "pixel_sha256": "58834ed003144ab60e4fa901026d83f077a3a5bf27ee57a7e714cdef07ea0554",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 5,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 3.4124675000002753,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0005.png",
+      "pixel_sha256": "5b2d441ccf5d44e4bb91f86170fbe2a0085de7c8fee0c95f83d9ff2b8f2f4940",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 6,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.11956999999893,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0006.png",
+      "pixel_sha256": "cb5db0e0f410effe191248c6066ad2df14d4fd7b60097a3137329b07710eb68f",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 4.475209100000939,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0007.png",
+      "pixel_sha256": "a9d4422c1b934043d1d0bf7413c6408b24f9d8dc12c6ef1a875c43db56d8de9e",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 8,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.113526600000114,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0008.png",
+      "pixel_sha256": "c101a26164c6548dd2fae9836c5907f6798254a526815c9499452ea9a5203650",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 9,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 7.237116000000242,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0009.png",
+      "pixel_sha256": "ea8e92b9f271825eddb1bd3b752d485d6ab8bb0f3d096c20c09752f7378cee60",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 10,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 5.205968200001735,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0010.png",
+      "pixel_sha256": "9c0e8938cdcc18182d90e380479786728f66c4dffb25d35d9cd8870b662d0608",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 11,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 5.3121472999991965,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0011.png",
+      "pixel_sha256": "2586ce02f836af1481a288008d0f0481a50120554286bfab27620a3fdd9eb177",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 12,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.982912900000883,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0012.png",
+      "pixel_sha256": "668a0721b0192417fabee8bafd60f96e257051f5fd273e02284cc76b931f49b7",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 13,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.660398399999394,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0013.png",
+      "pixel_sha256": "b5f6ff3683e9e7af318c21b28cd5ae32a311825e6aab74bddc104b7498910c3e",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 14,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.822832199999539,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0014.png",
+      "pixel_sha256": "8f9fae15488b65d86b563eb9d5b4ca6d05b251015200e07469ab55e39afdef02",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 15,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.724606400000994,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0015.png",
+      "pixel_sha256": "506095f324bdda0a82da122212a00e0d873b262a293875e865f3e2e745c7e261",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 16,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 8.243025199999465,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0016.png",
+      "pixel_sha256": "968486e1e5f26ece2bb2c6f187711482adf2b98ece3dc1470f21c705612cc141",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 17,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 3.8679073999992397,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0017.png",
+      "pixel_sha256": "ee74adc6cb6a2c3bb4a33f455b939e934c80123d11de370f6b38e90a701145ad",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 18,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.159120999998777,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0018.png",
+      "pixel_sha256": "a20dc214db40dd72ba03a4d0630ac4d474445a4a7259fc3f3dd518e108888315",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 19,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 5.932665399999678,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0019.png",
+      "pixel_sha256": "4f1f8883966ac13681a4b254143fca789cf13cc70a6050b16b000ef9fe53040b",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 20,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 4.178555200000119,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0020.png",
+      "pixel_sha256": "ba79fb2cbb06da021d10226e57abc48878a71daa0fad7074dc2c8748056f0db5",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 21,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 5.205142000000706,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0021.png",
+      "pixel_sha256": "4655844e6dc8b671a45495c11e0d0bb5f1a4b9ec3ef6ec3f0707d34a7e523b86",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 22,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 7.116169500000979,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0022.png",
+      "pixel_sha256": "a730def97f5a2a491c5b56a59cffb386a49dd4ec0aa6076a7e2147dc483501bb",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 23,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 5.49047999999857,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0023.png",
+      "pixel_sha256": "205cefeb00e9bc9e0752def870b1a79e407d13bdd865251fbdb0d186f62e14df",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 24,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 5.728429600001618,
+      "group": "experiments",
+      "image": "experiments/membranes/seed-0024.png",
+      "pixel_sha256": "1995a17482b270705a8bc6380842d5fe7d0850c3ab1e0a2f216729cc62127826",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 1,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.2819959000007657,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0001.png",
+      "pixel_sha256": "78ac511e3ffae7e3cc33ff22b53952092f78ec11053d4838daea798e85e8346d",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 2,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.6132147000007535,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0002.png",
+      "pixel_sha256": "a63ba6b4552de60ca479ed21fe5eaf44fcef3567e14f4fd3506bf652db01ecf0",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 3,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.657341699999961,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0003.png",
+      "pixel_sha256": "a417b0fb7da08a546fb6822fe207c504f65b77c56580c0f420c8d554b7417c04",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 4,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.6999454999986483,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0004.png",
+      "pixel_sha256": "0f79c57043736526ca58d2a78c7f7b0e59d71579b172e446447f941a81201d3f",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 5,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.7484297000009974,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0005.png",
+      "pixel_sha256": "7c5a1c90088b6bee0b354bcaad2c7fd062ee75d75af1f1c4b1d6c462d5fcd5d2",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 6,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.604172600000311,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0006.png",
+      "pixel_sha256": "8f7ab3be8c6dd6acd4bf64b306557b5f5ea4ff524da3347dc6c2692cb983f1dd",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.4529079999992973,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0007.png",
+      "pixel_sha256": "4f5d15f25af9495c37e12f29fcb2da40d9768eb76e523e6c502eec38c1365be6",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 8,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.3625061999991885,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0008.png",
+      "pixel_sha256": "5d48b1cf78fbf62da5bca265c049418bf17265356d056dfc39230dac8d1af526",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 9,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.513040199999523,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0009.png",
+      "pixel_sha256": "bc46484c3a07d56fad982a863ba86fc02bd9bbf664b5878931c149d92c995303",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 10,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.5361844999988534,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0010.png",
+      "pixel_sha256": "8ab339299a257db4325c36c89d0d2205d6d955b5e1320ae9a902fc74c4c08bf9",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 11,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.5785273000001325,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0011.png",
+      "pixel_sha256": "c9f239dc2d928094a26aaade352ea3ae1b9a5acfa6c23649235d0dd5c1007afd",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 12,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.499414199999592,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0012.png",
+      "pixel_sha256": "6de7fbb2be708c94059d2f2e590285d98066a398b91d936d4ce00d824459a648",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 13,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.5957417999998142,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0013.png",
+      "pixel_sha256": "82ff4401420a3cb9a8909d58c9b59f3e1b3a597a25d2f8e53be2cd1086017937",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 14,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.256817299999966,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0014.png",
+      "pixel_sha256": "f014bfb441d7e5509ebde43b3df5305ade387232ba45999672de0660eaf20a64",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 15,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.32651579999947,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0015.png",
+      "pixel_sha256": "f709ea5834541d963461d35904f0c2c9029e29431af1280c28f9f266b0c8ba58",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 16,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.2281851999996434,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0016.png",
+      "pixel_sha256": "c78dd15b4d2f5f64c66c9080b0f9dfdc967a12211b7c7d2b4bf0cffd874540bb",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 17,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.3481417000002693,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0017.png",
+      "pixel_sha256": "7009610715742bf90a40d58c6129b955c9b9e63f9b0ae1e540408dc128adb0a0",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 18,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.2663135000002512,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0018.png",
+      "pixel_sha256": "1e2c2e13de90ef77e16c68554b0a870719bb8983de11ff57bb50c92706f4e578",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 19,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.2158462000006693,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0019.png",
+      "pixel_sha256": "d66f49d727d445a107362573384b4c9495cd5a98d37a0b39a8af1d71b3586974",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 20,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.198596999998699,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0020.png",
+      "pixel_sha256": "313ff5e52cde5edffb436d8f838923f12dc8dcc4f692b0bc2bf396ac5c123783",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 21,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.2369552999989537,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0021.png",
+      "pixel_sha256": "754dc98312aea929e6cbded3ee9916b5ce31b08c3bc10dacd8c5d937db41e55d",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 22,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.0365146000003733,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0022.png",
+      "pixel_sha256": "65ab2ec7e124ff9447507d1257b2d7f75a91711cd4ed5b78b75d7727bf53249b",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 23,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.056758799999443,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0023.png",
+      "pixel_sha256": "84520d5713062d4e34e0e61b7dd34d15f1a42319d53d57ff24d738fb4dcccf73",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 24,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.131307600000582,
+      "group": "experiments",
+      "image": "experiments/attractors/seed-0024.png",
+      "pixel_sha256": "c6246ee7317274c9c938be17dfce1d0d949a02b4db7a82b00cd8bddc2a1cdc3c",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 1,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4857047999994393,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0001.png",
+      "pixel_sha256": "ae992dc08541109bbd860682d58e469a3e6b2add7633b234e4b56b9484c27691",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 2,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5694327000001067,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0002.png",
+      "pixel_sha256": "6e27ed57b20e64326bed2c2a8d354ed4624774eb4135d53e34ae9638674a20b9",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 3,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5406332000002294,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0003.png",
+      "pixel_sha256": "3d85c7e10cc5769fa34d946cfe278ccd32d19c80100551b672a332fe703ef987",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 4,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.544446899999457,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0004.png",
+      "pixel_sha256": "dfaae6f0974b192a81789362263cfda59028dbf9cfdda74e22cd778f7d479d1f",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 5,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5283840000010969,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0005.png",
+      "pixel_sha256": "36dc2fd145ee584679b00e8f480e73cac805efa748e349c5c3dc80e59ddc9707",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 6,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.50514529999964,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0006.png",
+      "pixel_sha256": "4c8cea843890279ac12e3f6fe0664f0eb69ffba33f670c80db2dfe061a32c053",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5218189999995957,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0007.png",
+      "pixel_sha256": "30b721b68ba351b70df251361f80cfacaaff76594d41b014174b1a4a3b47073a",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 8,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5348386999994545,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0008.png",
+      "pixel_sha256": "9213abe3d6baf2fd74c74aaf604b9292edbb1524b011df9a72b7f55e5c8d967f",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 9,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.482203200001095,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0009.png",
+      "pixel_sha256": "0f0918b72356d272e23dd86a3847e391f6d810e79a42e701f85dc203df7b6bbb",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 10,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.444788900000276,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0010.png",
+      "pixel_sha256": "c80a504b5cfccc3d4b338272fc9e1b0199d116fb770417bf0d289afd19d42344",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 11,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4281676999999036,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0011.png",
+      "pixel_sha256": "180f2fbe2733750bf3c16cfd156518e5807b3c8653dbace9c94942e5dfb8581e",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 12,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4603014000003895,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0012.png",
+      "pixel_sha256": "de47c870380d4818e8f1c767300c699a55459a74b7820ba4268a5357aa869967",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 13,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4810627000006207,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0013.png",
+      "pixel_sha256": "a06e7ef880eed6a23d0aae5e99f97d5f5af70ae8ac28f585d158ee35cddf7a6e",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 14,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5537667000007787,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0014.png",
+      "pixel_sha256": "2d7b27d61bdc8c0bf84035a8b0dd0b4ae1e4185079aea8fc371aeffb65807773",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 15,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5261549999995623,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0015.png",
+      "pixel_sha256": "91e0ae5d03c3fa311199bccdb6cf4404299acaef17c18f1b4841b229774e7b3a",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 16,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5378192999996827,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0016.png",
+      "pixel_sha256": "c5d3325719ad020bfca19730982dc72d781b801bd0e4084717c0dfa79de518fd",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 17,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5505844999988767,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0017.png",
+      "pixel_sha256": "e4fb5d4d1936b0cdb3450692650d69ac1a2b29e874fe3b9ae3b2af0ba7178195",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 18,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4325596999988193,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0018.png",
+      "pixel_sha256": "696b0aa3396b6cbf5e2c139ab61a1e664e6654fe81b2b39bbce4a015dab2adf5",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 19,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4895587999999407,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0019.png",
+      "pixel_sha256": "fb641f7506bbfb1a08e5ad06eaa4dc732972b4ca1a512b8ad994482a57651edd",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 20,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.413449199999377,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0020.png",
+      "pixel_sha256": "fff911bcd59085dadb55e410f5b4d055c82c29089a409360e84d9e48c5951a7f",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 21,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4287985999999364,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0021.png",
+      "pixel_sha256": "53185eeaddc415f2653c242f1d98b560717a016b89e987c555fa845ca0817fb8",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 22,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4309286000006978,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0022.png",
+      "pixel_sha256": "c47f03ec6604e2dfa6af257eb48bbb7846717c3aa2cbfacb54f8ad2ca96ad5e8",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 23,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.498657699999967,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0023.png",
+      "pixel_sha256": "24496ee7a94a28cb6542c2232cbd34e2b804a07e7cd4a745bb33ff236e4ba68e",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 24,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.59103850000065,
+      "group": "experiments",
+      "image": "experiments/geology/seed-0024.png",
+      "pixel_sha256": "236907a680417ddfa9acc6d2eb1428b3b5e15efb28ff52a5069da41820491641",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 1,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.27075349999904574,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0001.png",
+      "pixel_sha256": "3e3287ac0a514ef3c51ecbab372a8fabae9e9c7900c26bca824142b39b590b4f",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 2,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.26660660000015923,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0002.png",
+      "pixel_sha256": "fc65706fa76d0a0d63db9adb47be9cbaecbb07673b8b401a1e67c4bc0ee167b3",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 3,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.28801880000173696,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0003.png",
+      "pixel_sha256": "1aa2fac6f71bb4e845dc162b513c099873382ec198e1674ab4cc40ba16e95676",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 4,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.29010070000003907,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0004.png",
+      "pixel_sha256": "8c066392aa4ef7832818574cde0761004991f16faaca2961f8afebf9ba62d8c3",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 5,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2226743000010174,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0005.png",
+      "pixel_sha256": "3c457785516e31fa7780119c2b05b1b71a6eed400f26ca2fdf71bf921c5b7832",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 6,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.21122230000037234,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0006.png",
+      "pixel_sha256": "bd88f55073211d1013f0931f805198798f28b0bcfbbececd404c902aaa0c030b",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2720059000002948,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0007.png",
+      "pixel_sha256": "6ae4f7f2d765a95e423d0778bde3d5dbb97cdfc0c3dceb7622ce1e2e1092f067",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 8,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.3518107999989297,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0008.png",
+      "pixel_sha256": "3fbe25ab6779ab1732709e4856f0f30d6bb8cd95d1e363281e93d099ab1630b9",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 9,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.3148650000002817,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0009.png",
+      "pixel_sha256": "f390f327c7740095f657b1286c1ddcc996e259543c73b7acea7e40b99b214ef7",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 10,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.28665600000022096,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0010.png",
+      "pixel_sha256": "c32843a1588cd91dfc32cc9bea4d403879b92482d8d15c1aaf5d87bede0efb80",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 11,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2593585999984498,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0011.png",
+      "pixel_sha256": "efedf5407ceb06557907fbb6a325f5670621dce9c3e85eddfcc9e00097d0c64f",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 12,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.23049369999898772,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0012.png",
+      "pixel_sha256": "09ade6deb4fd0ce35438c71b50acce352ea58f830ce12c6a80a2337889f20cc0",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 13,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.26220240000111517,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0013.png",
+      "pixel_sha256": "0fc129dd249e1ab0bc8584a7df876d361cb898e56d0a96bdd46f2eabe374ffcc",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 14,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.28286409999964235,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0014.png",
+      "pixel_sha256": "65f8a0653caca413ffa8c940055ccc1dc513cf4b80dab1c2aa57cc78eca2d742",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 15,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.29410250000000815,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0015.png",
+      "pixel_sha256": "91646964902d760b9005f13b9e6292fe8957f88bb8cf283bae16683b4bcd6efd",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 16,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2728999000009935,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0016.png",
+      "pixel_sha256": "9f8860cb03e928c9304da325a07adb087f1ceaec21861799bc3658b5c03389dc",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 17,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.25663039999926696,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0017.png",
+      "pixel_sha256": "7f52163aa5f07ad7b4d20f46d3a28954ed37861557ad57f4178e37c0a0c2813c",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 18,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2388063999987935,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0018.png",
+      "pixel_sha256": "a742e56efd2aba474c5ebdef1529cbadfef14a962a71b588d1ee60c08a8e7c60",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 19,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.210065699999177,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0019.png",
+      "pixel_sha256": "97e25886adabcdecfe92ed23b7276fbcbb6214127a63c35f15bc2c7bfe970c78",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 20,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2689740999994683,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0020.png",
+      "pixel_sha256": "a8df0539a0be8f8aa51df1d3a38b86226692c7cda5c29da877ce63ad93325e8a",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 21,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.24578399999882095,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0021.png",
+      "pixel_sha256": "4bf8b3b0d7c6512d11d05b08d922341420cb42f6d31d42fce7041b461bbc74bd",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 22,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.24800690000120085,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0022.png",
+      "pixel_sha256": "87055b7c732a68c8b9ae1813bb445383810d16833279c358a0babd7ecbd6a352",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 23,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.24485180000010587,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0023.png",
+      "pixel_sha256": "7ce4cbef7c9b0ec5b40b025d5f54818999039f5e39ce1b636cdf03584761d431",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 24,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.26152279999951134,
+      "group": "experiments",
+      "image": "experiments/cells/seed-0024.png",
+      "pixel_sha256": "ee5ad90fa36bf4f97dfe4fe964ab650166820d63d4d4bafc79ddbd2e53f5cdb9",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 1,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.0794992999999522,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0001.png",
+      "pixel_sha256": "2ffc5d3b24ce7493860f59e10a59cf6475c7bba78ee5cd5a6d448d493df13f90",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 2,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.172371300001032,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0002.png",
+      "pixel_sha256": "16e7f6cd75d93a3c4e36cab46c9dd00959b2f6439281579cc5359321a9841ad1",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 3,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5910647000000608,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0003.png",
+      "pixel_sha256": "b71ffff753da11a8673a20d858c9807c200d0623d835c1fe29fadaab3a05d839",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 4,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.1589707000002818,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0004.png",
+      "pixel_sha256": "8cc37ad6369ba6d7f3ff523800d339c1957e23c28df9f3d13c68d042efc67e76",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 5,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8357035999997606,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0005.png",
+      "pixel_sha256": "fddbb74156ad596bea32282c1ad7904c67a743768c678f12828dce24fc1c846b",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 6,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4058517000012216,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0006.png",
+      "pixel_sha256": "a7402b3e2c5d747cd5aa16308eb8cc3bb92fc36876afa8453d422db0e7650c76",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.1195701000015106,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0007.png",
+      "pixel_sha256": "4fa7d3eb0f6f17185cf56eaa19eff0d8b19e346c017b62be6a91a0371cebc697",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 8,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8698225000007369,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0008.png",
+      "pixel_sha256": "38648c8da97ac1d2d41321170762d1f47cdfdeeb4d316eff5fdf6e4a3e02931e",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 9,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.3806951999995363,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0009.png",
+      "pixel_sha256": "81fa866df8b0fcd0f4675074714c6194e2974802dc43143424c5f74ec15db595",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 10,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.1209610999994766,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0010.png",
+      "pixel_sha256": "7c7ac31085ad1a8986962dfa4da38e6b299375e1d124c841e47ae8e1eedad67d",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 11,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.584707799998796,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0011.png",
+      "pixel_sha256": "0834b23964573b680736bd75156021c462dd1dc671c9adfa290dc74b9672b130",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 12,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.3845665999997436,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0012.png",
+      "pixel_sha256": "b3cca46dbb4b26b510eccb3cf5fdd53fe56d8f191bcb14d2194a60f0bd902326",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 13,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.3344044000004942,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0013.png",
+      "pixel_sha256": "07cac896164aa79359a6fb48dbb82ca29a8338378182447ea10fb54c68139977",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 14,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.3195556000009674,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0014.png",
+      "pixel_sha256": "c80ee62966f1ea1e7afd7c290f2c160582ff78b85618ef30cd1f4efe6b701f88",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 15,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.1150299000000814,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0015.png",
+      "pixel_sha256": "9bee5cb9b9982a5b044cc101ed9672647bb6e17790bd38e42809c311ed2d03ea",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 16,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.9857338000001619,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0016.png",
+      "pixel_sha256": "c1409415bb31951b4bb4478367001e21ba309370fb3f4a729d328165791829dc",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 17,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.633227899999838,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0017.png",
+      "pixel_sha256": "9959efe3e66e5f874a7a3f87edd633df01e47a8b7e11a0d23d24fe43a2fcac24",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 18,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.868985099999918,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0018.png",
+      "pixel_sha256": "bb8969372e0fdcad428fda4a580b1be873d4e6cd7e3268cb2d8861fcafdf4914",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 19,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.0543705000000045,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0019.png",
+      "pixel_sha256": "0f6dd8f6082973bbbe3f609247f4c162e33af734f58b0a8dcaf496f878ed9f4e",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 20,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.2270530000005238,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0020.png",
+      "pixel_sha256": "46103ba1e025165f9a3a489cf1324ceeb8307d35fb39ed54771e9db348df4960",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 21,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.5176430999999866,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0021.png",
+      "pixel_sha256": "15d421587f7dbce27491a3c8d3c00b983854996f5cc3f0d0a11293caa21d74c8",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 22,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.1026055999991513,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0022.png",
+      "pixel_sha256": "bc6157fcaeeab1538c4a3c31dce3c18e3a3f0a0f7484fef32107d5422ad6b268",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 23,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.9450953000014124,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0023.png",
+      "pixel_sha256": "583c68da7698403e8479820ce0bfc5bb3042fdd88bee3b0b271c8b766abe9e87",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 24,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.2119652999990649,
+      "group": "experiments",
+      "image": "experiments/ecologies/seed-0024.png",
+      "pixel_sha256": "d75ca85f28dca0ac3950c0365cb4895f6878098c8fa545376ea051bc85a4f725",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 1,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6856139999999868,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0001.png",
+      "pixel_sha256": "e985f9d33c73b5ed87c1da37b9e7913832f518231eadb7b0b1a64ab922d16b2b",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 2,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7200775999990583,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0002.png",
+      "pixel_sha256": "f2533da157bfae0df90ee5022bd12cf076b56771fa7d2fbf18a3ca1515d7ca6c",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 3,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7331850000009581,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0003.png",
+      "pixel_sha256": "53f3422b4e639b9c3cce0f905b2986318c38129b4a9830f740def7f04eba859b",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 4,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6329562000009901,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0004.png",
+      "pixel_sha256": "1521efe0ba65686b1e8e705650296606f308aeaed257c1b96741116a60d059eb",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 5,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7692280000010214,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0005.png",
+      "pixel_sha256": "6b80c0f470bec70b66ba691fb960023bfbf08dc2e679ea0f2f356010747ad6df",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 6,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7622255999995105,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0006.png",
+      "pixel_sha256": "0c0a62b09c952eab352d71dfbd9b6e0666de79ecc83b0ff79ef69974f472467e",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.648037300001306,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0007.png",
+      "pixel_sha256": "d95139ee26734b50de49b7cefa857eee39cce3b960f111e493b2b9b902e7fbaf",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 8,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6470990999987407,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0008.png",
+      "pixel_sha256": "449beea534832b8ad72cc095aa19a297ad7f89837e6d62eee6629382265128d3",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 9,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.9335452000013902,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0009.png",
+      "pixel_sha256": "b73bce8914cf71c7325dcccfb49286b7842027d10e25fb137545796675d30352",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 10,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7407832000008057,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0010.png",
+      "pixel_sha256": "de6fb00e268b0725b74fd79db4fefcf4fec26207c44a8ce8bcdccc867b6525d4",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 11,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8210937000003469,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0011.png",
+      "pixel_sha256": "2e0d5dfd80ac7aa932914c327e10bb289010d4eece98e58eb08920068b893a8b",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 12,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.9249612000003253,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0012.png",
+      "pixel_sha256": "df7e24fe0dd29ae2670ec8fbcd44432541c992a613ef90a187056db8c73e37e8",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 13,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6492987000001449,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0013.png",
+      "pixel_sha256": "5c0cc769dcec5adfd58ba9a81ded6d12d6bb21963b42e757b7daba5490eb6822",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 14,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5594086000000971,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0014.png",
+      "pixel_sha256": "72ab0bbeee87d24e27fe28450ab71b7840bd507385c4375040d2295b5328f207",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 15,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8479156000012154,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0015.png",
+      "pixel_sha256": "895f842a2744292b4e7a7ea6935a8a1a04b5a0ec92540eeb50ae9ac3469cfca8",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 16,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6211628000000928,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0016.png",
+      "pixel_sha256": "0531db4fb92d411bba48567ab7bc2aed591f499a7292ea87ff92cdbb8c828f8c",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 17,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8574062999996386,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0017.png",
+      "pixel_sha256": "9560eeee1780fab1f97aa2d75dafc77b4929503a6a4844699367e42959299cfd",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 18,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6965437999988353,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0018.png",
+      "pixel_sha256": "ef712df765ebe7f31177d775fee0d20a583fdafab09cbb0dffc8bbd3e944f0b4",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 19,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7036124000005657,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0019.png",
+      "pixel_sha256": "5477e2d735eb404c27ce55b2473c804dc3c8b345115cf237c3a9c032b99ce0b6",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 20,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6421405999990384,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0020.png",
+      "pixel_sha256": "f7e3d7401e4806288e0f611ffa659dfceb12db891b5298fb43a2da1c32dbe02c",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 21,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8412255000002915,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0021.png",
+      "pixel_sha256": "77f4d635624cd470f1c1d4952172d3a27d4cc781bb347bd1e01d1ba02431b9b3",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 22,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7900635000005423,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0022.png",
+      "pixel_sha256": "d29397e313bad800ec3eab3abf996284a34ba5e769f51ef1e186793ad391be4c",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 23,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6535377000000153,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0023.png",
+      "pixel_sha256": "bd468311932b72991f9ce4f3e83563161ad692059affefa43011d4f4f2f0eaef",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 24,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6527397999998357,
+      "group": "experiments",
+      "image": "experiments/cities/seed-0024.png",
+      "pixel_sha256": "6a4b68834acfda897b9d445740bd4d331464158d181d67bba692426f85ce5908",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 101,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.9190684999994119,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0101.png",
+      "pixel_sha256": "5f0c6923b22b4926ba43c099df639e826fa6bf29641f038b36a7b454f6ad998a",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 102,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8003564000009646,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0102.png",
+      "pixel_sha256": "b12b6dc00f3660f75820530756cef2d3349d8892dc8077f3bfcf57e7cddaacb2",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 103,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.9255333000000974,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0103.png",
+      "pixel_sha256": "834b859471ec04a84ccc23277b3f9b3f6fdbecf6b3f971d0935f27db7042bd4c",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 104,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5177172000003338,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0104.png",
+      "pixel_sha256": "cb03020935af35158f90f08ba1904b54a8fee0369064f0b35877b35052cf0c62",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 105,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8458343999991484,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0105.png",
+      "pixel_sha256": "d4fe7869d70178c9775ace7c365a42cc17e17ce3a1b6244599b28d350759b338",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 106,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5958250000003318,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0106.png",
+      "pixel_sha256": "91830b64e2934e67057140ada98e29de7b3bb2566a276b3b32cf78aab548894d",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 107,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.5703377999998338,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0107.png",
+      "pixel_sha256": "9fca34964c7378518708e3fad937f360f61aca4f98e2be4c79b3195837f18eed",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "engravings",
+      "seed": 108,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6339164999990317,
+      "group": "holdouts",
+      "image": "holdouts/engravings/seed-0108.png",
+      "pixel_sha256": "007d95ea2982c5a94f393d76224209e2266c1e4b1cd6876b8040142f821af04a",
+      "source_sha256": "e83e648c4b611b5ede47eb85ead79dd70f1c95062f93a796670c35391a9fd3cb",
+      "controls": {
+        "fold_scale": 0.5,
+        "level_spacing": 0.5,
+        "directional_bias": 0.5,
+        "mark_density": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 101,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 5.353536099999474,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0101.png",
+      "pixel_sha256": "65eca116ac7778fbc72f171f61a5c714af19625467c7189e9efd3b4c1415f549",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 102,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.366631799999595,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0102.png",
+      "pixel_sha256": "fa2ee6b7a4dba5f97dc72a725329a204d77b19ecb80faa076aaebc4e9b99aa9d",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 103,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 3.269354799998837,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0103.png",
+      "pixel_sha256": "61c17cabea3b5bc70146cf1bd32d3580d223558567c2dd5d163f0124668db7a9",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 104,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 7.4000113000001875,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0104.png",
+      "pixel_sha256": "6163fa247260bb5626f3f43d0d7de718d7fb81e3fb4efba54f3f9223a346a6a0",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 105,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 9.379909999999654,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0105.png",
+      "pixel_sha256": "e39a6a08c1681add8c5db936e3eb1bf5d21f10dbb409db6cc9ed645eaffa62d8",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 106,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 4.877398800001174,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0106.png",
+      "pixel_sha256": "94ad8349df53339e04ba2dc83b86e0ae47563ede79e1443f3adff2b6d78a1263",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 107,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.907500900000741,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0107.png",
+      "pixel_sha256": "116e7ef81a1b45afa8d4a2d1f14581fdfa9c59de6b79db6732ff545be15c1665",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "membranes",
+      "seed": 108,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 6.611365400000068,
+      "group": "holdouts",
+      "image": "holdouts/membranes/seed-0108.png",
+      "pixel_sha256": "eb2ff3c7ab8490f7a989a010377b18a01ed18e455bec34aa43d65c65b0ce577f",
+      "source_sha256": "ee96cd2e5f146e5d637a95d5edd29452e3fadd517a199c52122864560029ef05",
+      "controls": {
+        "growth": 0.5,
+        "repulsion": 0.5,
+        "anisotropy": 0.5,
+        "history": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 101,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.025121399999989,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0101.png",
+      "pixel_sha256": "1c6394c158aeb0067984bbac7d61d8bb595527b0e940f6ed414c92352c4b0831",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 102,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.8037832000009075,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0102.png",
+      "pixel_sha256": "b4503ef8c7b03ad746e2721daebb6c414a457764da1057d3cee316fbb95d98bf",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 103,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.9215192000010575,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0103.png",
+      "pixel_sha256": "7a32a541421b5ded808ba3afb17b3f542e6ddab7e4242431e27f4e805584e62a",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 104,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.163972799999101,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0104.png",
+      "pixel_sha256": "028a3380acd5d88ad109551438d65e0f778fd188f4770e5dc827ba07e221fd25",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 105,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.0958105999998224,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0105.png",
+      "pixel_sha256": "f60b1fd39338aefbe466a9a29608f96d3629add38545cfd420035483f1e84941",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 106,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.871289099999558,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0106.png",
+      "pixel_sha256": "adeec87de50e3a497fb9c33d46d186aa5d32cb64201a7040f46df4e8894494a0",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 107,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 2.090911999999662,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0107.png",
+      "pixel_sha256": "ea95e167e7853c788c22b8a0016dd9f8c22a0eff22f82ff775beba68951102c4",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "attractors",
+      "seed": 108,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.9393921999999293,
+      "group": "holdouts",
+      "image": "holdouts/attractors/seed-0108.png",
+      "pixel_sha256": "35e441ac2a1c4e6d3b1208f37f495f26b7481b17d2d630d26d4691b7c6808f84",
+      "source_sha256": "35d34d79e36731579280e8b3a4cd2716579aca696261c32c6c4085db30ce3e69",
+      "controls": {
+        "complexity": 0.5,
+        "persistence": 0.5,
+        "spread": 0.5,
+        "glow": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 101,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.418627099999867,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0101.png",
+      "pixel_sha256": "66d4e5af1c4e8b07bb3591d5fbaca1fe6eb1f2221d2200eb55a699bd86373bd6",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 102,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4568613000010373,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0102.png",
+      "pixel_sha256": "246c401a14164d5d871220e4fa6a29913f418c5292c943064539634dabbff4cc",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 103,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4286659999997937,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0103.png",
+      "pixel_sha256": "6b476184b582385adcfcb74b74223134904a7e321ee7f5b4d748f998321a048b",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 104,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4248706999987917,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0104.png",
+      "pixel_sha256": "9f9692a2ef1d173fa2d2809b8706e1efd0803d637e0f093723055fa8f1a8946a",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 105,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4380614000001515,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0105.png",
+      "pixel_sha256": "e081a137e4220d3890a3198f391a13208c930b1af613327b667f4701244e3418",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 106,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4223786000002292,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0106.png",
+      "pixel_sha256": "20024736505c7dd7e3f669f26ec268bf0aea99d0fed0454cad846bde1f03b8f5",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 107,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.3777537000005395,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0107.png",
+      "pixel_sha256": "9817f7ed35ae276fb20a38a2d9ad3ef46bc04af2f0f4bdba2e79eb9b24e4da8f",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "geology",
+      "seed": 108,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.4042657999998482,
+      "group": "holdouts",
+      "image": "holdouts/geology/seed-0108.png",
+      "pixel_sha256": "e9925271241d6c43b4ab95a2da80ae2a9f27b571656da73475e4184a196b8fc3",
+      "source_sha256": "b793606047a58af5789208b2a8f15fb626e7b7ed596845de10af74b0884da38f",
+      "controls": {
+        "relief": 0.5,
+        "incision": 0.5,
+        "strata": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 101,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.22302700000000186,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0101.png",
+      "pixel_sha256": "5ed29409e13fc8f27b60e1f63d7d594016ecc4c0113079b5c3b78c669db5e2d7",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 102,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.22492640000018582,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0102.png",
+      "pixel_sha256": "636ef30327ca64f013399319dc88aabc5f2e25d9ff369ecc60789a84dfebf2de",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 103,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2995749000001524,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0103.png",
+      "pixel_sha256": "694ed6a42a042990e9790b1a01885fac5d125e97266e63f0e7059f02291af6cd",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 104,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2718709000000672,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0104.png",
+      "pixel_sha256": "fad5bf5003cbc2dd8533fd42f436cb91009c88ff7b32735fa37c07cc27a7b1b3",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 105,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2068053000002692,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0105.png",
+      "pixel_sha256": "ac9f05dd87e46ba33cd5712de8e6295ea825c8fc3d83cddf724abed43e9e65f0",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 106,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.2200540000012552,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0106.png",
+      "pixel_sha256": "a7718072a438461a98deb937628a75cf905230cd269c13598a0bdd1b40b01286",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 107,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.24517700000069453,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0107.png",
+      "pixel_sha256": "d1e88a8beabf6f71c84a6b74424f4f6554c2d314db13c0e20d6c7d60e24665ca",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "cells",
+      "seed": 108,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.19303349999972852,
+      "group": "holdouts",
+      "image": "holdouts/cells/seed-0108.png",
+      "pixel_sha256": "b1823f00f92deed9d4ce37811862068f351429183043aad6eb683e6d5415841d",
+      "source_sha256": "011f2c2da2461e27c713725a2a08a25971ed9e952a6b1b28dfb80341223dde17",
+      "controls": {
+        "subdivision": 0.5,
+        "gaps": 0.5,
+        "cutouts": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 101,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.2573100999998132,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0101.png",
+      "pixel_sha256": "b9434496868987d7d0f1bdb8b2e51fcee722c64ef43907b90f7e1c0ff7dbcfe3",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 102,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.078193100000135,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0102.png",
+      "pixel_sha256": "8624b60f8bc084978d7f848fe67aa595f3d2122d920bce24d9b6ef16ee2892c2",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 103,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7278337999996438,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0103.png",
+      "pixel_sha256": "8a93e0c6387cb00580e3f1004a0301342de5b3479db05d628f3476075ca9b9c2",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 104,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8389871999988827,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0104.png",
+      "pixel_sha256": "a38160a774bef3a6e0bbb3461dfd3acd00e60ae90720146cdbdf014e2538b8e1",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 105,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.1049722000007023,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0105.png",
+      "pixel_sha256": "4599569e74b49c57fe0607a9692c20740b22f4fb5db77ad9e419ed6e82c3ae93",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 106,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7957995000015217,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0106.png",
+      "pixel_sha256": "d342f8308b46a460fe72199309061c9100b1724928628238060aaad4352de2b8",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 107,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 1.038271800000075,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0107.png",
+      "pixel_sha256": "90b490943ce702b55cbc63331cbe995001429b0c040f8f000494ce1724e9aa3d",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "ecologies",
+      "seed": 108,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.9299670000000333,
+      "group": "holdouts",
+      "image": "holdouts/ecologies/seed-0108.png",
+      "pixel_sha256": "76f57ae6d42ebceb46da3d4a5403f5e135c1799e2f437123534e9401ed5f5622",
+      "source_sha256": "ee4b0c36eda7547c73bb38d86e2e24d2d50d85aa394f0facd2c8ff8c6911d574",
+      "controls": {
+        "density": 0.5,
+        "reach": 0.5,
+        "tropism": 0.5,
+        "taper": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 101,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.4629843000002438,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0101.png",
+      "pixel_sha256": "192afadb4605922cba1e251d8d8df03d4cc38952a2df82cab7fa49c320bc034f",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 102,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.694037399998706,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0102.png",
+      "pixel_sha256": "5e35782a55ded986f346ec3103b950373870009a17d203eaf13d90cfad25e165",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 103,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.4803602000010869,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0103.png",
+      "pixel_sha256": "c0796bc126356cb50eb04e02aa7e60e4d2547630e646ad25261196c300a7024b",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 104,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6436484000005294,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0104.png",
+      "pixel_sha256": "346eafe6190b2ace2d4c37de4082ad1a22cd02c90654120c8793ded22aaebb95",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 105,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6730956999999762,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0105.png",
+      "pixel_sha256": "f2dafde252ee58aa208d0f3d257286e6e4ed0b24e3f7f5a4b2cef629c49449c2",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 106,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.8382827000004909,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0106.png",
+      "pixel_sha256": "d2b72a8f87198228e7b94dd6d9fea1281e9f1a4a3f356f6de4b34fbd33df16df",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 107,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.7616902999998274,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0107.png",
+      "pixel_sha256": "fa434ce04685176a73aa4f1b1b68bef3b3fe9e5ad88f5724cc38250adfc97a3b",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "cities",
+      "seed": 108,
+      "width": 1024,
+      "height": 1024,
+      "render_seconds": 0.6438727999993716,
+      "group": "holdouts",
+      "image": "holdouts/cities/seed-0108.png",
+      "pixel_sha256": "1078130e47ef6564d0c17e34197de6eca5e2e5843ebf2947bdf008a13161be73",
+      "source_sha256": "fb59875e61f72b99432d9f50ff27ec96531d94490edac8ec6a47317f8776ae8e",
+      "controls": {
+        "density": 0.5,
+        "water": 0.5,
+        "order": 0.5
+      }
+    },
+    {
+      "generator": "perlin",
+      "seed": 1,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 16.478,
+      "group": "originals",
+      "image": "originals/perlin/seed-0001.png",
+      "pixel_sha256": "3340a93d8e8beb609ed8edeb96206a53d95116324701480f2de646f56d922693",
+      "mode": "normal-native-defaults",
+      "ticks": 1223,
+      "work": 36151648,
+      "setup_seconds": 1.52064
+    },
+    {
+      "generator": "perlin",
+      "seed": 2,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 23.7716,
+      "group": "originals",
+      "image": "originals/perlin/seed-0002.png",
+      "pixel_sha256": "9c46033f5a773a6a5c461da57c8be5def209fcfd222ce21b21765fdefcaa8b0d",
+      "mode": "normal-native-defaults",
+      "ticks": 930,
+      "work": 48735340,
+      "setup_seconds": 0.941025
+    },
+    {
+      "generator": "perlin",
+      "seed": 3,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 16.8078,
+      "group": "originals",
+      "image": "originals/perlin/seed-0003.png",
+      "pixel_sha256": "3cb17288d121119d0d1cf2b234489867522fb84f6fbd374a95b913e3fd3575cf",
+      "mode": "normal-native-defaults",
+      "ticks": 552,
+      "work": 28905460,
+      "setup_seconds": 0.974414
+    },
+    {
+      "generator": "perlin",
+      "seed": 4,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 26.7011,
+      "group": "originals",
+      "image": "originals/perlin/seed-0004.png",
+      "pixel_sha256": "60510ffa95e75cc4d5de3ef9cd874f42019de7d1b0847d606bb00f9d85d5dbf8",
+      "mode": "normal-native-defaults",
+      "ticks": 1983,
+      "work": 58635488,
+      "setup_seconds": 1.45651
+    },
+    {
+      "generator": "perlin",
+      "seed": 5,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 16.6991,
+      "group": "originals",
+      "image": "originals/perlin/seed-0005.png",
+      "pixel_sha256": "70098f1f8af5efba6c8087fd15a24966960cb00f8d3ca51d5295c4a46241643c",
+      "mode": "normal-native-defaults",
+      "ticks": 852,
+      "work": 44643460,
+      "setup_seconds": 0.926438
+    },
+    {
+      "generator": "perlin",
+      "seed": 6,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 23.2522,
+      "group": "originals",
+      "image": "originals/perlin/seed-0006.png",
+      "pixel_sha256": "0b9fd93aee3fb016776a9e6dda789cc767d7c62ac9c50ed78cffb47e10213c3e",
+      "mode": "normal-native-defaults",
+      "ticks": 2637,
+      "work": 77983424,
+      "setup_seconds": 1.16988
+    },
+    {
+      "generator": "perlin",
+      "seed": 7,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 29.0634,
+      "group": "originals",
+      "image": "originals/perlin/seed-0007.png",
+      "pixel_sha256": "e3396251cebb69b7ccdcbfef6f91580ec1c8443246d5cac4e21fc08faa7b3165",
+      "mode": "normal-native-defaults",
+      "ticks": 1117,
+      "work": 58545360,
+      "setup_seconds": 1.31073
+    },
+    {
+      "generator": "perlin",
+      "seed": 8,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 28.818,
+      "group": "originals",
+      "image": "originals/perlin/seed-0008.png",
+      "pixel_sha256": "b85d8c9ebcf94650fb05948d8fbe112ea3930a2f00283a3ca98b90f3d665faf0",
+      "mode": "normal-native-defaults",
+      "ticks": 1707,
+      "work": 89496760,
+      "setup_seconds": 1.30999
+    },
+    {
+      "generator": "perlin",
+      "seed": 9,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 18.0612,
+      "group": "originals",
+      "image": "originals/perlin/seed-0009.png",
+      "pixel_sha256": "f64d1f0f13ee779ea7920ff62c8137c23b5ce42bde36039fb423b3071785db15",
+      "mode": "normal-native-defaults",
+      "ticks": 873,
+      "work": 45745120,
+      "setup_seconds": 1.32205
+    },
+    {
+      "generator": "perlin",
+      "seed": 10,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 29.7985,
+      "group": "originals",
+      "image": "originals/perlin/seed-0010.png",
+      "pixel_sha256": "8d7121e8c3f615683e989f8fa3c2a29d96691020f36e6840744e7837001176e9",
+      "mode": "normal-native-defaults",
+      "ticks": 1652,
+      "work": 86611460,
+      "setup_seconds": 0.952343
+    },
+    {
+      "generator": "perlin",
+      "seed": 11,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 23.2053,
+      "group": "originals",
+      "image": "originals/perlin/seed-0011.png",
+      "pixel_sha256": "e453b4209de28963f19f245800f22a94050246b0c16fb9ea1d7627e0dc21eff0",
+      "mode": "normal-native-defaults",
+      "ticks": 638,
+      "work": 33417020,
+      "setup_seconds": 1.16722
+    },
+    {
+      "generator": "perlin",
+      "seed": 12,
+      "width": 2048,
+      "height": 1152,
+      "render_seconds": 19.6737,
+      "group": "originals",
+      "image": "originals/perlin/seed-0012.png",
+      "pixel_sha256": "b6ae5a37794e7e863bd417ae67f7589f21fb88df4a56703b85ab9165cedef58f",
+      "mode": "normal-native-defaults",
+      "ticks": 1059,
+      "work": 55502680,
+      "setup_seconds": 1.30598
+    },
+    {
+      "generator": "fractal",
+      "seed": 1,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0118,
+      "group": "originals",
+      "image": "originals/fractal/seed-0001.png",
+      "pixel_sha256": "7ef3eb1e0d96d1bd1f6ab4a73b204f7ea7ce3a1fd104828d7a006901be5faa4b",
+      "mode": "normal-native-defaults",
+      "ticks": 2315,
+      "work": 48594000,
+      "setup_seconds": 0.985657
+    },
+    {
+      "generator": "fractal",
+      "seed": 2,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0071,
+      "group": "originals",
+      "image": "originals/fractal/seed-0002.png",
+      "pixel_sha256": "39bea538131224d863538ff4e6fd617907fb5be70992622cd60bf862ee580519",
+      "mode": "normal-native-defaults",
+      "ticks": 2305,
+      "work": 20736000,
+      "setup_seconds": 0.870411
+    },
+    {
+      "generator": "fractal",
+      "seed": 3,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0009,
+      "group": "originals",
+      "image": "originals/fractal/seed-0003.png",
+      "pixel_sha256": "86039f86e5197ae12b71d050c375b4f2ce897e52973fe6b32dfb06f187db34f8",
+      "mode": "normal-native-defaults",
+      "ticks": 2284,
+      "work": 27396000,
+      "setup_seconds": 1.0416
+    },
+    {
+      "generator": "fractal",
+      "seed": 4,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0041,
+      "group": "originals",
+      "image": "originals/fractal/seed-0004.png",
+      "pixel_sha256": "bbf2dafde5e39e546e25b80b1648eee6ba69a5d46a9d5544c78a8ff18e89d36b",
+      "mode": "normal-native-defaults",
+      "ticks": 2332,
+      "work": 20979000,
+      "setup_seconds": 0.796105
+    },
+    {
+      "generator": "fractal",
+      "seed": 5,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0139,
+      "group": "originals",
+      "image": "originals/fractal/seed-0005.png",
+      "pixel_sha256": "594ceb5c86bdf48ed73cb0cbbdcd173022b66e458c87aba901737d8ae6651acb",
+      "mode": "normal-native-defaults",
+      "ticks": 2317,
+      "work": 34740000,
+      "setup_seconds": 0.683743
+    },
+    {
+      "generator": "fractal",
+      "seed": 6,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0117,
+      "group": "originals",
+      "image": "originals/fractal/seed-0006.png",
+      "pixel_sha256": "955bb4db8142c5c54c258b5b31c493a058ae03426e2aafe23609613faa7c2aca",
+      "mode": "normal-native-defaults",
+      "ticks": 2326,
+      "work": 41850000,
+      "setup_seconds": 0.845434
+    },
+    {
+      "generator": "fractal",
+      "seed": 7,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0135,
+      "group": "originals",
+      "image": "originals/fractal/seed-0007.png",
+      "pixel_sha256": "28ebbffe31eb7989ccd1b2bfbc8befd434a7bbac98954b2185d182347120ae46",
+      "mode": "normal-native-defaults",
+      "ticks": 2322,
+      "work": 27852000,
+      "setup_seconds": 0.697531
+    },
+    {
+      "generator": "fractal",
+      "seed": 8,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0023,
+      "group": "originals",
+      "image": "originals/fractal/seed-0008.png",
+      "pixel_sha256": "feb715b45b00c56bb79fef473715f8d779f065c92f85fbfbb259c58a8a961091",
+      "mode": "normal-native-defaults",
+      "ticks": 1329,
+      "work": 27888000,
+      "setup_seconds": 1.10983
+    },
+    {
+      "generator": "fractal",
+      "seed": 9,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0018,
+      "group": "originals",
+      "image": "originals/fractal/seed-0009.png",
+      "pixel_sha256": "688018ea704fb559a5ab61d5b9dab6d9a806fb587b63b7893de589803e2f8c42",
+      "mode": "normal-native-defaults",
+      "ticks": 1383,
+      "work": 20730000,
+      "setup_seconds": 0.830387
+    },
+    {
+      "generator": "fractal",
+      "seed": 10,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0204,
+      "group": "originals",
+      "image": "originals/fractal/seed-0010.png",
+      "pixel_sha256": "c783406cbe6440bc76229b6c519ac1a28c7a0a075159c01bf0f5c8461efbf232",
+      "mode": "normal-native-defaults",
+      "ticks": 1356,
+      "work": 24390000,
+      "setup_seconds": 0.736734
+    },
+    {
+      "generator": "fractal",
+      "seed": 11,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0201,
+      "group": "originals",
+      "image": "originals/fractal/seed-0011.png",
+      "pixel_sha256": "4ed41b23a2626ca2394b775f1680e397c768659bc260e4eaab2482f52b92f996",
+      "mode": "normal-native-defaults",
+      "ticks": 1361,
+      "work": 16320000,
+      "setup_seconds": 0.738887
+    },
+    {
+      "generator": "fractal",
+      "seed": 12,
+      "width": 2000,
+      "height": 2000,
+      "render_seconds": 40.0211,
+      "group": "originals",
+      "image": "originals/fractal/seed-0012.png",
+      "pixel_sha256": "087aa3da49de2f3c2a0f16a3078c814add05ec791df8e9eed2fa10b44c03f0ba",
+      "mode": "normal-native-defaults",
+      "ticks": 1399,
+      "work": 25164000,
+      "setup_seconds": 1.10117
+    },
+    {
+      "generator": "circle",
+      "seed": 1,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0056,
+      "group": "originals",
+      "image": "originals/circle/seed-0001.png",
+      "pixel_sha256": "43c0f509e8d737537dca483ac66985e6ed3000183104b54a8448fab8ef705690",
+      "mode": "normal-native-defaults",
+      "ticks": 2795,
+      "work": 1908483610,
+      "setup_seconds": 0.90847
+    },
+    {
+      "generator": "circle",
+      "seed": 2,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0004,
+      "group": "originals",
+      "image": "originals/circle/seed-0002.png",
+      "pixel_sha256": "77c0a0e69cfaf9617028bcc9bf0b81b93021da7e6510a73b33107824fe7892b8",
+      "mode": "normal-native-defaults",
+      "ticks": 2666,
+      "work": 1835068365,
+      "setup_seconds": 0.856192
+    },
+    {
+      "generator": "circle",
+      "seed": 3,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0196,
+      "group": "originals",
+      "image": "originals/circle/seed-0003.png",
+      "pixel_sha256": "b276d5b489935b697acd9a44b5a9f68581c8c6a53e9f367e2db00bbc8fab60cb",
+      "mode": "normal-native-defaults",
+      "ticks": 2280,
+      "work": 1837755973,
+      "setup_seconds": 0.958215
+    },
+    {
+      "generator": "circle",
+      "seed": 4,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0229,
+      "group": "originals",
+      "image": "originals/circle/seed-0004.png",
+      "pixel_sha256": "7042dff162f4fb3696477a773be2492e9c5316b35d67bf829681a6c283cc909e",
+      "mode": "normal-native-defaults",
+      "ticks": 2079,
+      "work": 1997261388,
+      "setup_seconds": 0.723736
+    },
+    {
+      "generator": "circle",
+      "seed": 5,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0051,
+      "group": "originals",
+      "image": "originals/circle/seed-0005.png",
+      "pixel_sha256": "495bb5658e0caf7c40d7fbfbaa326c3427aabade98ef20383b37018025add727",
+      "mode": "normal-native-defaults",
+      "ticks": 3536,
+      "work": 565600000,
+      "setup_seconds": 0.705228
+    },
+    {
+      "generator": "circle",
+      "seed": 6,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0055,
+      "group": "originals",
+      "image": "originals/circle/seed-0006.png",
+      "pixel_sha256": "383861b6ba7dbd03c601c6da50657d2b1ea5073fb65c0ab81b421d336d813425",
+      "mode": "normal-native-defaults",
+      "ticks": 2526,
+      "work": 1781753625,
+      "setup_seconds": 0.936752
+    },
+    {
+      "generator": "circle",
+      "seed": 7,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.011,
+      "group": "originals",
+      "image": "originals/circle/seed-0007.png",
+      "pixel_sha256": "65527d7a37f059688b49e2f1e65933eb7b38afe0b9f8903df03b4f9d294af7e3",
+      "mode": "normal-native-defaults",
+      "ticks": 3116,
+      "work": 1741387795,
+      "setup_seconds": 0.714893
+    },
+    {
+      "generator": "circle",
+      "seed": 8,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0002,
+      "group": "originals",
+      "image": "originals/circle/seed-0008.png",
+      "pixel_sha256": "b5a5e8b58aa95e2063573073b3275225990289ccbc367778cee56b57e55b2e4c",
+      "mode": "normal-native-defaults",
+      "ticks": 2649,
+      "work": 1791260784,
+      "setup_seconds": 0.99037
+    },
+    {
+      "generator": "circle",
+      "seed": 9,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0022,
+      "group": "originals",
+      "image": "originals/circle/seed-0009.png",
+      "pixel_sha256": "7ac046d66f29090b1af0806fb5ca05a216872561135415c1ac5e682f621a4d53",
+      "mode": "normal-native-defaults",
+      "ticks": 2956,
+      "work": 2085958140,
+      "setup_seconds": 0.561477
+    },
+    {
+      "generator": "circle",
+      "seed": 10,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0161,
+      "group": "originals",
+      "image": "originals/circle/seed-0010.png",
+      "pixel_sha256": "b34f4be6a76ade2227301d24ac06d7a4db794f7a1a0068b599d6c1e5f20299a3",
+      "mode": "normal-native-defaults",
+      "ticks": 2464,
+      "work": 1820622507,
+      "setup_seconds": 0.71079
+    },
+    {
+      "generator": "circle",
+      "seed": 11,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0177,
+      "group": "originals",
+      "image": "originals/circle/seed-0011.png",
+      "pixel_sha256": "44070b5ff276a53a6888bf87acf2d96bf253235be9bf428d56c6f5432def442c",
+      "mode": "normal-native-defaults",
+      "ticks": 1859,
+      "work": 1936792206,
+      "setup_seconds": 0.745282
+    },
+    {
+      "generator": "circle",
+      "seed": 12,
+      "width": 1800,
+      "height": 1800,
+      "render_seconds": 60.0439,
+      "group": "originals",
+      "image": "originals/circle/seed-0012.png",
+      "pixel_sha256": "b2788645a25468f2f94436bf42f2db15a037b6f6af2389f923498bc960d92fcb",
+      "mode": "normal-native-defaults",
+      "ticks": 1193,
+      "work": 1633725400,
+      "setup_seconds": 0.742265
+    },
+    {
+      "generator": "fujii",
+      "seed": 1,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0064,
+      "group": "originals",
+      "image": "originals/fujii/seed-0001.png",
+      "pixel_sha256": "46492187414decd42b1ed2d4d9698434ffc7c757faf7bd4dc734e1cf980e3b48",
+      "mode": "normal-native-defaults",
+      "ticks": 1751,
+      "work": 35000000,
+      "setup_seconds": 0.73141
+    },
+    {
+      "generator": "fujii",
+      "seed": 2,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.004,
+      "group": "originals",
+      "image": "originals/fujii/seed-0002.png",
+      "pixel_sha256": "186ca0e264ad850cf46d61b7ec54130b609fcebf57ea9499e776a8abd746588e",
+      "mode": "normal-native-defaults",
+      "ticks": 1751,
+      "work": 35000000,
+      "setup_seconds": 0.699964
+    },
+    {
+      "generator": "fujii",
+      "seed": 3,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0058,
+      "group": "originals",
+      "image": "originals/fujii/seed-0003.png",
+      "pixel_sha256": "5fd2e85a3a5408efd852f5a3b8d9f79e5d12d2a65a701a752c9515747f788dee",
+      "mode": "normal-native-defaults",
+      "ticks": 1729,
+      "work": 34560000,
+      "setup_seconds": 1.03212
+    },
+    {
+      "generator": "fujii",
+      "seed": 4,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0015,
+      "group": "originals",
+      "image": "originals/fujii/seed-0004.png",
+      "pixel_sha256": "2cee3c436acb4fa80f564ba067571fe1e997b341251956098dc1042d06161da3",
+      "mode": "normal-native-defaults",
+      "ticks": 1764,
+      "work": 35260000,
+      "setup_seconds": 0.673313
+    },
+    {
+      "generator": "fujii",
+      "seed": 5,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0125,
+      "group": "originals",
+      "image": "originals/fujii/seed-0005.png",
+      "pixel_sha256": "6893dedb1b75a80bb7beee2672beb8e58a41378075cbea89fb34f4c5f3dc0e7b",
+      "mode": "normal-native-defaults",
+      "ticks": 1748,
+      "work": 34940000,
+      "setup_seconds": 0.662257
+    },
+    {
+      "generator": "fujii",
+      "seed": 6,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0155,
+      "group": "originals",
+      "image": "originals/fujii/seed-0006.png",
+      "pixel_sha256": "5090c8485b970a186e6ee085c4dabada0f544c2e922de0bc7f5f1b14323107bc",
+      "mode": "normal-native-defaults",
+      "ticks": 1731,
+      "work": 34600000,
+      "setup_seconds": 0.92482
+    },
+    {
+      "generator": "fujii",
+      "seed": 7,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0096,
+      "group": "originals",
+      "image": "originals/fujii/seed-0007.png",
+      "pixel_sha256": "41a4b02402e2072be0718cad249b74299c9c7699cc4143a2f31b2473e7c8b026",
+      "mode": "normal-native-defaults",
+      "ticks": 1755,
+      "work": 35080000,
+      "setup_seconds": 0.656203
+    },
+    {
+      "generator": "fujii",
+      "seed": 8,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0165,
+      "group": "originals",
+      "image": "originals/fujii/seed-0008.png",
+      "pixel_sha256": "c8af86b75cb1359f1152caaed75612c850acbdf3d9d92c1c09c60ecb4be793f2",
+      "mode": "normal-native-defaults",
+      "ticks": 1003,
+      "work": 20040000,
+      "setup_seconds": 1.15717
+    },
+    {
+      "generator": "fujii",
+      "seed": 9,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.015,
+      "group": "originals",
+      "image": "originals/fujii/seed-0009.png",
+      "pixel_sha256": "1fce2a713800b04ede19092aebeb6c65c99bad92b2519266c0049af442b88471",
+      "mode": "normal-native-defaults",
+      "ticks": 1051,
+      "work": 21000000,
+      "setup_seconds": 0.579122
+    },
+    {
+      "generator": "fujii",
+      "seed": 10,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0163,
+      "group": "originals",
+      "image": "originals/fujii/seed-0010.png",
+      "pixel_sha256": "e35f27dc2e18b73a7e21ee1980e7eaeb5096f14cb814ba5080e31b9d485073e8",
+      "mode": "normal-native-defaults",
+      "ticks": 1044,
+      "work": 20860000,
+      "setup_seconds": 0.695186
+    },
+    {
+      "generator": "fujii",
+      "seed": 11,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0098,
+      "group": "originals",
+      "image": "originals/fujii/seed-0011.png",
+      "pixel_sha256": "7013be6070bef8ee97d44cb873bfdb469f2653678f1c0f224f2dbb7928c66ab4",
+      "mode": "normal-native-defaults",
+      "ticks": 1064,
+      "work": 21260000,
+      "setup_seconds": 0.633546
+    },
+    {
+      "generator": "fujii",
+      "seed": 12,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0077,
+      "group": "originals",
+      "image": "originals/fujii/seed-0012.png",
+      "pixel_sha256": "57b3afcc398eb44609162b6da64fb6e0d7bb96d935ebf669298c062258c0f1b7",
+      "mode": "normal-native-defaults",
+      "ticks": 954,
+      "work": 19060000,
+      "setup_seconds": 0.951136
+    },
+    {
+      "generator": "galaxies",
+      "seed": 1,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0089,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0001.png",
+      "pixel_sha256": "ace09e4b9c77f084a7459ba3bf87a5914eb806a6f925813a751cf463f5386898",
+      "mode": "normal-native-defaults",
+      "ticks": 1637,
+      "work": 80241616,
+      "setup_seconds": 0.848882
+    },
+    {
+      "generator": "galaxies",
+      "seed": 2,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0117,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0002.png",
+      "pixel_sha256": "bb79820e13c0af55b76340c54784ec54028803eefae9e9cedd3e79248bf76fa1",
+      "mode": "normal-native-defaults",
+      "ticks": 1571,
+      "work": 77033620,
+      "setup_seconds": 0.708562
+    },
+    {
+      "generator": "galaxies",
+      "seed": 3,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0136,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0003.png",
+      "pixel_sha256": "90d05ab8d2756a2b2bd21aee68030b049b2d9012af5f8769fcac986b813f0a35",
+      "mode": "normal-native-defaults",
+      "ticks": 1695,
+      "work": 83060764,
+      "setup_seconds": 0.923061
+    },
+    {
+      "generator": "galaxies",
+      "seed": 4,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.002,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0004.png",
+      "pixel_sha256": "8b1bb234fad6c43eaa4af453d1fde7721f97a430b921d16ccc02241442ef2c57",
+      "mode": "normal-native-defaults",
+      "ticks": 1732,
+      "work": 84859186,
+      "setup_seconds": 0.773488
+    },
+    {
+      "generator": "galaxies",
+      "seed": 5,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0155,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0005.png",
+      "pixel_sha256": "c25c83638aecb7fbdc8ac2383b581aec06a7c1f4e417f802aea2be46b452879a",
+      "mode": "normal-native-defaults",
+      "ticks": 1705,
+      "work": 83546824,
+      "setup_seconds": 0.831179
+    },
+    {
+      "generator": "galaxies",
+      "seed": 6,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0001,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0006.png",
+      "pixel_sha256": "80d77b1afe2b5c013ecc3835e5467e345884d3cc2d6b5300de32b8d44b5d0660",
+      "mode": "normal-native-defaults",
+      "ticks": 1654,
+      "work": 81067918,
+      "setup_seconds": 0.910134
+    },
+    {
+      "generator": "galaxies",
+      "seed": 7,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0211,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0007.png",
+      "pixel_sha256": "5e1abb3966bbcd84ab277541014ee7da894f18b3550c397acbbb3a93ac9b35ca",
+      "mode": "normal-native-defaults",
+      "ticks": 1407,
+      "work": 69062236,
+      "setup_seconds": 1.0236
+    },
+    {
+      "generator": "galaxies",
+      "seed": 8,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0231,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0008.png",
+      "pixel_sha256": "55faf49e9f47116420bf296282fc93b6deef071ade22e25233764af7efd465b0",
+      "mode": "normal-native-defaults",
+      "ticks": 1239,
+      "work": 60896428,
+      "setup_seconds": 0.933466
+    },
+    {
+      "generator": "galaxies",
+      "seed": 9,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0124,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0009.png",
+      "pixel_sha256": "d3653698148e05eecb1048b701ef4fd94f7615b08a05aade889fc5eb0599f2e5",
+      "mode": "normal-native-defaults",
+      "ticks": 1198,
+      "work": 58903582,
+      "setup_seconds": 0.749878
+    },
+    {
+      "generator": "galaxies",
+      "seed": 10,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.012,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0010.png",
+      "pixel_sha256": "84479f4513b1a84402d50132503ba9370d92f5d51e04760f67db63c423e200f5",
+      "mode": "normal-native-defaults",
+      "ticks": 1356,
+      "work": 66583330,
+      "setup_seconds": 0.874922
+    },
+    {
+      "generator": "galaxies",
+      "seed": 11,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0006,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0011.png",
+      "pixel_sha256": "f1e3f0559808b7a3177350aabe898657014fbf7f30a2501963b84b861f9fde06",
+      "mode": "normal-native-defaults",
+      "ticks": 1339,
+      "work": 65757028,
+      "setup_seconds": 0.814801
+    },
+    {
+      "generator": "galaxies",
+      "seed": 12,
+      "width": 2048,
+      "height": 2048,
+      "render_seconds": 30.0049,
+      "group": "originals",
+      "image": "originals/galaxies/seed-0012.png",
+      "pixel_sha256": "14000e12d96ade9ddbb282beaa70871918e07fc055b08f76b5ed0636a9eb45fa",
+      "mode": "normal-native-defaults",
+      "ticks": 1489,
+      "work": 73047928,
+      "setup_seconds": 0.965867
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 # Generator research: learning from the originals
 
-Research brief, 2 October 2026. Work belongs on `agent/generator-experiments`, branched from the cleaned optimization PR at `38995bc`. Magnetic Loom has been removed. The ideas below are proposals, with no replacement generator integrated or artistic results claimed.
+Research brief, 2 October 2026. Work belongs on `agent/generator-experiments`, branched from the cleaned optimization PR at `38995bc`. Magnetic Loom has been removed. The ideas below record the original proposals.
+
+**Implementation update, 3 October:** all seven directions now have standalone seeded studies, 284 comparison images, and an [aesthetic review with complete color/grayscale seed sheets](experiments/README.md). See the [runbook](../experiments/README.md) to reproduce them. No experimental generator has been integrated into the native app.
 
 ## What the originals get right
 

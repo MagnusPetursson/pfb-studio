@@ -10,6 +10,13 @@ A native generative art application that explores procedural creation through mu
 - **Fujii Attractor** – Strange attractor-based visualizations
 - **Galaxies** – Particle systems simulating stellar structures
 
+## Generator experiments
+
+The separate `agent/generator-experiments` branch contains seven standalone
+[generator studies](experiments/README.md) and a [visual review with complete seed
+sheets](docs/experiments/README.md). They are research tools; the native application
+continues to expose the five generators above.
+
 ## History
 
 PFB Studio is a fork of [PerlinFieldBot](https://github.com/MagnusPetursson/perlinfieldbot), which was originally a Discord bot for generative art creation. This project replaces the bot interface with a native C++ desktop application, making the generators accessible as a standalone studio with reproducible builds for direct distribution.

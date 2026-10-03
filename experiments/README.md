@@ -9,6 +9,10 @@ These are actual seeded algorithms, not image-generation prompts or stored prese
 See [the research brief](../docs/generator-research.md) for their provenance and
 intended visual range.
 
+The [completed visual review](../docs/experiments/README.md) includes 24 default
+seeds and eight additional seeds per study, twelve native references per original,
+color/grayscale sheets, and the observed strengths and limitations of each direction.
+
 ## Setup
 
 Use Python 3.10 or later. From the repository root:
