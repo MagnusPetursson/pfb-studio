@@ -6,9 +6,12 @@ Three Perlin scalar potentials define a vector potential; central differences
 produce its curl. A padded, nonperiodic grid is sampled with trilinear
 interpolation and translated slowly through time. Sheet particles move with
 midpoint integration, then a seeded orthographic camera projects their folds.
-Density comes only from projected transported particles, with no blur, bloom,
-paper, grain overlay, or radial emitter. This is an artistic transport model,
-not a fluid solver. Numerical interpolation only approximates a continuous curl.
+Density comes only from projected transported particles. Seeded material
+coordinates travel with those particles, so the restrained color finish follows
+the folded sheets. Optional highlight bloom, fine grain, and local detail act
+on the deposited light; setting finish to zero restores the monochrome study.
+This is an artistic transport model, not a fluid solver. Numerical interpolation
+only approximates a continuous curl.
 """
 from __future__ import annotations
 
@@ -16,13 +19,15 @@ import math
 import numpy as np
 from scipy.ndimage import map_coordinates
 
-from .perlin_common import Perlin, density_image, splat
+from .perlin_common import Perlin, splat
+from .perlin_finish import finish_density, material_coordinate
 
 TITLE = "Folded veils"
-DESCRIPTION = "Irregular particle sheets fold through three-dimensional Perlin flow, leaving pale wisps on black."
+DESCRIPTION = "Irregular particle sheets fold through three-dimensional Perlin flow, carrying delicate color through wisps on black."
 CONTROLS = {
     "folding": {"default": 0.5, "label": "Folding time"},
     "complexity": {"default": 0.5, "label": "Fine flow strength"},
+    "finish": {"default": 1.0, "label": "Color and finish"},
 }
 
 
@@ -125,6 +130,9 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
     camera, _ = np.linalg.qr(rng.normal(size=(3, 3)))
     camera_offset = rng.uniform(-0.055, 0.055, 2)
     points, sources = _make_sheets(seed)
+    # A passive material coordinate is evaluated once, before transport.
+    # Its independent seeded field cannot consume the layout or flow RNG.
+    material = material_coordinate(seed, *points.T)
     initial_count = len(points)
     initial_bounds = [points.min(axis=0).tolist(), points.max(axis=0).tolist()]
     steps = int(66 + 76 * c["folding"])
@@ -145,13 +153,14 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         return p + velocity(middle, t + h / 2) * h
 
     def keep_interior(p, t):
-        nonlocal escaped
+        nonlocal escaped, material
         # Discard before the padded field edge; never wrap or clamp a
         # particle into an artificial wall. Apply this to every advance,
         # including the close time samples used for light deposition.
         interior = (np.abs(p + drift * t) < half_extent - spacing * 3).all(axis=1)
         escaped += int(np.count_nonzero(~interior))
         p = p[interior]
+        material = material[interior]
         if not len(p):
             raise RuntimeError("All veil particles escaped the padded flow domain")
         return p
@@ -165,8 +174,10 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
     # Eight nearby physical time samples improve density without painting a
     # long exposure through the entire volume occupied during sheet folding.
     snapshots = []
+    material_snapshots = []
     for sample in range(8):
         snapshots.append(points @ camera[:, :2])
+        material_snapshots.append(material)
         if sample < 7:
             points = advance(points, time, 0.0015)
             time += 0.0015
@@ -179,10 +190,13 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
     center = (low + high) / 2
     destination = canvas_extent / 2 + camera_offset
     density = np.zeros((height, width), dtype=np.float64)
-    for snapshot in snapshots:
+    color_density = np.zeros_like(density)
+    for snapshot, coordinate in zip(snapshots, material_snapshots):
         projected = ((snapshot - center) * fit + destination) * min(width, height)
         splat(density, projected[:, 0], projected[:, 1], 1.0 / len(snapshots))
-    image = density_image(density)
+        splat(color_density, projected[:, 0], projected[:, 1], coordinate / len(snapshots))
+    image, finish_metadata = finish_density(density, seed, color_density=color_density,
+                                           strength=c["finish"], grain=0.04, bloom=0.06, detail=0.12)
     return image, {
         "study": "folded_veils", "seed": int(seed), "controls": c,
         "particles": initial_count, "retained_particles": len(points),
@@ -199,5 +213,7 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         "finite_geometry": bool(np.isfinite(points).all()),
         "positive_density_pixels": int(np.count_nonzero(density)),
         "black_pixels": int(np.count_nonzero(np.all(np.asarray(image) == 0, axis=2))),
+        "finish": finish_metadata,
+        "material_coordinate_bounds": [float(material.min()), float(material.max())],
         "algorithm": "irregular particle sheets advected through translated 3D Perlin curl",
     }

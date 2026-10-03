@@ -37,7 +37,9 @@ class InertialFilamentTests(unittest.TestCase):
             self.assertTrue(np.isfinite(history).all())
             self.assertTrue(np.isfinite(weights).all())
             self.assertTrue((weights >= 0).all())
-            self.assertEqual(metadata["escaped_particle_count"], 0)
+            self.assertLessEqual(float(np.abs(history).max()), study._DOMAIN)
+            self.assertGreaterEqual(metadata["escaped_particle_count"], 0)
+            self.assertLessEqual(metadata["escaped_particle_count"], history.shape[1])
             json.dumps(metadata, allow_nan=False)
 
     def test_exact_replay_and_resolution_independent_world(self):
@@ -53,9 +55,27 @@ class InertialFilamentTests(unittest.TestCase):
         pixels = np.asarray(larger)
         self.assertTrue((pixels == 0).all(axis=2).any())
         self.assertGreater(int(pixels.max()), 100)
+        monochrome, unstyled = study.render(1, 192, 128, {"finish": 0})
+        self.assertEqual(second["trajectory_sha256"], unstyled["trajectory_sha256"])
+        self.assertEqual(second["density_sha256"], unstyled["density_sha256"])
+        self.assertEqual(second["material_sha256"], unstyled["material_sha256"])
+        self.assertNotEqual(larger.tobytes(), monochrome.tobytes())
+        pixels = np.asarray(monochrome)
         self.assertTrue((pixels[:, :, 0] <= pixels[:, :, 1]).all())
         self.assertTrue((pixels[:, :, 1] <= pixels[:, :, 2]).all())
         json.dumps(second, allow_nan=False)
+
+    def test_single_curtain_is_an_area_with_continuous_response_times(self):
+        program = study._program(1)
+        program["emitters"] = program["emitters"][:1]
+        origin, _, strength, response, _, count, _ = study._launch(1, program, study._settings(None))
+        covariance = np.cov(origin[:count].T)
+        self.assertGreater(float(np.linalg.eigvalsh(covariance).min()), 0.002)
+        self.assertGreater(float(strength[:count].std()), 0.05)
+        # Distinct response times cover a continuum inside each cohort.
+        for cohort in response.reshape(3, count):
+            self.assertGreater(len(np.unique(cohort)), count * 0.95)
+            self.assertGreater(float(cohort.max() / cohort.min()), 1.8)
 
     def test_seeds_change_field_and_emitter_configuration(self):
         a, b = study._program(1), study._program(2)
@@ -73,6 +93,9 @@ class InertialFilamentTests(unittest.TestCase):
         np.testing.assert_allclose(moved[1], (0.0, 0.01))
         still, _ = study._advance_particles(moved, -velocity, ~escaped, 0.1)
         np.testing.assert_array_equal(still[0], position[0])
+        fade = study._boundary_weight(np.array(((0, 0), (study._DOMAIN - 0.4, 0),
+                                                (study._DOMAIN, 0))))
+        np.testing.assert_allclose(fade, (1, 0.5, 0), atol=1e-12)
 
     def test_invalid_controls_and_dimensions_fail(self):
         for name in study.CONTROLS:

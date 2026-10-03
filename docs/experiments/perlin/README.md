@@ -1,5 +1,10 @@
 # Three minimal Perlin studies
 
+**User verdict:** folded veils is good; branched light needs color and less
+smooth material; inertial filaments needs broader texture. All three are viable
+for refinement. This page preserves the first test at commit `5bc43b4`; see the
+[color and texture refinement](../perlin-refinement/README.md) for the next pass.
+
 3 October 2026 · `agent/generator-experiments`
 
 The brief is thin, wispy forms and interesting deposited textures driven by

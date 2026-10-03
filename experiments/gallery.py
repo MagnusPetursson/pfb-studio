@@ -17,7 +17,8 @@ TITLES = {
 }
 
 PERLIN_GROUPS = ("experiments/folded_veils", "experiments/branched_light",
-                 "experiments/inertial_filaments", "originals/perlin",
+                 "experiments/inertial_filaments", "baseline/folded_veils",
+                 "baseline/branched_light", "baseline/inertial_filaments", "originals/perlin",
                  "originals/fujii", "experiments/attractors")
 
 
@@ -86,7 +87,7 @@ figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radi
 const $=id=>document.getElementById(id), selectNames=['left','right'];
 for(const id of selectNames)for(const [key,g] of Object.entries(groups)){const o=new Option(g.title,key);$(id).add(o)}
 $('left').value=groups['experiments/folded_veils']?'experiments/folded_veils':groups['experiments/attractors']?'experiments/attractors':Object.keys(groups)[0];
-$('right').value=groups['experiments/folded_veils']&&groups['originals/perlin']?'originals/perlin':groups['originals/fractal']?'originals/fractal':Object.keys(groups).at(-1);
+$('right').value=groups['baseline/folded_veils']?'baseline/folded_veils':groups['experiments/folded_veils']&&groups['originals/perlin']?'originals/perlin':groups['originals/fractal']?'originals/fractal':Object.keys(groups).at(-1);
 function seeds(){const previous=$('seed').value,a=groups[$('left').value],b=groups[$('right').value];const common=a.images.filter(x=>b.images.some(y=>x.seed===y.seed));$('seed').replaceChildren(...common.map(x=>new Option(String(x.seed).padStart(2,'0'),x.seed)));$('seed').disabled=!common.length;if(common.some(x=>String(x.seed)===previous))$('seed').value=previous;update()}
 function update(){for(const side of selectNames){const g=groups[$(side).value],im=g.images.find(x=>x.seed===Number($('seed').value)),img=$(side+'-img'),link=$(side+'-link');if(!im){img.removeAttribute('src');img.alt='';img.style.display='none';link.removeAttribute('href');$(side+'-meta').textContent='These groups have no shared seeds. Choose two default groups or two holdout groups.';continue}img.style.display='block';img.src=im.path;img.alt=g.title+' seed '+im.seed;link.href=im.path;link.target='_blank';$(side+'-meta').textContent=g.title+' · seed '+im.seed+' · '+im.width+' × '+im.height+' · '+im.seconds.toFixed(2)+'s';}}
 for(const id of selectNames)$(id).addEventListener('change',seeds);$('seed').addEventListener('change',update);seeds();
@@ -104,7 +105,7 @@ def main():
     args = parser.parse_args()
     root = args.root.resolve()
     groups = {}
-    for kind in ("experiments", "originals", "holdouts"):
+    for kind in ("experiments", "baseline", "originals", "holdouts"):
         for directory in sorted((root / kind).glob("*")):
             if not directory.is_dir():
                 continue
@@ -126,7 +127,8 @@ def main():
             if not items:
                 continue
             name = directory.name
-            title = TITLES.get(name, name) + (" · holdout" if kind == "holdouts" else "")
+            suffix = " · holdout" if kind == "holdouts" else " · first test" if kind == "baseline" else ""
+            title = TITLES.get(name, name) + suffix
             basename = f"{kind}-{name}"
             for gray in (False, True):
                 filename = basename + ("-gray" if gray else "") + ".jpg"
@@ -148,7 +150,7 @@ def main():
     if args.focus_perlin:
         page = page.replace("Generator studies. Every seed.", "Three Perlin studies on black.")
         page = page.replace("Algorithmic studies compared with the five original generators.",
-                            "Folded veils, branched light, and inertial filaments: one pale hue on pure black, without bloom or added texture. Compared with original Perlin, original Fujii, and the earlier attractor study.")
+                            "Folded veils, branched light, and inertial filaments: color carried by the moving material, finer texture, and restrained finishing on black. Compare with the saved first tests, original Perlin, original Fujii, and the earlier attractor study.")
     (root / "index.html").write_text(page.replace("__DATA__", data), encoding="utf-8")
     (root / "manifest.json").write_text(json.dumps(groups, indent=2), encoding="utf-8")
     print(f"Gallery: {root / 'index.html'}; {sum(len(g['images']) for g in groups.values())} images")

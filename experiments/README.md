@@ -15,24 +15,30 @@ color/grayscale sheets, and the observed strengths and limitations of each direc
 
 ## Minimal Perlin studies on black
 
-The current audition adds `folded_veils`, `branched_light`, and
-`inertial_filaments`. Each uses actual seeded Perlin gradient noise, a fixed
-pale blue tint, and exact black wherever no light is deposited. There is no
-bloom or image-space texture layer. These are small tests of three mechanisms,
-with two controls each, rather than production generators.
+The current audition refines `folded_veils`, `branched_light`, and
+`inertial_filaments`. Each uses actual seeded Perlin gradient noise and carries
+material color through the simulation. Finishing adds restrained local contrast,
+fine Perlin modulation inside the forms, and small highlight bloom on black.
+Each study has two transport controls and a shared `finish` control; `finish=0`
+shows its current geometry with the original pale density rendering. These are
+standalone prototypes.
 
 ```powershell
 ./build/experiments/venv/Scripts/python.exe -m experiments.render --study perlin --seeds 1:24 --size 768 --jobs 3
 ./build/experiments/venv/Scripts/python.exe -m experiments.gallery --focus-perlin
+./build/experiments/venv/Scripts/python.exe -m experiments.render --study perlin --seeds 1:4 --size 768 --control finish=0 --output build/experiments/unprocessed
 ```
 
 The `perlin` group renders just these three. `all` includes all ten studies.
-The focused gallery compares the new studies with saved original Perlin/Fujii
-renders and the earlier attractor study. Omitting `--focus-perlin` restores the
-gallery of every saved study. Both views use the existing gallery folder.
-New image metadata includes the shared Perlin/renderer source hash as well as
-the individual study hash. See the [minimal-study review](../docs/experiments/perlin/README.md)
-for the complete seed sheets and their observed limitations.
+The focused gallery compares the refined studies with the saved first tests
+under `build/experiments/gallery/baseline`, original Perlin/Fujii renders, and the
+earlier attractor study. Omitting `--focus-perlin` restores the gallery of every
+saved study. Both views use the existing gallery folder. The initial prototype
+code and sheets are preserved at commit `5bc43b4`; `finish=0` disables finishing
+on the current geometry, so it is not a substitute for that historical baseline.
+New metadata hashes both shared Perlin and finishing sources as well as the study.
+See the [refinement review](../docs/experiments/perlin-refinement/README.md) and
+[first-test review](../docs/experiments/perlin/README.md) for complete seed sheets.
 
 ## Setup
 

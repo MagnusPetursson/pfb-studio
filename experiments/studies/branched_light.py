@@ -14,13 +14,15 @@ import math
 import numpy as np
 from scipy.ndimage import map_coordinates
 
-from .perlin_common import Perlin, density_image, splat
+from .perlin_common import Perlin, splat
+from .perlin_finish import finish_density, material_coordinate
 
 TITLE = "Branched light"
-DESCRIPTION = "Smooth Perlin refraction concentrates moving ray bundles into fine luminous caustics on black."
+DESCRIPTION = "Perlin refraction folds rays carrying coherent filament radiance and color into luminous caustics."
 CONTROLS = {
     "refraction": {"default": 0.5, "label": "Refraction strength"},
     "distance": {"default": 0.5, "label": "Travel distance"},
+    "finish": {"default": 1.0, "label": "Material finish"},
 }
 
 
@@ -55,37 +57,93 @@ def _scene(seed):
             "distance_ratio": float(rng.uniform(.68, 1.18)),
             "weight": float(rng.uniform(.5, 1.0)),
         })
-    scene["tint"] = [205, 225, 255]
     return scene
 
 
-def _potential(scene, aspect):
-    # Fixed world sampling: changing output pixel count leaves transport intact.
-    grid_h, grid_w = 544, max(192, min(1024, int(round(544 * aspect))))
-    bounds = [-1.35 * aspect, 1.35 * aspect, -1.35, 1.35]
-    xs = np.linspace(bounds[0], bounds[1], grid_w)
-    ys = np.linspace(bounds[2], bounds[3], grid_h)
-    x, y = np.meshgrid(xs, ys)
+def _potential_value(scene, noise, x, y):
     c, s = math.cos(scene["field_angle"]), math.sin(scene["field_angle"])
     u, v = c * x - s * y, s * x + c * y
-    noise = Perlin(scene["perlin_seed"])
     ox, oy = scene["offset"]
     wx = u + scene["warp"] * noise.noise2(u * .8 + 37.1, v * .8 - 11.3)
     wy = v + scene["warp"] * noise.noise2(u * .8 - 7.6, v * .8 + 24.9)
     f = scene["frequency"]
     potential = noise.noise2(wx * f + ox, wy * f * scene["anisotropy"] + oy)
     potential += .18 * noise.noise2(wx * f * 2.3 - 13.4, wy * f * 2.3 + 5.7)
-    gy, gx = np.gradient(potential, ys[1] - ys[0], xs[1] - xs[0])
-    return potential, np.asarray([gx, gy]), bounds
+    return potential
 
 
-def _force(gradient, position, bounds, strength):
-    h, w = gradient.shape[1:]
-    x = (position[:, 0] - bounds[0]) * ((w - 1) / (bounds[1] - bounds[0]))
-    y = (position[:, 1] - bounds[2]) * ((h - 1) / (bounds[3] - bounds[2]))
-    coordinates = np.asarray([y, x])
-    return -strength * np.stack([map_coordinates(g, coordinates, order=1, mode="nearest", prefilter=False)
-                                 for g in gradient], axis=1)
+class _Potential:
+    """Lazily evaluate the same global Perlin lattice wherever rays travel."""
+
+    spacing = 2.7 / 543
+    cells = 512
+
+    def __init__(self, scene):
+        self.scene = scene
+        self.noise = Perlin(scene["perlin_seed"])
+        self.tiles = {}
+        self.sample_count = 0
+        self.value_sum = 0.0
+        self.square_sum = 0.0
+        self.exterior_samples = 0
+
+    def _tile(self, tx, ty):
+        key = (int(tx), int(ty))
+        if key not in self.tiles:
+            # A one-cell halo makes central differences identical on either
+            # side of a tile seam; only interior gradients are interpolated.
+            axis = np.arange(-1, self.cells + 2)
+            x, y = np.meshgrid((tx * self.cells + axis) * self.spacing,
+                               (ty * self.cells + axis) * self.spacing)
+            potential = _potential_value(self.scene, self.noise, x, y)
+            gy, gx = np.gradient(potential, self.spacing, self.spacing)
+            self.tiles[key] = np.asarray([gx[1:-1, 1:-1], gy[1:-1, 1:-1]])
+            self.sample_count += potential.size
+            self.value_sum += float(potential.sum())
+            self.square_sum += float(np.square(potential).sum())
+        return self.tiles[key]
+
+    def force(self, position, strength):
+        if not np.isfinite(position).all():
+            raise RuntimeError("Ray position must remain finite")
+        grid_position = position / self.spacing
+        tile_index = np.floor(grid_position / self.cells).astype(np.int64)
+        local = grid_position - tile_index * self.cells
+        outside = np.any((local < 0) | (local > self.cells), axis=1)
+        self.exterior_samples += int(outside.sum())
+        if np.any(outside):
+            raise RuntimeError("Ray force sampled outside its evaluated Perlin tile")
+        # Group the small number of visited tiles without sorting two columns.
+        low = tile_index.min(axis=0)
+        columns = int(tile_index[:, 0].max() - low[0] + 1)
+        keys = (tile_index[:, 1] - low[1]) * columns + tile_index[:, 0] - low[0]
+        result = np.empty_like(position)
+        for key in np.unique(keys):
+            mask = keys == key
+            tx, ty = int(key % columns + low[0]), int(key // columns + low[1])
+            gradient = self._tile(tx, ty)
+            coordinates = local[mask, ::-1].T
+            # Constant/NaN intentionally fails if interpolation ever escapes.
+            result[mask] = -strength * np.stack([
+                map_coordinates(g, coordinates, order=1, mode="constant", cval=np.nan, prefilter=False)
+                for g in gradient], axis=1)
+        if not np.isfinite(result).all():
+            raise RuntimeError("Non-finite Perlin force interpolation")
+        return result
+
+    def metadata(self):
+        indices = np.asarray(list(self.tiles))
+        low = indices.min(axis=0) * self.cells * self.spacing
+        high = (indices.max(axis=0) + 1) * self.cells * self.spacing
+        variance = self.square_sum / self.sample_count - (self.value_sum / self.sample_count)**2
+        return {
+            "potential_grid": [self.cells + 3, self.cells + 3],
+            "potential_sampling_spacing": self.spacing,
+            "potential_tile_count": len(self.tiles),
+            "potential_bounds": [float(low[0]), float(high[0]), float(low[1]), float(high[1])],
+            "potential_standard_deviation": math.sqrt(max(0.0, variance)),
+            "potential_exterior_samples": self.exterior_samples,
+        }
 
 
 def render(seed: int, width: int, height: int, controls: dict | None = None):
@@ -94,40 +152,55 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
     cfg = _controls(controls)
     scene = _scene(int(seed))
     aspect = width / height
-    potential, gradient, bounds = _potential(scene, aspect)
+    potential = _Potential(scene)
     strength = .85 * cfg["refraction"]
     distance = 1.1 + 2.0 * cfg["distance"]
     ds = .0027
-    positions, momenta, lifetimes, weights = [], [], [], []
+    positions, momenta, lifetimes, weights, materials = [], [], [], [], []
     count_per_launch = 4608
-    for launch in scene["launches"]:
+    radiance_noise = Perlin(int(seed) + 87371)
+    radiance_samples = []
+    for launch_index, launch in enumerate(scene["launches"]):
         t = np.linspace(-.5, .5, count_per_launch)
         direction = np.array([math.cos(launch["angle"]), math.sin(launch["angle"])])
         tangent = np.array([-direction[1], direction[0]])
         center = np.asarray(launch["center"]) * np.array([aspect, 1])
         transverse = t * launch["width"]
-        positions.append(center + transverse[:, None] * tangent +
-                         (launch["bend"] * transverse**2)[:, None] * direction)
+        initial = (center + transverse[:, None] * tangent +
+                   (launch["bend"] * transverse**2)[:, None] * direction)
+        positions.append(initial)
         # A curved initial wavefront launches along its local normal.
         p = direction - (2 * launch["bend"] * transverse)[:, None] * tangent
         p /= np.linalg.norm(p, axis=1, keepdims=True)
         momenta.append(p)
         lifetimes.append(np.full(count_per_launch, distance * launch["distance_ratio"]))
-        weights.append((np.cos(t * math.pi)**2) * launch["weight"] * launch["width"] / count_per_launch)
+        # Neighboring rays carry coherent, unequal launch radiance throughout
+        # transport. Fine variations consequently stretch along actual paths.
+        coarse = radiance_noise.noise2(transverse * 5.7 + 11.1, launch_index * 3.17 + .43)
+        fine = radiance_noise.noise2(transverse * 92.0 + 7.3, launch_index * 7.91 + .71)
+        micro = radiance_noise.noise2(transverse * 237.0 - 19.7, launch_index * 5.63 + .29)
+        radiance = (.38 + np.clip(.5 + 1.35 * coarse, 0, 1))
+        radiance *= .10 + 1.9 * np.clip(.48 + 1.8 * fine, 0, 1)**2
+        radiance *= .70 + .60 * np.clip(.5 + 1.5 * micro, 0, 1)
+        radiance_samples.append(radiance)
+        weights.append((np.cos(t * math.pi)**2) * launch["weight"] * launch["width"] / count_per_launch * radiance)
+        materials.append(material_coordinate(int(seed), initial[:, 0] * 1.7, initial[:, 1] * 1.7))
     position = np.concatenate(positions)
     momentum = np.concatenate(momenta)
     lifetime = np.concatenate(lifetimes)
     weight = np.concatenate(weights)
+    material = np.concatenate(materials)
     initial_position, initial_momentum = position.copy(), momentum.copy()
     age = np.zeros(len(position))
     sampling_rng = np.random.default_rng(np.random.SeedSequence([int(seed), 19873]))
     first_step = sampling_rng.uniform(.05 * ds, ds, len(position))
-    density = np.zeros((height, width), dtype=np.float64)
-    acceleration = _force(gradient, position, bounds, strength)
+    acceleration = potential.force(position, strength)
     maximum_steps = int(math.ceil(float(lifetime.max()) / ds))
-    samples = 0
+    # Controls and launch limits bound this buffer at 1355 * 18432 * 2 * 4
+    # bytes (191 MiB), independent of output resolution or aspect ratio.
+    trajectory = np.empty((maximum_steps, len(position), 2), dtype=np.float32)
+    world_min, world_max = np.full(2, np.inf), np.full(2, -np.inf)
     active = np.ones(len(position), dtype=bool)
-    block_x, block_y, block_weight = [], [], []
     for step in range(maximum_steps):
         # Velocity Verlet; forces bend momentum, they do not prescribe velocity.
         # Stagger the initial sample times to avoid coherent raster bands.
@@ -135,42 +208,65 @@ def render(seed: int, width: int, height: int, controls: dict | None = None):
         momentum[active] += .5 * dt[:, None] * acceleration[active]
         position[active] += dt[:, None] * momentum[active]
         age[active] += dt
-        acceleration[active] = _force(gradient, position[active], bounds, strength)
+        acceleration[active] = potential.force(position[active], strength)
         momentum[active] += .5 * dt[:, None] * acceleration[active]
-        active &= ((age < lifetime) & (np.abs(position[:, 0]) < 1.3 * aspect) &
-                   (np.abs(position[:, 1]) < 1.3))
-        visible = active & (np.abs(position[:, 0]) < aspect) & (np.abs(position[:, 1]) < 1)
-        if np.any(visible):
-            block_x.append((position[visible, 0] / aspect + 1) * (width - 1) / 2)
-            block_y.append((position[visible, 1] + 1) * (height - 1) / 2)
-            # Smooth finite travel ending; all brightness still comes from rays.
-            fade = np.minimum(1, (lifetime[visible] - age[visible]) / .18)
-            fade *= np.minimum(1, age[visible] / .28)**2
-            block_weight.append(weight[visible] * fade * ds)
-            samples += int(visible.sum())
-        if (step + 1) % 24 == 0 or step == maximum_steps - 1 or not active.any():
-            if block_x:
-                splat(density, np.concatenate(block_x), np.concatenate(block_y), np.concatenate(block_weight))
-                block_x, block_y, block_weight = [], [], []
+        trajectory[step] = position
+        active &= age < lifetime
+        if np.any(active):
+            world_min = np.minimum(world_min, position[active].min(axis=0))
+            world_max = np.maximum(world_max, position[active].max(axis=0))
         if not active.any():
             break
+    steps = step + 1
+    # Fit every deposited ray, preserving aspect and an 8% margin on each side.
+    # Fixed world structure and transport remain independent of pixel count.
+    center = (world_min + world_max) * .5
+    span = np.maximum(world_max - world_min, .1) * 1.19
+    span[0] = max(span[0], span[1] * aspect)
+    span[1] = span[0] / aspect
+    camera_min = center - span * .5
+    camera_max = center + span * .5
+    density = np.zeros((height, width), dtype=np.float64)
+    color_density = np.zeros_like(density)
+    samples = 0
+    for begin in range(0, steps, 24):
+        end = min(steps, begin + 24)
+        sample_age = first_step[None, :] + np.arange(begin, end)[:, None] * ds
+        visible = sample_age < lifetime[None, :]
+        points = trajectory[begin:end][visible]
+        fade = np.minimum(1, (lifetime[None, :] - sample_age) / .18)
+        fade *= np.minimum(1, sample_age / .28)**2
+        radiance = (weight[None, :] * fade * ds)[visible]
+        color_radiance = (weight[None, :] * fade * ds * material[None, :])[visible]
+        px = (points[:, 0] - camera_min[0]) / span[0] * (width - 1)
+        py = (points[:, 1] - camera_min[1]) / span[1] * (height - 1)
+        splat(density, px, py, radiance)
+        splat(color_density, px, py, color_radiance)
+        samples += len(points)
     nonzero = density[density > 0]
-    exposure = float(np.quantile(nonzero, .985)) if len(nonzero) else 1.0
-    image = density_image(density, exposure=exposure, tint=tuple(scene["tint"]))
+    exposure = float(np.quantile(nonzero, .992)) if len(nonzero) else 1.0
+    image, finish_meta = finish_density(density, int(seed), color_density=color_density,
+                                       exposure=exposure, strength=cfg["finish"], grain=.06, bloom=.10, detail=.20)
     ballistic = initial_position + initial_momentum * age[:, None]
     displacement = np.linalg.norm(position - ballistic, axis=1)
     return image, {
         "algorithm": "Hamiltonian ray focusing in a warped Perlin potential; velocity Verlet; bilinear radiance accumulation",
         "seed": int(seed), "width": width, "height": height, "controls": cfg,
-        "scene": scene, "potential_grid": [int(potential.shape[1]), int(potential.shape[0])],
-        "potential_bounds": bounds, "potential_standard_deviation": float(potential.std()),
+        "scene": scene, **potential.metadata(),
         "potential_strength": strength, "integration_step": ds,
         "sample_phase": "seeded first-step offsets in [0.05*ds, ds]; then constant ds",
-        "integration_steps": step + 1, "ray_count": len(position), "ray_samples_in_frame": samples,
+        "integration_steps": steps, "ray_count": len(position), "ray_samples_in_frame": samples,
+        "launch_material": {"radiance_perlin_seed": int(seed) + 87371,
+                            "frequencies": [5.7, 92.0, 237.0], "transport": "constant radiance and color coordinate carried by each ray",
+                            "radiance_minimum": float(np.min(radiance_samples)),
+                            "radiance_maximum": float(np.max(radiance_samples))},
+        "camera_bounds": [camera_min.tolist(), camera_max.tolist()],
+        "deposited_world_bounds": [world_min.tolist(), world_max.tolist()],
+        "trajectory_capacity_bytes": int(trajectory.nbytes),
         "travel_distance": distance, "density_exposure": exposure,
         "density_maximum": float(density.max()), "nonzero_pixels": int(len(nonzero)),
         "mean_displacement_from_ballistic": float(displacement.mean()),
         "maximum_displacement_from_ballistic": float(displacement.max()),
         "mean_momentum_change": float(np.linalg.norm(momentum - initial_momentum, axis=1).mean()),
-        "background": [0, 0, 0], "bloom": False, "texture_overlay": False,
+        "background": [0, 0, 0], "finish": finish_meta,
     }

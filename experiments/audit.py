@@ -79,6 +79,9 @@ def _render_checked(name: str, seed: int, width: int, height: int,
     common = (Path(module.__file__).with_name("perlin_common.py") if name in PERLIN_STUDIES
               else Path(__file__).with_name("common.py"))
     signature["common_source_sha256"] = hashlib.sha256(common.read_bytes()).hexdigest() if common.exists() else None
+    if name in PERLIN_STUDIES:
+        finish = Path(module.__file__).with_name("perlin_finish.py")
+        signature["finish_source_sha256"] = hashlib.sha256(finish.read_bytes()).hexdigest()
     json_path = path.with_suffix(".json")
     if resume and path.is_file() and json_path.is_file():
         try:

@@ -67,8 +67,10 @@ def render_one(name, seed, width, height, controls, root):
             "source_sha256": hashlib.sha256(Path(module.__file__).read_bytes()).hexdigest(),
             "details": details}
     if name in PERLIN_STUDIES:
-        shared = Path(module.__file__).with_name("perlin_common.py")
-        data["source_dependencies_sha256"] = {shared.name: hashlib.sha256(shared.read_bytes()).hexdigest()}
+        data["source_dependencies_sha256"] = {
+            dependency: hashlib.sha256(Path(module.__file__).with_name(dependency).read_bytes()).hexdigest()
+            for dependency in ("perlin_common.py", "perlin_finish.py")
+        }
     output.with_suffix(".json").write_text(json.dumps(data, indent=2, allow_nan=False), encoding="utf-8")
     return f"{name} seed={seed} {width}x{height} {elapsed:.2f}s -> {output}"
 

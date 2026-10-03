@@ -1,0 +1,4110 @@
+{
+  "date": "2026-10-03",
+  "branch": "agent/generator-experiments",
+  "baseline_commit": "5bc43b4d24dfe7e6103736a7b0597d5057dd42b5",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "Pillow": "11.3.0"
+  },
+  "source_sha256": {
+    "folded_veils": "78684ee10a098012d9707e4f356f8d94c2bae0b9ac32ca9db9d91a554bc14d91",
+    "branched_light": "6ec2454ad413e8f3da6d2e846b7bc6d430b8ec96679ea1b41d18b8fbeca3e923",
+    "inertial_filaments": "9f838e0cbb3341b3fdda1982ea1c9ca9e3013da8609ab676f224e81af0de9308"
+  },
+  "dependencies_sha256": {
+    "perlin_common.py": "92b8a94f1a09e0243dcf7e0020be6fab0ba70c412ca4b8be083a9b3f50317415",
+    "perlin_finish.py": "4258f1351021cec6c86c887707e99f426f9ed78e78cec48086469a3e525e85d4"
+  },
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "images": [
+    {
+      "study": "folded_veils",
+      "seed": 1,
+      "image": "experiments/folded_veils/seed-0001.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "19049b6396781c153a5e9867aa2f5b24ae9d627912433b15ad61dcd8e76c96b8",
+      "baseline_pixel_sha256": "e955ac1997690722a394c33289f6570d0b3c90e3a2c93bf65718d794ef8aeea0",
+      "seconds": 14.397974299999987,
+      "black_fraction": 0.8866034613715278,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.368844213092264,
+        "palette_rgb": [
+          [
+            252,
+            86,
+            255
+          ],
+          [
+            255,
+            133,
+            201
+          ],
+          [
+            179,
+            255,
+            127
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.187199088658142,
+          0.6244615231093301
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 2,
+      "image": "experiments/folded_veils/seed-0002.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "6775e1f850a087d1d2a0d0d322557cd28d23fbbfc9b342caea8370539f9f8212",
+      "baseline_pixel_sha256": "3f4a9f9ff5fd6557d709f0e7ce72c9a4c10bdaf790a2405d73b447f6e017deeb",
+      "seconds": 14.569877400001133,
+      "black_fraction": 0.8857014973958334,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.865871781661808,
+        "palette_rgb": [
+          [
+            190,
+            66,
+            255
+          ],
+          [
+            255,
+            133,
+            203
+          ],
+          [
+            246,
+            255,
+            123
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.21238549514282604,
+          0.5384036308169126
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 3,
+      "image": "experiments/folded_veils/seed-0003.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "369e094b655779ee3bdad062dc62840ff6df81336f174a8691d9c44eea51db3f",
+      "baseline_pixel_sha256": "470c41ae45024518526158e8f35094b34cb69f1736fbdb6281a91e4b33fd550e",
+      "seconds": 14.607619200000045,
+      "black_fraction": 0.9195200602213541,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 10.002711797180138,
+        "palette_rgb": [
+          [
+            77,
+            172,
+            255
+          ],
+          [
+            155,
+            133,
+            255
+          ],
+          [
+            255,
+            226,
+            112
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3950661374967952,
+          0.8907815481840606
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 4,
+      "image": "experiments/folded_veils/seed-0004.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "6a6d0dee06471b2ea0d1fa0ab75127ec39f3a180546d59331a828640c35c0455",
+      "baseline_pixel_sha256": "c14bde5a4a4de77df2dbc13928264ef71ba0e35446e8291d8804e040423fdaf2",
+      "seconds": 15.123130100000708,
+      "black_fraction": 0.85650634765625,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 5.567219859191476,
+        "palette_rgb": [
+          [
+            78,
+            63,
+            255
+          ],
+          [
+            200,
+            133,
+            255
+          ],
+          [
+            205,
+            255,
+            99
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.33994670841883173,
+          0.708404634349458
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 5,
+      "image": "experiments/folded_veils/seed-0005.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "fc4437a64fdf82de543313ba9fc1c2fb1fd6e24efd3aaf533133b93e6dadc698",
+      "baseline_pixel_sha256": "88c5ea8da8476a76c6630c4af55657be92f6fd8d58ec875e9881ca0b60d83c46",
+      "seconds": 15.267224900000656,
+      "black_fraction": 0.8792402479383681,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 7.892803855290964,
+        "palette_rgb": [
+          [
+            104,
+            84,
+            255
+          ],
+          [
+            218,
+            133,
+            255
+          ],
+          [
+            177,
+            255,
+            72
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2775603438081264,
+          0.7954203333272675
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 6,
+      "image": "experiments/folded_veils/seed-0006.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "2f7a5a807e1cd4301fad957bdeb256c6e6000303642f611bafb06168491f912d",
+      "baseline_pixel_sha256": "81021198c1008ac8942137729ed77b618a436d510e2eadbbe055a7c8a06c043a",
+      "seconds": 15.406149900001765,
+      "black_fraction": 0.8427700466579862,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 3.3440794257929123,
+        "palette_rgb": [
+          [
+            255,
+            104,
+            244
+          ],
+          [
+            255,
+            133,
+            180
+          ],
+          [
+            159,
+            255,
+            77
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.25294616458329,
+          0.5552445408870843
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 7,
+      "image": "experiments/folded_veils/seed-0007.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "43c431af88bdac2b2685844c68aecab1b8fe2ade876303c559946aefde02db25",
+      "baseline_pixel_sha256": "14786bc10a218287a7ce24cc60cfba28580b4268bf48cc7ab2c809d4a62e07cb",
+      "seconds": 15.28326769999876,
+      "black_fraction": 0.8597378200954862,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 2.682266175554297,
+        "palette_rgb": [
+          [
+            255,
+            102,
+            197
+          ],
+          [
+            255,
+            133,
+            138
+          ],
+          [
+            79,
+            255,
+            133
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2058956717843325,
+          0.6312848449679813
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 8,
+      "image": "experiments/folded_veils/seed-0008.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "81c3993eea0e77db595d2c15f5360481ea502d8c7e2c423f82097fd4396d5d1c",
+      "baseline_pixel_sha256": "160981105e2150bb9c60752b572bea7523863d31a92295b3863b3443a91e96cd",
+      "seconds": 14.961741200000688,
+      "black_fraction": 0.8934614393446181,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.823101101522403,
+        "palette_rgb": [
+          [
+            135,
+            255,
+            71
+          ],
+          [
+            133,
+            255,
+            145
+          ],
+          [
+            221,
+            81,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2685528407280595,
+          0.9001265963956052
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 9,
+      "image": "experiments/folded_veils/seed-0009.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "424724403eed881051ef72822b0c0051f9ee980192733bc1b0c18efd6c151418",
+      "baseline_pixel_sha256": "3da1d0c2fcc9d6a8d27bfcc1809029f541afd7900c3146b255471e3194f5c610",
+      "seconds": 14.867211099999622,
+      "black_fraction": 0.8475731743706597,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 3.408834797479706,
+        "palette_rgb": [
+          [
+            80,
+            248,
+            255
+          ],
+          [
+            133,
+            188,
+            255
+          ],
+          [
+            255,
+            75,
+            73
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2570520922182131,
+          0.5248500598911366
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 10,
+      "image": "experiments/folded_veils/seed-0010.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "64bd32377eaeade3ec1b6c4aaf32eea05acf51ddb08642da824d974dec0353a2",
+      "baseline_pixel_sha256": "779b495e69a19e5c7be11202ad7ac9ad6921ff7eb35f7369036aaadf3188ea95",
+      "seconds": 15.445760399999926,
+      "black_fraction": 0.8219553629557291,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 2.386943459604168,
+        "palette_rgb": [
+          [
+            211,
+            255,
+            107
+          ],
+          [
+            133,
+            255,
+            134
+          ],
+          [
+            73,
+            95,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.37492513707714736,
+          0.9232692776734174
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 11,
+      "image": "experiments/folded_veils/seed-0011.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "39c07ea5d2a37496bf1547a113333b5bec7f221a703902e2a8d841d7a71679a2",
+      "baseline_pixel_sha256": "9bc86e781f30f432a51ffe15adfc0b558b1457791dd291ff818b0032a909aa92",
+      "seconds": 15.492607199999838,
+      "black_fraction": 0.8630184597439237,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.441788348776984,
+        "palette_rgb": [
+          [
+            255,
+            149,
+            102
+          ],
+          [
+            246,
+            255,
+            133
+          ],
+          [
+            72,
+            157,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3279444469407946,
+          0.7110079014492177
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 12,
+      "image": "experiments/folded_veils/seed-0012.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "56ccbbe3decfe1f62bdf2965b8f5891f09c6b95b4e89e314b72ea0a930571dcc",
+      "baseline_pixel_sha256": "9fbf953685bc39fc2042e8eb2d6347e921c9d79b4f31e3f9291f2b35048bded6",
+      "seconds": 15.454745600000024,
+      "black_fraction": 0.8735809326171875,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.4016007303109195,
+        "palette_rgb": [
+          [
+            114,
+            94,
+            255
+          ],
+          [
+            254,
+            133,
+            255
+          ],
+          [
+            215,
+            255,
+            110
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.27886531003006354,
+          0.6891628820579763
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 13,
+      "image": "experiments/folded_veils/seed-0013.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "2f5fbf5275dcb99a8392e39e4752dd289e3ba755b457f52d1f95dd995e99c1c5",
+      "baseline_pixel_sha256": "2a166a56251fff7c0738698f99fdca77e80ff06ed3bd88f0097ca780cd0d1fc6",
+      "seconds": 16.413407900001403,
+      "black_fraction": 0.8195580376519097,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 2.634782321573221,
+        "palette_rgb": [
+          [
+            96,
+            255,
+            56
+          ],
+          [
+            133,
+            255,
+            180
+          ],
+          [
+            213,
+            73,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.31518267190243665,
+          0.7842460618059703
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 14,
+      "image": "experiments/folded_veils/seed-0014.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "ff264ec6c91d0633fd08eee898f1327b9daaa8cca9ccd467e0422188186d717c",
+      "baseline_pixel_sha256": "1cf8695552dc178d03839d590f488d7d7e14920f5205f85e0ca741341078169a",
+      "seconds": 16.52593909999996,
+      "black_fraction": 0.8846757676866319,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 5.884555051768341,
+        "palette_rgb": [
+          [
+            255,
+            183,
+            57
+          ],
+          [
+            212,
+            255,
+            133
+          ],
+          [
+            113,
+            178,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.19390960229881832,
+          0.6516899122073023
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 15,
+      "image": "experiments/folded_veils/seed-0015.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "b1a5da1cd85513e918e0c994aac15a372ab1cd3fbd55414f981ba0c729447cfa",
+      "baseline_pixel_sha256": "1c08e914796b1459fd2a54df7cc23f3711cc87c472e73d5f337dc62e9e68ff0a",
+      "seconds": 16.462586399999054,
+      "black_fraction": 0.8551822238498263,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 3.790193269216304,
+        "palette_rgb": [
+          [
+            135,
+            255,
+            81
+          ],
+          [
+            133,
+            255,
+            175
+          ],
+          [
+            234,
+            122,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.25475825704023025,
+          0.8359477933357277
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 16,
+      "image": "experiments/folded_veils/seed-0016.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "278c6c0adc8d64c627705412e9ba01720be1f2d5410cf2e01ff799acfbd49e23",
+      "baseline_pixel_sha256": "62d524fb3c7031e6a2c47bac9907cd140c4fb396859a44ddd5fc3cb643af714e",
+      "seconds": 13.634800699999687,
+      "black_fraction": 0.8866085476345487,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 3.766372470131043,
+        "palette_rgb": [
+          [
+            227,
+            90,
+            255
+          ],
+          [
+            255,
+            133,
+            174
+          ],
+          [
+            214,
+            255,
+            123
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2581094366855969,
+          0.656055570280414
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 17,
+      "image": "experiments/folded_veils/seed-0017.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7becaf30f49658f7d9a474601b6fe06ec38e25c23065a6a522c4fd1a1f27b570",
+      "baseline_pixel_sha256": "b6817f9f83fc8bed137ebfa45314e35980c330aec65a0330bf108313ff9d9e43",
+      "seconds": 13.685236900000746,
+      "black_fraction": 0.8322160508897569,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 3.2305698009768626,
+        "palette_rgb": [
+          [
+            255,
+            108,
+            217
+          ],
+          [
+            255,
+            133,
+            169
+          ],
+          [
+            115,
+            255,
+            162
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.11334811965313697,
+          0.8034547478770624
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 18,
+      "image": "experiments/folded_veils/seed-0018.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a5c6ed5cc58cabfadb8a73b9853a5fd1d8ed64d264b948edf48f4a3e0129f91b",
+      "baseline_pixel_sha256": "20c5c5cbd01d008fda18b85d0c98b4b83e288c43d5ee1c886956e34bf30a1aa1",
+      "seconds": 13.668123699999342,
+      "black_fraction": 0.8515574137369791,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 2.9649300658874864,
+        "palette_rgb": [
+          [
+            115,
+            94,
+            255
+          ],
+          [
+            211,
+            133,
+            255
+          ],
+          [
+            255,
+            201,
+            120
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.30214110879994927,
+          0.7636811593412004
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 19,
+      "image": "experiments/folded_veils/seed-0019.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "db088896dde2c913c3e26e9a6fdf5d97628266f708f03ade217166ef8573a80a",
+      "baseline_pixel_sha256": "5b584059967dbf365dd68cfd85cd4b2f3f798d0013b9a4947fe8e8a5d7c29ad3",
+      "seconds": 11.816159199999674,
+      "black_fraction": 0.8731316460503472,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.044296274251049,
+        "palette_rgb": [
+          [
+            255,
+            96,
+            160
+          ],
+          [
+            255,
+            162,
+            133
+          ],
+          [
+            103,
+            255,
+            107
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.059681168905484826,
+          0.8120872838078063
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 20,
+      "image": "experiments/folded_veils/seed-0020.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "28745792c21645689c696ac0fc72b2db7c5ea4f886538c14860ab60cb87d2116",
+      "baseline_pixel_sha256": "e9e626dc918c67e573e45ec60886c46fda1d2f1c81f54aaffded6a9055242e3a",
+      "seconds": 11.699193899999955,
+      "black_fraction": 0.84161376953125,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 3.1577088380071894,
+        "palette_rgb": [
+          [
+            99,
+            255,
+            72
+          ],
+          [
+            133,
+            255,
+            178
+          ],
+          [
+            182,
+            121,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.29888568178937436,
+          0.875472700333392
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 21,
+      "image": "experiments/folded_veils/seed-0021.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "8c7550423b6ece5d88117ca0367cbe2caba121b8edc1a6647db44f19c99005aa",
+      "baseline_pixel_sha256": "9f9bca45586560ddcb6c54f0aeff8de2c11861d7fe7f41f3dbec3682a51401de",
+      "seconds": 11.825768000000608,
+      "black_fraction": 0.8850114610460069,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 6.173222157711769,
+        "palette_rgb": [
+          [
+            199,
+            255,
+            80
+          ],
+          [
+            133,
+            255,
+            141
+          ],
+          [
+            133,
+            95,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.4400099854772333,
+          0.8577373987379457
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 22,
+      "image": "experiments/folded_veils/seed-0022.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "200855bda19a9d0b520be45dd7987d30c20528a1fc73e66338d5f648058673e3",
+      "baseline_pixel_sha256": "817884b5fdb1501e0ff9a7d8fb79f4095bce8dbf306f0a07913bb47b6178eab1",
+      "seconds": 10.441337199999907,
+      "black_fraction": 0.8170182969835069,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 2.8079682757725104,
+        "palette_rgb": [
+          [
+            255,
+            103,
+            155
+          ],
+          [
+            255,
+            163,
+            133
+          ],
+          [
+            95,
+            255,
+            166
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.19206608438720515,
+          0.6742545339487598
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 23,
+      "image": "experiments/folded_veils/seed-0023.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7bb67511d909fa897768c14b1f1af06d70c93b10074e95243bae746d5f01444b",
+      "baseline_pixel_sha256": "b4f112ecc33e9e19d71b10440e9db43b34ec7d0e94f9b82f3e1685a7ed6f2e6a",
+      "seconds": 10.374369099999967,
+      "black_fraction": 0.8818511962890625,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.834211455923253,
+        "palette_rgb": [
+          [
+            134,
+            107,
+            255
+          ],
+          [
+            229,
+            133,
+            255
+          ],
+          [
+            239,
+            255,
+            78
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.15115873262650625,
+          0.536714772906894
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "folded_veils",
+      "seed": 24,
+      "image": "experiments/folded_veils/seed-0024.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "ce1c227458a3ce3b345b57390003c2020cc1eb188fbc2e5742587eba9ba3be03",
+      "baseline_pixel_sha256": "fcff040c4aa138628b9409bf931c4f7ce466b8dccecddfa1dbde6c5d94023b45",
+      "seconds": 10.408569700000953,
+      "black_fraction": 0.8836737738715278,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 6.3184421536830335,
+        "palette_rgb": [
+          [
+            111,
+            255,
+            131
+          ],
+          [
+            133,
+            255,
+            213
+          ],
+          [
+            230,
+            122,
+            255
+          ]
+        ],
+        "grain": 0.04,
+        "bloom": 0.06,
+        "local_contrast": 0.12,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.19637331859023438,
+          0.6705621926649727
+        ]
+      },
+      "mechanism": {
+        "baseline_geometry_and_density_diagnostics_identical": true,
+        "particles": 76000,
+        "boundary_queries": 0
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 1,
+      "image": "experiments/branched_light/seed-0001.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "d31f17d06958981cf9b0c5dea93ddd5b7a7e9fc1ddc90c7ece53cd433b0ea3bd",
+      "baseline_pixel_sha256": "7f4b89a9066c90cd2faba761cb693a48976278f2ece1716ac2a06ec6414bface",
+      "seconds": 13.91617739999856,
+      "black_fraction": 0.7231038411458334,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 5.086906292990243e-05,
+        "palette_rgb": [
+          [
+            252,
+            86,
+            255
+          ],
+          [
+            255,
+            133,
+            201
+          ],
+          [
+            179,
+            255,
+            127
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.43969734943121935,
+          0.6387441991936375
+        ]
+      },
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 9341815,
+        "mean_momentum_change": 0.5702622320615647,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.949868016712968,
+            -2.203216731580543
+          ],
+          [
+            0.8902288239751921,
+            1.636880109107617
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 2,
+      "image": "experiments/branched_light/seed-0002.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "e87256437ce4cb44b824b57ac2452b8ac91f21972e6ace95e67e9869eede8ae8",
+      "baseline_pixel_sha256": "080e0edde260316fb9da3b4c22b114931cef8201f2edc28de24751146e5fd3b8",
+      "seconds": 9.92097130000002,
+      "black_fraction": 0.7305704752604166,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 3.416828106254871e-05,
+        "palette_rgb": [
+          [
+            190,
+            66,
+            255
+          ],
+          [
+            255,
+            133,
+            203
+          ],
+          [
+            246,
+            255,
+            123
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.075789579896173,
+          0.6364595180876648
+        ]
+      },
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 5984803,
+        "mean_momentum_change": 0.5726707666381852,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.177407383768568,
+            -1.2129676459545893
+          ],
+          [
+            1.3478091397348804,
+            2.312248877548859
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 3,
+      "image": "experiments/branched_light/seed-0003.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3ea6d66fbdced8c423d57f3898989816ea378235e269074f35b8467c6c10a38f",
+      "baseline_pixel_sha256": "c25413a472fb6fa604e15caeedb9dd84de1caf31e75f64e293462cddad2e07c6",
+      "seconds": 9.941747500000929,
+      "black_fraction": 0.8187391493055556,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.165989475087603e-05,
+        "palette_rgb": [
+          [
+            77,
+            172,
+            255
+          ],
+          [
+            155,
+            133,
+            255
+          ],
+          [
+            255,
+            226,
+            112
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.13913561024736457,
+          0.6470222197177377
+        ]
+      },
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 6170244,
+        "mean_momentum_change": 0.6050904140501461,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.5631271843611443,
+            -2.6540148125310803
+          ],
+          [
+            1.8001176778373424,
+            1.7092300496674062
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 4,
+      "image": "experiments/branched_light/seed-0004.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3ac0ad020d227dc76d8d7ea58657af22f84727f7805a50a328cc466c6c8c18d0",
+      "baseline_pixel_sha256": "26fd30dda1c04d62ddce027e7129ba272ecaf8b26bcfd698faeaca8a034ff6ec",
+      "seconds": 19.651257299999997,
+      "black_fraction": 0.6995171440972222,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 0.00011092153201175096,
+        "palette_rgb": [
+          [
+            78,
+            63,
+            255
+          ],
+          [
+            200,
+            133,
+            255
+          ],
+          [
+            205,
+            255,
+            99
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.31567907582458304,
+          0.830042427973397
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 13549796,
+        "mean_momentum_change": 0.6768017513208713,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.1705469715261403,
+            -2.4088696817330604
+          ],
+          [
+            2.6041049292495666,
+            2.3657822190426465
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 5,
+      "image": "experiments/branched_light/seed-0005.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "2b2fe2edb288009e9d620710bfcb096c5d5d3b298423b74cd77cf9c9f124fbf4",
+      "baseline_pixel_sha256": "f3339d78db3aad07fd3fb6b339f41b977d7716b0665047259ceb5b2af2f6758b",
+      "seconds": 17.736167199998818,
+      "black_fraction": 0.8453369140625,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 0.00010309064777487614,
+        "palette_rgb": [
+          [
+            104,
+            84,
+            255
+          ],
+          [
+            218,
+            133,
+            255
+          ],
+          [
+            177,
+            255,
+            72
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.004929360681535395,
+          0.6943169104637184
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 11826288,
+        "mean_momentum_change": 0.7262893712260292,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -3.342234500593398,
+            -3.6052463419262293
+          ],
+          [
+            2.790481985042865,
+            2.5274701437100338
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 6,
+      "image": "experiments/branched_light/seed-0006.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "60d755a2a4a62268b50096b6800357cbd7c7bf4cf28da23e3a9d343dc7a93ade",
+      "baseline_pixel_sha256": "e0fbc590939c4a5c83bb0ba77980744f3ed5ff39e9301348b44d8c9442c99903",
+      "seconds": 12.471206799998981,
+      "black_fraction": 0.7571648491753472,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 4.6715649046764714e-05,
+        "palette_rgb": [
+          [
+            255,
+            104,
+            244
+          ],
+          [
+            255,
+            133,
+            180
+          ],
+          [
+            159,
+            255,
+            77
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.10494328722194705,
+          0.7209687610293227
+        ]
+      },
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 8293396,
+        "mean_momentum_change": 0.5794789890509588,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -1.8728303965680504,
+            -1.8858201249824287
+          ],
+          [
+            1.5058254538226006,
+            1.4928357254082223
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 7,
+      "image": "experiments/branched_light/seed-0007.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "d78f393de9b86f3a1893ab351a691ad12c0540691b11997f683957d908ef8f26",
+      "baseline_pixel_sha256": "e2cb000d6be444bbba9ff764c185d9e9e64f342ab452528b042c34ebccea2b7f",
+      "seconds": 15.838814999999158,
+      "black_fraction": 0.8257056342230903,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 7.984116579904452e-05,
+        "palette_rgb": [
+          [
+            255,
+            102,
+            197
+          ],
+          [
+            255,
+            133,
+            138
+          ],
+          [
+            79,
+            255,
+            133
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.19466673905809895,
+          0.6092071438041259
+        ]
+      },
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 10375392,
+        "mean_momentum_change": 0.6158522795777236,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -3.2166000543980964,
+            -3.0855158934847764
+          ],
+          [
+            2.800738969089542,
+            2.931823130002862
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 8,
+      "image": "experiments/branched_light/seed-0008.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "c5dbcff97534f6d3328d6563eb83b1e3e318666b7a34b98a3d59ff25c9eb29ec",
+      "baseline_pixel_sha256": "7dc4115be9271ca33e96c48d4f17e4e4c6d356fda0fef3258c1356fed5e27c76",
+      "seconds": 8.867195700000593,
+      "black_fraction": 0.7767096625434028,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 7.787084719648102e-05,
+        "palette_rgb": [
+          [
+            135,
+            255,
+            71
+          ],
+          [
+            133,
+            255,
+            145
+          ],
+          [
+            221,
+            81,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.19856564714685215,
+          0.6388336070113717
+        ]
+      },
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 6364227,
+        "mean_momentum_change": 0.6810200861214528,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -1.986998713290824,
+            -3.1804626543385393
+          ],
+          [
+            2.410469187825804,
+            1.2170052467780887
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 9,
+      "image": "experiments/branched_light/seed-0009.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "8b3bf4348bf08e39417b665e90a4606245414d475250f71c74a7028493a462cb",
+      "baseline_pixel_sha256": "b207d5c81cd57248008e5dd72fe46b40e6bff8b427301019313aa63427946589",
+      "seconds": 19.02572880000116,
+      "black_fraction": 0.8059573703342013,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 0.00012328227875939174,
+        "palette_rgb": [
+          [
+            80,
+            248,
+            255
+          ],
+          [
+            133,
+            188,
+            255
+          ],
+          [
+            255,
+            75,
+            73
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.13305089033035067,
+          0.7141486417549487
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 13775338,
+        "mean_momentum_change": 0.6237710928881817,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.4677859583433333,
+            -3.2143598366877884
+          ],
+          [
+            3.5109643413933074,
+            2.7643904630488523
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 10,
+      "image": "experiments/branched_light/seed-0010.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "b56034248fea278ebe3e4a3b48e2ec7437bc717c1edf4a274bf434b8a8434027",
+      "baseline_pixel_sha256": "6ebd72619934a5d522d6c895785727b6c56cf39da295aa5f91f47b3a9a08f08a",
+      "seconds": 19.945509200000743,
+      "black_fraction": 0.789520263671875,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 0.00012134562080972998,
+        "palette_rgb": [
+          [
+            211,
+            255,
+            107
+          ],
+          [
+            133,
+            255,
+            134
+          ],
+          [
+            73,
+            95,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.26799877372862035,
+          0.8489670775308341
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 13986296,
+        "mean_momentum_change": 0.5684363251677037,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.992867966374185,
+            -2.271139861940698
+          ],
+          [
+            1.6862790075038867,
+            2.4080071119373736
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 11,
+      "image": "experiments/branched_light/seed-0011.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3c754ccb9e13003170030389d2fd59d2a67d3d3d7af82ae8f1a34f9c9107f405",
+      "baseline_pixel_sha256": "75d2e817286a0fc7761b7c5f1651bf1c9d4f19b5816a59bbd9ad74ef0fccb8ca",
+      "seconds": 11.073272100000395,
+      "black_fraction": 0.7865787082248263,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 5.100732906897012e-05,
+        "palette_rgb": [
+          [
+            255,
+            149,
+            102
+          ],
+          [
+            246,
+            255,
+            133
+          ],
+          [
+            72,
+            157,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.049345610148597716,
+          0.6082954397273977
+        ]
+      },
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 7045799,
+        "mean_momentum_change": 0.6506900972214491,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -1.5802282622251225,
+            -0.13783918163243714
+          ],
+          [
+            1.8777663636765167,
+            3.320155444269202
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 12,
+      "image": "experiments/branched_light/seed-0012.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "fb51a1524c09993ca4acb77ffb74031b689a92ca0d64891b30f54da330229d17",
+      "baseline_pixel_sha256": "7aa761cf81c95edd32e761b87a5877caf9456e948a079888c9fca759a70f594c",
+      "seconds": 9.43744390000029,
+      "black_fraction": 0.8572625054253472,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 6.407572745277089e-05,
+        "palette_rgb": [
+          [
+            114,
+            94,
+            255
+          ],
+          [
+            254,
+            133,
+            255
+          ],
+          [
+            215,
+            255,
+            110
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.1865432333358266,
+          0.7842588080861317
+        ]
+      },
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 5402220,
+        "mean_momentum_change": 0.5128908069525715,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.520734275954391,
+            -2.3181459830435274
+          ],
+          [
+            2.2645632713328174,
+            2.467151564243681
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 13,
+      "image": "experiments/branched_light/seed-0013.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "e8b340fc4104d64ae131026b8458403bf22e169d42012d6ae2b960447353ff4e",
+      "baseline_pixel_sha256": "1767e96143602c178eb2546d11b94db8ab6f8747fb430e0d3600064201728741",
+      "seconds": 18.28321800000049,
+      "black_fraction": 0.8074815538194444,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 9.273510210105469e-05,
+        "palette_rgb": [
+          [
+            96,
+            255,
+            56
+          ],
+          [
+            133,
+            255,
+            180
+          ],
+          [
+            213,
+            73,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3736749361915012,
+          0.8334255086125587
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 11832631,
+        "mean_momentum_change": 0.5555482932505245,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.7367831099571966,
+            -3.357137379167622
+          ],
+          [
+            3.181688866841536,
+            2.561334597631111
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 14,
+      "image": "experiments/branched_light/seed-0014.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "de8f2be05ae65e2a31824ea29f4ed53873181f111d81f74cdae2a4e7d8beb4a2",
+      "baseline_pixel_sha256": "0fd9b1e49bb5dca3e96cdc8eb8e0ac449a08531203b611cd7c173839f4f85044",
+      "seconds": 20.240921900000103,
+      "black_fraction": 0.7913970947265625,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 0.00012436256254248204,
+        "palette_rgb": [
+          [
+            255,
+            183,
+            57
+          ],
+          [
+            212,
+            255,
+            133
+          ],
+          [
+            113,
+            178,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.26573948115177864,
+          0.6824105092545598
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 13079384,
+        "mean_momentum_change": 0.6512659487761023,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -3.3635800297647407,
+            -2.9571025828151702
+          ],
+          [
+            2.894332585497591,
+            3.3008100324471616
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 15,
+      "image": "experiments/branched_light/seed-0015.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "3b91f0a6324e6f8d678b8c8da9fa28ac7600094f81135831ad400e56fd2be56f",
+      "baseline_pixel_sha256": "8fce0d0034857e1685e5925e882de5b259c0a098434aa5868f24d765cd6e6452",
+      "seconds": 19.964733000000706,
+      "black_fraction": 0.7003631591796875,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 8.299277595483625e-05,
+        "palette_rgb": [
+          [
+            135,
+            255,
+            81
+          ],
+          [
+            133,
+            255,
+            175
+          ],
+          [
+            234,
+            122,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3015957408415713,
+          0.8473815245594861
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 13526005,
+        "mean_momentum_change": 0.7689813124013481,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.9182342229165976,
+            -2.5953686396840063
+          ],
+          [
+            2.1477198410415714,
+            2.4705854242741627
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 16,
+      "image": "experiments/branched_light/seed-0016.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "8de7e3679cfbad6659a42f22a45c6ce8f26ca3a37f5e8032cc848c6f73545c77",
+      "baseline_pixel_sha256": "cfaf6d7a61544bdd91d84d825eacb7529cdbb7ad17c9030264229f8de2456a15",
+      "seconds": 12.856997500000944,
+      "black_fraction": 0.8850301106770834,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 6.602875627935671e-05,
+        "palette_rgb": [
+          [
+            227,
+            90,
+            255
+          ],
+          [
+            255,
+            133,
+            174
+          ],
+          [
+            214,
+            255,
+            123
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3081115207300017,
+          0.8207364993321576
+        ]
+      },
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 9465704,
+        "mean_momentum_change": 0.4653160803713734,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -1.908304666489801,
+            -2.30082399604067
+          ],
+          [
+            3.390253381967192,
+            2.997734052416323
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 17,
+      "image": "experiments/branched_light/seed-0017.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "4d6fbee522c7c22b861ceffdf87c57cb7c53f8959229dc7e0312a3ff20016854",
+      "baseline_pixel_sha256": "5c86953972a793a91f7993b72f097fdc37711420b8a636848451b65ec8a67c71",
+      "seconds": 15.419815699999162,
+      "black_fraction": 0.7807871500651041,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 7.844671509159966e-05,
+        "palette_rgb": [
+          [
+            255,
+            108,
+            217
+          ],
+          [
+            255,
+            133,
+            169
+          ],
+          [
+            115,
+            255,
+            162
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2670443641269081,
+          0.7801603267523342
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 11362476,
+        "mean_momentum_change": 0.4425231533504301,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -1.7848510757829534,
+            -2.376542836925123
+          ],
+          [
+            2.5682686752069404,
+            1.9765769140647707
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 18,
+      "image": "experiments/branched_light/seed-0018.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "31a6e31d4f1b438215d9691768b2f8065d34e95ee03059f29b27d2def0fffdf1",
+      "baseline_pixel_sha256": "8e7bc765ce0d2a99595dffb1c76b75d2550c2f277e4477cafc13f23ffaa47e74",
+      "seconds": 15.764104399999269,
+      "black_fraction": 0.7511800130208334,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 8.244037935242063e-05,
+        "palette_rgb": [
+          [
+            115,
+            94,
+            255
+          ],
+          [
+            211,
+            133,
+            255
+          ],
+          [
+            255,
+            201,
+            120
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.381127033623953,
+          0.8986843051274225
+        ]
+      },
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 10753179,
+        "mean_momentum_change": 0.6183625086080414,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -3.0884482988633906,
+            -3.5169403444960903
+          ],
+          [
+            2.7559315117892087,
+            2.327439466156509
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 19,
+      "image": "experiments/branched_light/seed-0019.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "4c48a71987b5662aad3f43fb99f3f9031a0435a19403ffdf574cb8b3c5790fa9",
+      "baseline_pixel_sha256": "550c4b296a9162c3fad9dc3aa6b73c44049afa97fd77fc756c6759eca4e9f8af",
+      "seconds": 15.269769999998971,
+      "black_fraction": 0.797515869140625,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 0.0001082691515463773,
+        "palette_rgb": [
+          [
+            255,
+            96,
+            160
+          ],
+          [
+            255,
+            162,
+            133
+          ],
+          [
+            103,
+            255,
+            107
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.02952963764943986,
+          0.8322808747359194
+        ]
+      },
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 10517586,
+        "mean_momentum_change": 0.6807076618592693,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.697548130907038,
+            -3.3114322106708136
+          ],
+          [
+            3.2657124640833035,
+            2.651828384319528
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 20,
+      "image": "experiments/branched_light/seed-0020.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "6ab5a7bf184bf2da25e9b93b67e2374cf657744290ce5a349afd8bebe96da1f8",
+      "baseline_pixel_sha256": "01ec958bd855fb8e6c917b5beaae0f5ae27e785f660c007ccd0ebdb057115166",
+      "seconds": 8.349696900000708,
+      "black_fraction": 0.8937462700737847,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 5.157702935310273e-05,
+        "palette_rgb": [
+          [
+            99,
+            255,
+            72
+          ],
+          [
+            133,
+            255,
+            178
+          ],
+          [
+            182,
+            121,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.20141723452307767,
+          0.7990428014387503
+        ]
+      },
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 5574546,
+        "mean_momentum_change": 0.5028440491836236,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.256633899833866,
+            -2.300508021533185
+          ],
+          [
+            2.8301937859956174,
+            2.7863196642962986
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 21,
+      "image": "experiments/branched_light/seed-0021.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "40dcf331f3a32f6549e15bb4fd13695a8d4eb55ae99d46e41e230e4a8b16a48f",
+      "baseline_pixel_sha256": "292351b371d7945634958efbd287de8991cfe4e4c8290a4741e3404d28d07410",
+      "seconds": 20.290418900000077,
+      "black_fraction": 0.7861480712890625,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 6.523398605168683e-05,
+        "palette_rgb": [
+          [
+            199,
+            255,
+            80
+          ],
+          [
+            133,
+            255,
+            141
+          ],
+          [
+            133,
+            95,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2676976088917794,
+          0.8152805629218997
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 14392694,
+        "mean_momentum_change": 0.7961451804537129,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -3.055934794546621,
+            -2.1290588803304686
+          ],
+          [
+            3.0846434959252518,
+            4.011519410141404
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 22,
+      "image": "experiments/branched_light/seed-0022.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a1648f4d5b6985e65ac8eadfe230e77745c5e2f4b71bfd4cb4bf575e71d982b8",
+      "baseline_pixel_sha256": "5213014ceaa5f958b5b4b20bcd6ed66cb10ca87bdb48dd085503789ce857b305",
+      "seconds": 16.300226200000907,
+      "black_fraction": 0.7510528564453125,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 5.5376840768510565e-05,
+        "palette_rgb": [
+          [
+            255,
+            103,
+            155
+          ],
+          [
+            255,
+            163,
+            133
+          ],
+          [
+            95,
+            255,
+            166
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.26476631538270606,
+          0.7447111381460851
+        ]
+      },
+      "mechanism": {
+        "ray_count": 13824,
+        "ray_samples_in_frame": 11326127,
+        "mean_momentum_change": 0.41304195505913277,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -0.7802043400653014,
+            -1.7413150520334535
+          ],
+          [
+            3.020821196731066,
+            2.0597104847629133
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 23,
+      "image": "experiments/branched_light/seed-0023.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "8a11e4c1f9c1b743750705c2baa63b1c2f45bd54a6868b353425ca5878b1d6d0",
+      "baseline_pixel_sha256": "143afee2a795166feb44c033e3fab7b31ae5205637544ea9ec3165e96fa73c36",
+      "seconds": 19.991220699999758,
+      "black_fraction": 0.7272016737196181,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 0.00010893063379416827,
+        "palette_rgb": [
+          [
+            134,
+            107,
+            255
+          ],
+          [
+            229,
+            133,
+            255
+          ],
+          [
+            239,
+            255,
+            78
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.1939917886099415,
+          0.7179660742648079
+        ]
+      },
+      "mechanism": {
+        "ray_count": 18432,
+        "ray_samples_in_frame": 14217547,
+        "mean_momentum_change": 0.6617767220336298,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -2.3738986613345547,
+            -1.684783062312765
+          ],
+          [
+            2.6266691735216625,
+            3.315784772543452
+          ]
+        ]
+      }
+    },
+    {
+      "study": "branched_light",
+      "seed": 24,
+      "image": "experiments/branched_light/seed-0024.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "d7c7346ccfb853933d0680dcbe4f0d694e80bff0a0da51e6d82f5048a4c09217",
+      "baseline_pixel_sha256": "7a0848e983b5d36d4a97306ee05c7012798a5dda4ea9fcb40552651e13162a46",
+      "seconds": 10.413180100000318,
+      "black_fraction": 0.7852596706814237,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 5.3327701312569676e-05,
+        "palette_rgb": [
+          [
+            111,
+            255,
+            131
+          ],
+          [
+            133,
+            255,
+            213
+          ],
+          [
+            230,
+            122,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.1338994849997609,
+          0.8196776283706297
+        ]
+      },
+      "mechanism": {
+        "ray_count": 9216,
+        "ray_samples_in_frame": 6879290,
+        "mean_momentum_change": 0.5734171549371951,
+        "potential_exterior_samples": 0,
+        "camera_bounds": [
+          [
+            -3.4866310553705517,
+            -1.3064516128165446
+          ],
+          [
+            1.1371257664141592,
+            3.317305208968166
+          ]
+        ]
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 1,
+      "image": "experiments/inertial_filaments/seed-0001.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "e6c598b0d09e7455934a669bdd25a082db736d15da239d50499b8c2887f10611",
+      "baseline_pixel_sha256": "5a08f1afdc45d84fce587f58437be489908f1fb9eb50d858e192b6dc633f9ee5",
+      "seconds": 6.699738100000104,
+      "black_fraction": 0.9241180419921875,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 25.709276412200936,
+        "palette_rgb": [
+          [
+            252,
+            86,
+            255
+          ],
+          [
+            255,
+            133,
+            201
+          ],
+          [
+            179,
+            255,
+            127
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.21957776652398095,
+          0.6199793061483523
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1320,
+        "escaped_particle_count": 368,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.5205031037330627,
+          0.9196428656578064
+        ],
+        "trajectory_sha256": "3e375d7b45837a93ad8f8f88c7c14ba238762973975076904221ac89a542dfc6"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 2,
+      "image": "experiments/inertial_filaments/seed-0002.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "5242630bc2f207f41dd3739e188391f8d03f2e3f6aa45722e8e2802105dacb62",
+      "baseline_pixel_sha256": "a20a3c033dc13aee0773a854d7b5f1f61d8e4d1b1164c793ee26a1f4d423bf86",
+      "seconds": 13.660293900000397,
+      "black_fraction": 0.8317040337456597,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 50.29416176452637,
+        "palette_rgb": [
+          [
+            190,
+            66,
+            255
+          ],
+          [
+            255,
+            133,
+            203
+          ],
+          [
+            246,
+            255,
+            123
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.13017497651902452,
+          0.6120423774925889
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 4040,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.7214254140853882,
+          1.639396071434021
+        ],
+        "trajectory_sha256": "47601d9b833a0e633e4a7b328bd9fc0534592fe3ddd0cd351183fedb16c0735e"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 3,
+      "image": "experiments/inertial_filaments/seed-0003.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "21a82368d31b3fa4c82e90c8a4bb77bde17f86e4618fc60c31654f8d240244fa",
+      "baseline_pixel_sha256": "1e4a2e56803e59f6d72650c2bd3d2df3cfec705f10d1a133d8baedbf7efa4022",
+      "seconds": 7.853808600000775,
+      "black_fraction": 0.8750813802083334,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 16.837787733459407,
+        "palette_rgb": [
+          [
+            77,
+            172,
+            255
+          ],
+          [
+            155,
+            133,
+            255
+          ],
+          [
+            255,
+            226,
+            112
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.32487459335500884,
+          0.6505865535421359
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1540,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.5164141654968262,
+          1.9849002361297607
+        ],
+        "trajectory_sha256": "a284791d9971e060b7756b7877c6bb84f8da3b7629903a8a60224e8c9cfa931e"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 4,
+      "image": "experiments/inertial_filaments/seed-0004.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "4d2afda01d8e9a669b54f3cb72b2527882f22ab6c0b8b048733b3093b77a6521",
+      "baseline_pixel_sha256": "599402b3b77da9d7f6283d70c7f56f32f2c03df787c1cdf756187c1a19dd71c0",
+      "seconds": 14.926071500000035,
+      "black_fraction": 0.8184797498914931,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 22.737660728454557,
+        "palette_rgb": [
+          [
+            78,
+            63,
+            255
+          ],
+          [
+            200,
+            133,
+            255
+          ],
+          [
+            205,
+            255,
+            99
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.23873508859357023,
+          0.728475783145786
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 3548,
+        "escaped_particle_count": 6,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.8847844004631042,
+          2.5152292251586914
+        ],
+        "trajectory_sha256": "e55aa1719ebe3a320f3ef1b672e9be576ea8365f54a6723f900ee58ba7d061b2"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 5,
+      "image": "experiments/inertial_filaments/seed-0005.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "bed551bc615c99a4ed10122349db58b6d56aee997128b071d62567708ad7bd9b",
+      "baseline_pixel_sha256": "a3298ca4fd466293b29795fa52ce6cf25b5e63ae4a9a6f17f9de7ff60fcf6c7c",
+      "seconds": 7.267749100001311,
+      "black_fraction": 0.8405422634548612,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 15.853515417480473,
+        "palette_rgb": [
+          [
+            104,
+            84,
+            255
+          ],
+          [
+            218,
+            133,
+            255
+          ],
+          [
+            177,
+            255,
+            72
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.4386645411029487,
+          0.7741298508028155
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1544,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.390906810760498,
+          2.2209885120391846
+        ],
+        "trajectory_sha256": "b37b20a32de0625dda8c6c395143ef519f725e14551eff1713d2aa42103745ac"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 6,
+      "image": "experiments/inertial_filaments/seed-0006.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "c4b9628be5146dd9db3e020c85e556f5dcab9bfdd32e0da4331de8d35852b2b2",
+      "baseline_pixel_sha256": "2dc168a5006f6bdfb7fa47239825e20ca90def43978e24b51429a18a0bdfcd9d",
+      "seconds": 8.159390299999359,
+      "black_fraction": 0.8671959771050347,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 16.543700427246012,
+        "palette_rgb": [
+          [
+            255,
+            104,
+            244
+          ],
+          [
+            255,
+            133,
+            180
+          ],
+          [
+            159,
+            255,
+            77
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2300178866177948,
+          0.7929406303672678
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1496,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.9301069378852844,
+          1.4950262308120728
+        ],
+        "trajectory_sha256": "d79886dfb17e2d8308b267b7e8b6074a2086d64e1fd5bd99dd47067a5033aca1"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 7,
+      "image": "experiments/inertial_filaments/seed-0007.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a985c648ab4d4363a558ba2508ac32b3c0ab9144bfe6fd43c82d3ca091a41d77",
+      "baseline_pixel_sha256": "7a60bf888919cace988d427e6e6c7cefce2990ca6ceb6869a4c96ad362564806",
+      "seconds": 7.791804599999523,
+      "black_fraction": 0.8652275933159722,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 14.11936407470702,
+        "palette_rgb": [
+          [
+            255,
+            102,
+            197
+          ],
+          [
+            255,
+            133,
+            138
+          ],
+          [
+            79,
+            255,
+            133
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.23605458849396305,
+          0.8013099144981493
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1496,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.8654130697250366,
+          1.7777972221374512
+        ],
+        "trajectory_sha256": "00636c413532916760967bbf03565bd47682934711411d266b32641171504b2b"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 8,
+      "image": "experiments/inertial_filaments/seed-0008.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "ac52b30352843106740f5bf286b4201429d2b2d7ac519a88f3c8a1a7304f7823",
+      "baseline_pixel_sha256": "6710c5f6f0413d2619ac33945cab1bc5a536033d1cfd05da6b32a5e99dabd25f",
+      "seconds": 15.17790309999873,
+      "black_fraction": 0.8473595513237847,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 35.26322462158196,
+        "palette_rgb": [
+          [
+            135,
+            255,
+            71
+          ],
+          [
+            133,
+            255,
+            145
+          ],
+          [
+            221,
+            81,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3148530201523936,
+          0.6139649126259324
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 3424,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.5628012418746948,
+          1.4908082485198975
+        ],
+        "trajectory_sha256": "8bf212fb0a0f2d6cd5be65e6d3d21a46b64f6aaefae3a9ac02d2e88dad5175cc"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 9,
+      "image": "experiments/inertial_filaments/seed-0009.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "bcb04e06ef39aa5efee5d5efd1c4b1ea771ed4a6d27ffb303c266d77368b8086",
+      "baseline_pixel_sha256": "3353b0fe60b9845202c7daf01171694108bc293a3168d04cf945d14966ec5526",
+      "seconds": 13.125124099999084,
+      "black_fraction": 0.8913218180338541,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 33.585769050598145,
+        "palette_rgb": [
+          [
+            80,
+            248,
+            255
+          ],
+          [
+            133,
+            188,
+            255
+          ],
+          [
+            255,
+            75,
+            73
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.24445720538783952,
+          0.7882757708540783
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 3004,
+        "escaped_particle_count": 13,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.734404981136322,
+          1.9303996562957764
+        ],
+        "trajectory_sha256": "b6560ef9fe4c8397aa8d90f72495470e9b0a3856196209e04234053eb0caee22"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 10,
+      "image": "experiments/inertial_filaments/seed-0010.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "7a1a0f942bbbea4db49476c68bddcdde59916db17b38fd872b498e3d08f74a1c",
+      "baseline_pixel_sha256": "c4f6f06b247bf6015d3aa71ff1800c22234b8f0c51358e904a762c854da12b1c",
+      "seconds": 14.071598500000619,
+      "black_fraction": 0.8045399983723959,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 29.142932177734366,
+        "palette_rgb": [
+          [
+            211,
+            255,
+            107
+          ],
+          [
+            133,
+            255,
+            134
+          ],
+          [
+            73,
+            95,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.25666084576233256,
+          0.7620067123674762
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 3044,
+        "escaped_particle_count": 533,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.716610312461853,
+          1.2808780670166016
+        ],
+        "trajectory_sha256": "4d783ec624a23cd55a232278d7bd8bf489444f9ae886cd5397a0a8e63a6f0b75"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 11,
+      "image": "experiments/inertial_filaments/seed-0011.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "78391cd199e88f1836089562970facf060d7fe0852a0f013b0eddc6ec4f726d2",
+      "baseline_pixel_sha256": "699cc63fd9f97cbf1ba5932f833e71beb139df02fca04d32de11e623a917cce4",
+      "seconds": 5.771431900000607,
+      "black_fraction": 0.8614128960503472,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 12.556805149459858,
+        "palette_rgb": [
+          [
+            255,
+            149,
+            102
+          ],
+          [
+            246,
+            255,
+            133
+          ],
+          [
+            72,
+            157,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3802889182806149,
+          0.7005047394392584
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1116,
+        "escaped_particle_count": 3,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.8198908567428589,
+          3.2848172187805176
+        ],
+        "trajectory_sha256": "5f1d0e258c653f352ad74dc01a6a74a8730524744b4f5ce173329ff66f065298"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 12,
+      "image": "experiments/inertial_filaments/seed-0012.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "b76c19c12ed15b81dc6a7e9907da88c6f962cbd27bad34619b1205538b042f91",
+      "baseline_pixel_sha256": "abe74aaa5e70e0f985fe0840db24939e2e77eddc6f03731a1dca0a16b1903d63",
+      "seconds": 6.631377000001521,
+      "black_fraction": 0.8623758951822916,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 26.435265250396732,
+        "palette_rgb": [
+          [
+            114,
+            94,
+            255
+          ],
+          [
+            254,
+            133,
+            255
+          ],
+          [
+            215,
+            255,
+            110
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3078725548102546,
+          0.8062679845866884
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1500,
+        "escaped_particle_count": 17,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.5530943870544434,
+          1.8015434741973877
+        ],
+        "trajectory_sha256": "f87088abb2d3b4e39cb9379484f74a63405dbb36bfdfb9c635d7baca4de12d9a"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 13,
+      "image": "experiments/inertial_filaments/seed-0013.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "cd1b0f2582ae955545d1808a05e69e735cc68a77fe16d31b2523a24bdf830d20",
+      "baseline_pixel_sha256": "3625b30fbd851a6c49a42590bed81eda60b029ed9d16342e02e6ed11c266b76c",
+      "seconds": 6.836309500000425,
+      "black_fraction": 0.8179083930121528,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 14.39670728149413,
+        "palette_rgb": [
+          [
+            96,
+            255,
+            56
+          ],
+          [
+            133,
+            255,
+            180
+          ],
+          [
+            213,
+            73,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.35173995843509354,
+          0.7643765352769517
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1568,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.529674768447876,
+          1.9376572370529175
+        ],
+        "trajectory_sha256": "402350ffc258c55ca2fc46f51f0a506008e0ef6a046456a25410954e13c9dbd8"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 14,
+      "image": "experiments/inertial_filaments/seed-0014.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "4a78781245b6655865c076fc7150306a221041f2eacab75ee0d611a2bf7fbc23",
+      "baseline_pixel_sha256": "b9ac9e0b4d3bb68d27bd368422c386ed6820f253982c1a79319933c29b2abaa1",
+      "seconds": 10.719259299999976,
+      "black_fraction": 0.8309563530815972,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 27.020999145507812,
+        "palette_rgb": [
+          [
+            255,
+            183,
+            57
+          ],
+          [
+            212,
+            255,
+            133
+          ],
+          [
+            113,
+            178,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3082850033792583,
+          0.6708280868258856
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 2232,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.5728824734687805,
+          1.1213041543960571
+        ],
+        "trajectory_sha256": "21a0f9cce8ecd809503947c239d65ffb6d4e66a53c1124cdb11ca98ddae0adac"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 15,
+      "image": "experiments/inertial_filaments/seed-0015.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "894c71eb40d7277ca256b45a57b215eb1feb4bf3de79326e1824c6880083f3fd",
+      "baseline_pixel_sha256": "a23dc40552f0ee52745028392b98ea31810f549aa56615468063b462918f01be",
+      "seconds": 10.370240700000068,
+      "black_fraction": 0.7815450032552084,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 13.981480931091241,
+        "palette_rgb": [
+          [
+            135,
+            255,
+            81
+          ],
+          [
+            133,
+            255,
+            175
+          ],
+          [
+            234,
+            122,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.26988370482726143,
+          0.8127475018744692
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 2188,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.9925944209098816,
+          2.1115407943725586
+        ],
+        "trajectory_sha256": "c0dadcb05c24b8039360ac66ce5d767f95e4e95cd6219b82fdb2a997f560d976"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 16,
+      "image": "experiments/inertial_filaments/seed-0016.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "526bfcfc9b5fd13c1313eabd0ce95e5c55100f7a9c44c68e60dede6ab19eb6d9",
+      "baseline_pixel_sha256": "20f3362d130f585612e7d25669ba721a593f0958824462f397f32ed0b008cac3",
+      "seconds": 10.309255100000883,
+      "black_fraction": 0.8307088216145834,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 24.301625122070305,
+        "palette_rgb": [
+          [
+            227,
+            90,
+            255
+          ],
+          [
+            255,
+            133,
+            174
+          ],
+          [
+            214,
+            255,
+            123
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.19623726827059587,
+          0.6728667504907186
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 2360,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.0609580278396606,
+          1.6748791933059692
+        ],
+        "trajectory_sha256": "92dc54da49f163fc5cb4587732fdd57fde0483039f50b8828e66b5d468b86ea4"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 17,
+      "image": "experiments/inertial_filaments/seed-0017.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a5bc74c4b793672d92372003b86c0e72a31793e8d43038eb0d2f8eca98159459",
+      "baseline_pixel_sha256": "d8506c2e397328265d0b51567deb2fdfde69b3d992ea425c3253f8cb77f2e923",
+      "seconds": 6.18275150000045,
+      "black_fraction": 0.7802802191840278,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 15.29221383056636,
+        "palette_rgb": [
+          [
+            255,
+            108,
+            217
+          ],
+          [
+            255,
+            133,
+            169
+          ],
+          [
+            115,
+            255,
+            162
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3666989650640244,
+          0.746665972621845
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1348,
+        "escaped_particle_count": 4,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.068169355392456,
+          2.113297700881958
+        ],
+        "trajectory_sha256": "ae4f4f90df31424feb2bacc34907cfacdb129f81194927e87a0cd245c104cb54"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 18,
+      "image": "experiments/inertial_filaments/seed-0018.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "764a7178cb0cc39fae3f76b9970c9271ffa53575574bae8d083aa7b0a2964ff3",
+      "baseline_pixel_sha256": "22f0443167c6934dafce370a2d8d6910502b1a2c58eeeba91d9cf39663c3800c",
+      "seconds": 11.631912899998497,
+      "black_fraction": 0.8468288845486112,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 20.768309828186023,
+        "palette_rgb": [
+          [
+            115,
+            94,
+            255
+          ],
+          [
+            211,
+            133,
+            255
+          ],
+          [
+            255,
+            201,
+            120
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3986934109589028,
+          0.7627751362145031
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 2152,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          2.257863759994507,
+          2.6110308170318604
+        ],
+        "trajectory_sha256": "11e5b50638ff550e1e16409c11b8b256bd01ea0cedd8bf3a096e16f98933662a"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 19,
+      "image": "experiments/inertial_filaments/seed-0019.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "dd46dfaf65c56fc44846d6edc014997007cdf4fc3debba51bc2f01caea3d63d6",
+      "baseline_pixel_sha256": "1b65e6a1531d1dce3a83803d7f0b396ab61e9959e32db043c2f61c17eddded6b",
+      "seconds": 10.479972400000406,
+      "black_fraction": 0.8954603407118056,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 43.159193995666506,
+        "palette_rgb": [
+          [
+            255,
+            96,
+            160
+          ],
+          [
+            255,
+            162,
+            133
+          ],
+          [
+            103,
+            255,
+            107
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.17618223597603025,
+          0.8381548212422694
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 2136,
+        "escaped_particle_count": 4,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.7831717729568481,
+          2.082170009613037
+        ],
+        "trajectory_sha256": "3a31bbfef0309e75672bb4a9191df23ceb1b677e3d24aa20ce16cd6d30de8936"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 20,
+      "image": "experiments/inertial_filaments/seed-0020.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "a86385d2dbff5c57db76d12483da04af4450fc912b8d164abeaa84abd7c3f569",
+      "baseline_pixel_sha256": "47e5ef67f8e21f46da2060d24dcddd87f285a5be068b189de7216600058169d6",
+      "seconds": 13.915136199999324,
+      "black_fraction": 0.8309817843967013,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 28.195224203491208,
+        "palette_rgb": [
+          [
+            99,
+            255,
+            72
+          ],
+          [
+            133,
+            255,
+            178
+          ],
+          [
+            182,
+            121,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.22616751047060227,
+          0.8265715566024278
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 3520,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.7595221996307373,
+          1.6741929054260254
+        ],
+        "trajectory_sha256": "3b3b3567d1fdcd414b282e021b990ea731516a1ca3ba4055e6690e6fb672575a"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 21,
+      "image": "experiments/inertial_filaments/seed-0021.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "440f96f02baa3f4e6fb6360ca63c7e2b42772f7c22a805b6e612fb715950b940",
+      "baseline_pixel_sha256": "ece833754af442568a6e53c063760f0cee67a2cdaf52eafb298a4686a7eab6f9",
+      "seconds": 7.5071711000000505,
+      "black_fraction": 0.8570014105902778,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 24.341743701171836,
+        "palette_rgb": [
+          [
+            199,
+            255,
+            80
+          ],
+          [
+            133,
+            255,
+            141
+          ],
+          [
+            133,
+            95,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.2587648389539579,
+          0.8656513271007549
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1512,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          0.8955929279327393,
+          1.5689448118209839
+        ],
+        "trajectory_sha256": "c0280826dfe18c53c7aaeec58a050750737a3b5c693da3dbdd3e2ba667a68347"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 22,
+      "image": "experiments/inertial_filaments/seed-0022.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "8c093e8bb6e85a50a9b6b2446244e7d35492af30836bef7147ad2ff4d60f51f8",
+      "baseline_pixel_sha256": "41c79cdb489caceab918d597a7d369170eddcc5bd82f353941c6de7f8e93480f",
+      "seconds": 14.210087400000702,
+      "black_fraction": 0.8261786566840278,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 24.14634491348267,
+        "palette_rgb": [
+          [
+            255,
+            103,
+            155
+          ],
+          [
+            255,
+            163,
+            133
+          ],
+          [
+            95,
+            255,
+            166
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.3764528955436557,
+          0.8154502131022251
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 2776,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.4231767654418945,
+          2.1131534576416016
+        ],
+        "trajectory_sha256": "37ea0775c162ea73538ff77a704d7e98c7b6a6d1cf1ad7d688eb7e12e0d0ab9b"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 23,
+      "image": "experiments/inertial_filaments/seed-0023.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "dc498527cca8e7a56cb06c859df143fce6a525244db4cf6480cc67da1d3e13c6",
+      "baseline_pixel_sha256": "2b312c01fd967602a735f3e00b8172f7b2bf2d987705473aaf0ed7c69cb4bc70",
+      "seconds": 8.105990699999893,
+      "black_fraction": 0.8464541965060763,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 11.246185340881349,
+        "palette_rgb": [
+          [
+            134,
+            107,
+            255
+          ],
+          [
+            229,
+            133,
+            255
+          ],
+          [
+            239,
+            255,
+            78
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.22177197713507849,
+          0.6871541443494215
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 1308,
+        "escaped_particle_count": 0,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.581069827079773,
+          2.3946521282196045
+        ],
+        "trajectory_sha256": "7e9b17c0526c9d92e70b7af86f098470c5fd5b3aab7a3ccbae87bd9e2621eeb2"
+      }
+    },
+    {
+      "study": "inertial_filaments",
+      "seed": 24,
+      "image": "experiments/inertial_filaments/seed-0024.png",
+      "width": 768,
+      "height": 768,
+      "pixel_sha256": "781a18bfc7df0029ba2794bb7c778933c1d9be2678c140d3451931fcc220360f",
+      "baseline_pixel_sha256": "d083ac1822264715971ac3c3f4c61c7590911c045b9503b39a8cd1107d54786b",
+      "seconds": 11.657103199999256,
+      "black_fraction": 0.8341335720486112,
+      "finish": {
+        "version": 1,
+        "strength": 1.0,
+        "exposure": 25.874207183837886,
+        "palette_rgb": [
+          [
+            111,
+            255,
+            131
+          ],
+          [
+            133,
+            255,
+            213
+          ],
+          [
+            230,
+            122,
+            255
+          ]
+        ],
+        "grain": 0.06,
+        "bloom": 0.1,
+        "local_contrast": 0.2,
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "color_source": "advected material",
+        "material_coordinate_range": [
+          0.22062182063046556,
+          0.9092954709870653
+        ]
+      },
+      "mechanism": {
+        "particles_per_cohort": 2796,
+        "escaped_particle_count": 206,
+        "endpoint_separation_from_fast": [
+          0.0,
+          1.2970845699310303,
+          1.7346323728561401
+        ],
+        "trajectory_sha256": "2f38c57315076d26acd90528164548bfb19760b42267cfd174d87205a84bfc0b"
+      }
+    }
+  ],
+  "notes": [
+    "Hashes cover working source file bytes and decoded RGB pixels.",
+    "Image paths are relative to build/experiments/gallery.",
+    "Baseline PNGs are preserved byte-for-byte in the baseline directory.",
+    "Numerical checks establish the mechanisms; aesthetics are assessed separately."
+  ]
+}
